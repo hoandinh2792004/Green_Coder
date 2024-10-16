@@ -1,0 +1,91 @@
+﻿@{
+    ViewData["Title"] = "Update Product";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model Admin.Models.SanPham
+
+<div class="modal-body">
+    <form asp-action="Update" asp-controller="QuanLySanPham" method="post">
+    <div class="row">
+        <div class="form-group col-md-12">
+            <span class="thong-tin-thanh-toan">
+                <h5>Chỉnh sửa thông tin sản phẩm cơ bản</h5>
+            </span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-md-3">
+            <label asp-for="TenSanPham" class="control-label">Tên Sản Phẩm</label>
+            <input asp-for="TenSanPham" class="form-control" />
+            <span asp-validation-for="TenSanPham" class="text-danger"></span>
+        </div>
+        <div class="form-group col-md-3">
+            <label asp-for="SoLuong" class="control-label">Số Lượng</label>
+            <input asp-for="SoLuong" class="form-control" />
+            <span asp-validation-for="SoLuong" class="text-danger"></span>
+        </div>
+        <div class="form-group col-md-3">
+            <label asp-for="TinhTrang" class="control-label">Tình Trạng</label>
+            <select asp-for="TinhTrang" class="form-control" id="exampleSelect1">
+                <option>-- Chọn tình trạng --</option>
+                <option>Còn hàng</option>
+                <option>Hết hàng</option>
+            </select>
+            <span asp-validation-for="TinhTrang" class="text-danger"></span>
+        </div>
+        <div class="form-group col-md-3">
+            <label asp-for="DanhMuc" class="control-label">Danh Mục</label>
+            <select asp-for="DanhMuc" class="form-control" id="exampleSelect1">
+                <option>-- Chọn danh mục --</option>
+                <option>Bàn ăn</option>
+                <option>Bàn thông minh</option>
+                <option>Tủ</option>
+                <option>Ghế gỗ</option>
+                <option>Ghế sắt</option>
+                <option>Giường người lớn</option>
+                <option>Giường trẻ em</option>
+                <option>Bàn trang điểm</option>
+                <option>Giá đỡ</option>
+            </select>
+            <span asp-validation-for="DanhMuc" class="text-danger"></span>
+        </div>
+        <div class="form-group col-md-3">
+            <label asp-for="NhaCungCap" class="control-label">Nhà Cung Cấp</label>
+            <select asp-for="NhaCungCap" class="form-control" id="exampleSelect1">
+                <option>-- Chọn nhà cung cấp --</option>
+                <option>Phong vũ</option>
+                <option>Thế giới di động</option>
+                <option>FPT</option>
+                <option>Võ Trường</option>
+            </select>
+            <span asp-validation-for="NhaCungCap" class="text-danger"></span>
+        </div>
+        <div class="form-group col-md-3">
+            <label asp-for="GiaBan" class="control-label">Giá Bán</label>
+            <input asp-for="GiaBan" class="form-control" />
+            <span asp-validation-for="GiaBan" class="text-danger"></span>
+        </div>
+        <div class="form-group col-md-3">
+            <label asp-for="GiaVon" class="control-label">Giá Vốn</label>
+            <input asp-for="GiaVon" class="form-control" />
+            <span asp-validation-for="GiaVon" class="text-danger"></span>
+        </div>
+
+        <br />
+        <button class="btn btn-save" type="submit">Lưu lại</button>
+        <a class="btn btn-cancel" data-dismiss="modal" asp-controller="QuanLySanPham" asp-action="Index">Hủy bỏ</a>
+        <br />
+    </div>
+    <div class="modal-footer">
+    </div>
+    </form>
+</div>
+
+
+<!-- The javascript plugin to display page loading on top-->
+<script src="~/js/plugins/pace.min.js"></script>
+<!-- Page specific javascripts-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
+<!-- Data table plugin-->
+<script type="text/javascript" src="~/js/plugins/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="~/js/plugins/dataTables.bootstrap.min.js"></script>
