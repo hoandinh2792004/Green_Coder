@@ -1,4 +1,5 @@
-﻿using Admin.Models;
+﻿using Admin.Helpers;
+using Admin.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Admin.Controllers
@@ -19,26 +20,29 @@ namespace Admin.Controllers
         {
             return View();
         }
+
         [Route("ThemSanPhamMoi")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult ThemSanPham(SanPham SanPham)
+        public IActionResult ThemSanPham(SanPham SanPham, IFormFile AnhSanPham)
         {
             if (ModelState.IsValid)
             {
-                
+
+                string uniquePoster = UploadFileHelpers.UpLoadFile(AnhSanPham, "images");
                 db.SanPhams.Add(SanPham);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(SanPham);
         }
-
+        [Route("Update")]
         [HttpGet]
         public IActionResult Update(int ID) {
-            var SanPham = db.SanPhams.Find(ID);
-            return View(SanPham);
+           
+            return View();
         }
+        [Route("Update")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Update(SanPham sanPham)
@@ -51,5 +55,7 @@ namespace Admin.Controllers
             }
             return View(sanPham);
         }
+
+       
     }
 }

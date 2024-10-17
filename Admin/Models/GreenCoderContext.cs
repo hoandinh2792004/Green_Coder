@@ -56,7 +56,7 @@ public partial class GreenCoderContext : DbContext
             entity.Property(e => e.Id)
                 .ValueGeneratedNever()
                 .HasColumnName("ID");
-            entity.Property(e => e.AnhSanPham).HasMaxLength(500);
+            entity.Property(e => e.AnhSanPham).HasColumnType("image");
             entity.Property(e => e.DanhMuc).HasMaxLength(50);
             entity.Property(e => e.MoTa).HasColumnType("ntext");
             entity.Property(e => e.NhaCungCap).HasMaxLength(50);

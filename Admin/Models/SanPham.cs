@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using System.Diagnostics.CodeAnalysis;
 namespace Admin.Models;
+using Admin.Validations; 
 
 public partial class SanPham
 {
@@ -21,7 +22,14 @@ public partial class SanPham
 
     public int? GiaVon { get; set; }
 
-    public string? AnhSanPham { get; set; }
+   
+    [AllowExtensionFile(new string[] { ".png", ".jpg", ".jpeg" })]
+    [AllowSizeFile(5 * 1024 * 1024)]
+    public IFormFile? AnhSanPham { get; set; }
+
+    // view ten anh
+    [AllowNull]
+    public string? TenAnhSanPham { get; set; }
 
     public string? MoTa { get; set; }
 
