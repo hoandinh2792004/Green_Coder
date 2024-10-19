@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Web_bestcoder")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1be0a0627f38fd10d1076b2d9c938a4c3bc52285")]
 [assembly: System.Reflection.AssemblyProductAttribute("Web_bestcoder")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Web_bestcoder")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

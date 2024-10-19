@@ -28,3 +28,4 @@ D:\Hoandinh\project.Net\Web_bestcoder\Web_bestcoder\obj\Debug\net8.0\refint\Web_
 D:\Hoandinh\project.Net\Web_bestcoder\Web_bestcoder\obj\Debug\net8.0\Web_bestcoder.pdb
 D:\Hoandinh\project.Net\Web_bestcoder\Web_bestcoder\obj\Debug\net8.0\Web_bestcoder.genruntimeconfig.cache
 D:\Hoandinh\project.Net\Web_bestcoder\Web_bestcoder\obj\Debug\net8.0\ref\Web_bestcoder.dll
+D:\Hoandinh\project.Net\Web_bestcoder\Web_bestcoder\obj\Debug\net8.0\Web_bestcoder.sourcelink.json
