@@ -26,5 +26,3 @@ jobs:
     - name: Test
       run: dotnet test --no-build --verbosity normal
       shell: powershell
-    - name: run prod
-      run: C:\actions-runner\_work\Green_coder\Green_coder\Web_bestcoder\built\Web_bestcoder.exe
