@@ -1,0 +1,83 @@
+﻿/* Consistent styling for the Register title */
+.register-title {
+    text-decoration: underline;
+    text-align: left;
+    font-size: 2rem;
+    color: #333;
+    font-weight: bold;
+}
+
+/* Light green for login and back links */
+.login-link, .back-link {
+    color: forestgreen;
+}
+
+    .login-link:hover, .back-link:hover {
+        text-decoration: underline;
+    }
+
+/* Maintain layout alignment with the Login view */
+.account-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 2rem;
+    background-image: url('../images/background1-bg.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.account-box {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    max-width: 800px;
+    width: 100%;
+    display: flex;
+}
+
+.form-container {
+    padding: 30px;
+    flex: 1;
+}
+
+.image-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('../images/donation.jpg');
+    background-size: cover;
+    background-position: center;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    text-align: center;
+    padding: 20px;
+    color: white;
+}
+
+/* Register button hover effect */
+.btn-success {
+    background-color: #006400;
+    color: white;
+    font-weight: bold;
+    border: none;
+}
+
+    .btn-success:hover {
+        background-color: #5a5a5a;
+    }
+
+.text-decoration-none {
+    color: #5a5a5a;
+}
+
+    .text-decoration-none:hover {
+        text-decoration: underline;
+    }
+
+
+.login-link, .back-link {
+    color: forestgreen; /* Light green */
+}

@@ -3,7 +3,28 @@
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
+    <MvcRazorCompileOnPublish>false</MvcRazorCompileOnPublish>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="wwwroot\Admin\ckeditor\**" />
+    <Compile Remove="wwwroot\Admin\doc\**" />
+    <Compile Remove="wwwroot\Admin\vendor\**" />
+    <Content Remove="wwwroot\Admin\ckeditor\**" />
+    <Content Remove="wwwroot\Admin\doc\**" />
+    <Content Remove="wwwroot\Admin\vendor\**" />
+    <EmbeddedResource Remove="wwwroot\Admin\ckeditor\**" />
+    <EmbeddedResource Remove="wwwroot\Admin\doc\**" />
+    <EmbeddedResource Remove="wwwroot\Admin\vendor\**" />
+    <None Remove="wwwroot\Admin\ckeditor\**" />
+    <None Remove="wwwroot\Admin\doc\**" />
+    <None Remove="wwwroot\Admin\vendor\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\Admin\uploads\images\" />
+    <Folder Include="wwwroot\User\images\detail\" />
+  </ItemGroup>
 
 </Project>

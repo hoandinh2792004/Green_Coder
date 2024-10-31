@@ -2,6 +2,15 @@
     ViewData["Title"] = "Home Page";
 }
 <body>
+    <style>
+
+        .insta-img {
+            width: 100%;
+            height: 250px; /* Bạn có thể chỉnh chiều cao theo ý muốn */
+            object-fit: cover; /* Đảm bảo ảnh vừa khung và không bị biến dạng */
+            border-radius: 10px;
+        }
+    </style>
     
     <div class="preloader-wrapper">
         <div class="preloader">
@@ -79,7 +88,7 @@
                 <div class="swiper-slide py-5" style="background-image: url('/User/images/slide1.jpg'); background-size: cover;">
                     <div class="row banner-content align-items-center h-100">
                         <div class="content-wrapper col-md-7 mb-5" style="position: relative; top: 30%; margin-left: 50px;">
-                            <a href="#" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1 mt-3">
+                            <a href="/Products/index" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1 mt-3">
                                 Mua ngay
                                 <svg width="24" height="24" viewBox="0 0 24 24" class="mb-1">
                                     <use xlink:href="#arrow-right"></use>
@@ -104,13 +113,13 @@
                     </div>
                 </div>
                 <!-- Slide 3 -->
-                <div class="swiper-slide py-5 position-relative">
+                <div class="swiper-slide position-relative">
                     <video autoplay loop muted playsinline class="video-background">
                         <source src="~/User/images/slide3.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
                     <div class="row banner-content align-items-center h-100 position-relative">
-                        <div class="content-wrapper col-md-7 mb-5" style="position: relative; top: 30%; margin-left: 30px;">
+                        <div class="content-wrapper col-md-7 mb-5" style="position: relative; top: 30%; margin-left: 55px;">
                             <!-- <div class="secondary-font text-primary text-uppercase mb-4">Save 10 - 20 % off</div>
                                 <h2 class="banner-title display-1 fw-normal">Best destination for <span class="text-primary">your pets</span></h2> -->
                             <a href="#" class="btn btn-outline-dark2 btn-lg text-uppercase fs-6 rounded-1 mt-3">
@@ -129,7 +138,7 @@
         </div>
     </section>
 
-    <div style="background: url('~/User/images/background.jpg') no-repeat center center; background-size: cover; margin: 40px; margin-top: 10px; ">
+    <div style="background: url('/User/images/background.jpg') no-repeat center center; background-size: cover; margin: 40px; margin-top: 10px; ">
         <div class="row banner-content align-items-center h-100">
             <h1 style="font-family: var(--heading-font); color: #3e5b2c; text-align: center; margin-top: 2rem;">
                 Tiêu dùng bền vững - Sống xanh - Trao yêu thương
@@ -145,8 +154,8 @@
             <div class="section-header d-md-flex justify-content-between align-items-center mb-3">
                 <h2 class="display-3 fw-normal">Sản Phẩm mới </h2>
                 <div>
-                    <a href="Danhsachsp.html" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
-                        shop now
+                    <a href="/Products/index" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
+                        Mua ngay
                         <svg width="24" height="24" viewBox="0 0 24 24" class="mb-1">
                             <use xlink:href="#arrow-right"></use>
                         </svg>
@@ -313,7 +322,7 @@
                             New
                         </div>
                         <div class="card position-relative">
-                            <a href="single-product.html"><img src="~/User/images/HopDoAn/image.png" class="img-fluid rounded-4" alt="image"></a>
+                            <a href="single-product.html"><img src="~/User/images/HopDoAn/image1.png" class="img-fluid rounded-4" alt="image"></a>
                             <div class="card-body p-0">
                                 <a href="single-product.html">
                                     <h3 class="card-title pt-4 m-0">Hộp bã mía</h3>
@@ -351,7 +360,7 @@
                             New
                         </div>
                         <div class="card position-relative">
-                            <a href="single-product.html"><img src="~/User/images/Tui/image.png" class="img-fluid rounded-4" alt="image"></a>
+                            <a href="single-product.html"><img src="~/User/images/Tui/image1.png" class="img-fluid rounded-4" alt="image"></a>
                             <div class="card-body p-0">
                                 <a href="single-product.html">
                                     <h3 class="card-title pt-4 m-0">Túi vải canvas</h3>
@@ -399,8 +408,8 @@
             <div class="section-header d-md-flex justify-content-between align-items-center mb-3">
                 <h2 class="display-3 fw-normal">Best Sellers</h2>
                 <div>
-                    <a href="Danhsachsp.html" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
-                        shop now
+                    <a href="/Products/index" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
+                        Mua ngay
                         <svg width="24" height="24" viewBox="0 0 24 24" class="mb-1">
                             <use xlink:href="#arrow-right"></use>
                         </svg>
@@ -408,8 +417,123 @@
                 </div>
             </div>
 
+
             <div class="products-carousel swiper">
                 <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
+                            New
+                        </div>
+                        <div class="card position-relative">
+                            <a href="single-product.html"><img src="~/User/images/Binhnuoc/image.png" class="img-fluid rounded-4" alt="image"></a>
+                            <div class="card-body p-0">
+                                <a href="single-product.html">
+                                    <h3 class="card-title pt-4 m-0">Bình giữ nhiệt</h3>
+                                </a>
+
+                                <div class="card-text">
+                                    <span class="rating secondary-font">
+                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                        5.0
+                                    </span>
+
+                                    <h3 class="secondary-font text-primary">149.000đ</h3>
+
+                                    <div class="d-flex flex-wrap mt-3">
+                                        <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
+                                            <h5 class="text-uppercase m-0">Mua ngay</h5>
+                                        </a>
+                                        <a href="#" class="btn-wishlist px-4 pt-3 ">
+                                            <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
+                                        </a>
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
+                            New
+                        </div>
+                        <div class="card position-relative">
+                            <a href="single-product.html"><img src="~/User/images/HopDoAn/image1.png" class="img-fluid rounded-4" alt="image"></a>
+                            <div class="card-body p-0">
+                                <a href="single-product.html">
+                                    <h3 class="card-title pt-4 m-0">Hộp bã mía</h3>
+                                </a>
+
+                                <div class="card-text">
+                                    <span class="rating secondary-font">
+                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                        5.0
+                                    </span>
+
+                                    <h3 class="secondary-font text-primary">29.000đ</h3>
+
+                                    <div class="d-flex flex-wrap mt-3">
+                                        <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
+                                            <h5 class="text-uppercase m-0">Mua ngay</h5>
+                                        </a>
+                                        <a href="#" class="btn-wishlist px-4 pt-3 ">
+                                            <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
+                                        </a>
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
+                            New
+                        </div>
+                        <div class="card position-relative">
+                            <a href="single-product.html"><img src="~/User/images/Tui/image1.png" class="img-fluid rounded-4" alt="image"></a>
+                            <div class="card-body p-0">
+                                <a href="single-product.html">
+                                    <h3 class="card-title pt-4 m-0">Túi vải canvas</h3>
+                                </a>
+
+                                <div class="card-text">
+                                    <span class="rating secondary-font">
+                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                        5.0
+                                    </span>
+
+                                    <h3 class="secondary-font text-primary">49.000đ</h3>
+
+                                    <div class="d-flex flex-wrap mt-3">
+                                        <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
+                                            <h5 class="text-uppercase m-0">Mua ngay</h5>
+                                        </a>
+                                        <a href="#" class="btn-wishlist px-4 pt-3 ">
+                                            <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
+                                        </a>
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="swiper-slide">
                         <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
@@ -524,120 +648,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="swiper-slide">
-                        <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-                            New
-                        </div>
-                        <div class="card position-relative">
-                            <a href="single-product.html"><img src="~/User/images/Binhnuoc/image.png" class="img-fluid rounded-4" alt="image"></a>
-                            <div class="card-body p-0">
-                                <a href="single-product.html">
-                                    <h3 class="card-title pt-4 m-0">Bình giữ nhiệt</h3>
-                                </a>
-
-                                <div class="card-text">
-                                    <span class="rating secondary-font">
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        5.0
-                                    </span>
-
-                                    <h3 class="secondary-font text-primary">149.000đ</h3>
-
-                                    <div class="d-flex flex-wrap mt-3">
-                                        <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
-                                            <h5 class="text-uppercase m-0">Mua ngay</h5>
-                                        </a>
-                                        <a href="#" class="btn-wishlist px-4 pt-3 ">
-                                            <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
-                                        </a>
-                                    </div>
-
-
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-                            New
-                        </div>
-                        <div class="card position-relative">
-                            <a href="single-product.html"><img src="~/User/images/HopDoAn/image.png" class="img-fluid rounded-4" alt="image"></a>
-                            <div class="card-body p-0">
-                                <a href="single-product.html">
-                                    <h3 class="card-title pt-4 m-0">Hộp bã mía</h3>
-                                </a>
-
-                                <div class="card-text">
-                                    <span class="rating secondary-font">
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        5.0
-                                    </span>
-
-                                    <h3 class="secondary-font text-primary">29.000đ</h3>
-
-                                    <div class="d-flex flex-wrap mt-3">
-                                        <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
-                                            <h5 class="text-uppercase m-0">Mua ngay</h5>
-                                        </a>
-                                        <a href="#" class="btn-wishlist px-4 pt-3 ">
-                                            <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
-                                        </a>
-                                    </div>
-
-
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-                            New
-                        </div>
-                        <div class="card position-relative">
-                            <a href="single-product.html"><img src="~/User/images/Tui/image.png" class="img-fluid rounded-4" alt="image"></a>
-                            <div class="card-body p-0">
-                                <a href="single-product.html">
-                                    <h3 class="card-title pt-4 m-0">Túi vải canvas</h3>
-                                </a>
-
-                                <div class="card-text">
-                                    <span class="rating secondary-font">
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        5.0
-                                    </span>
-
-                                    <h3 class="secondary-font text-primary">49.000đ</h3>
-
-                                    <div class="d-flex flex-wrap mt-3">
-                                        <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
-                                            <h5 class="text-uppercase m-0">Mua ngay</h5>
-                                        </a>
-                                        <a href="#" class="btn-wishlist px-4 pt-3 ">
-                                            <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
-                                        </a>
-                                    </div>
-
-
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
+                   
 
                 </div>
             </div>
@@ -725,47 +736,61 @@
 
     </section> -->
 
-    <section id="register" style="background: url('images/image.png') no-repeat; background-size: cover;">
-        <div class="container">
-            <div class="row my-5 py-5">
-                <div class="offset-md-3 col-md-6 my-5">
-                    <div class="form-wrapper p-5" style="background-color: rgba(255, 255, 255, 0.8); border-radius: 15px;">
-                        <h2 class="display-4 fw-normal text-center">Đăng ký từ thiện</h2>
-                        <form>
-                            <div class="mb-3">
-                                <label for="fullname" class="form-label">Họ tên</label>
-                                <input type="text" class="form-control form-control-lg" name="fullname" id="fullname" placeholder="Nhập Họ tên của bạn" required>
+    <div class="swiper main-swiper" style="width: 95%; height: 700px; position: relative; background: url(/User/images/Quyengop/1.png) no-repeat center center; background-size: cover;">
+        <div class="swiper-wrapper">
+            <section id="register" style="height: 100vh;">
+                <div class="container h-100 d-flex justify-content-center align-items-center">
+                    <div class="row w-100" style="margin-left: 16dvb;">
+                        <div class="offset-md-3 col-md-6 d-flex justify-content-center align-items-center">
+                            <!-- Điều chỉnh kích thước form -->
+                            <div class="form-wrapper p-4" style="background-color: rgba(255, 255, 255, 0.85); border-radius: 15px; max-width: 100%; max-height: 60%; overflow-y: auto;">
+                                <h6 class="display-5 fw-normal text-center">Đăng ký quyên góp cùng Green Cycle </h6>
+                                <form>
+                                    <div class="mb-3">
+                                        <label for="fullname" class="form-label">Họ tên</label>
+                                        <input type="text" class="form-control form-control-md" name="fullname" id="fullname" placeholder="Nhập Họ tên của bạn" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="email" class="form-label">Email</label>
+                                        <input type="email" class="form-control form-control-md" name="email" id="email" placeholder="Nhập địa chỉ Email của bạn" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="address" class="form-label">Địa chỉ</label>
+                                        <input type="text" class="form-control form-control-md" name="address" id="address" placeholder="Nhập địa chỉ đến quyên góp" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="donation-item" class="form-label">Sản phẩm muốn từ thiện</label>
+                                        <input type="text" class="form-control form-control-md" name="donation-item" id="donation-item" placeholder="Nhập sản phẩm bạn muốn từ thiện" required>
+                                    </div>
+                                    <!-- Trường Ngày và Giờ đến quyên góp -->
+                                    <div class="mb-3">
+                                        <label for="donation-date" class="form-label">Ngày đến quyên góp</label>
+                                        <input type="date" class="form-control form-control-md" name="donation-date" id="donation-date" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="donation-time" class="form-label">Giờ đến quyên góp</label>
+                                        <input type="time" class="form-control form-control-md" name="donation-time" id="donation-time" required>
+                                    </div>
+                                    <div class="d-grid gap-2">
+                                        <button type="submit" class="btn btn-dark btn-lg rounded-1">Đăng ký</button>
+                                    </div>
+                                </form>
                             </div>
-                            <div class="mb-3">
-                                <label for="email" class="form-label">Email</label>
-                                <input type="email" class="form-control form-control-lg" name="email" id="email" placeholder="Nhập địa chỉ Email của bạn" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="address" class="form-label">Địa chỉ</label>
-                                <input type="text" class="form-control form-control-lg" name="address" id="address" placeholder="Nhập địa chỉ đến quyên góp" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="donation-item" class="form-label">Sản phẩm muốn từ thiện</label>
-                                <input type="text" class="form-control form-control-lg" name="donation-item" id="donation-item" placeholder="Nhập sản phẩm bạn muốn từ thiện" required>
-                            </div>
-                            <div class="d-grid gap-2">
-                                <button type="submit" class="btn btn-dark btn-lg rounded-1">Đăng ký</button>
-                            </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </section>
         </div>
-    </section>
-
+    </div>
+    
     <section id="latest-blog" class="my-5">
-        <div class="container py-5 my-5">
+        <div class="container my-5">
             <div class="row mt-5">
                 <div class="section-header d-md-flex justify-content-between align-items-center mb-3">
-                    <h2 class="display-3 fw-normal">Latest Blog Post</h2>
+                    <h2 class="display-3 fw-normal">Đọc Blogs</h2>
                     <div>
                         <a href="#" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
-                            Read all
+                            Đọc thêm
                             <svg width="24" height="24" viewBox="0 0 24 24" class="mb-1">
                                 <use xlink:href="#arrow-right"></use>
                             </svg>
@@ -777,23 +802,21 @@
                 <div class="col-md-4 my-4 my-md-0">
                     <div class="z-1 position-absolute rounded-3 m-2 px-3 pt-1 bg-light">
                         <h3 class="secondary-font text-primary m-0">20</h3>
-                        <p class="secondary-font fs-6 m-0">Feb</p>
+                        <p class="secondary-font fs-6 m-0">Oct</p>
 
                     </div>
                     <div class="card position-relative">
-                        <a href="single-post.html"><img src="~/User/images/blog1.jpg" class="img-fluid rounded-4" alt="image"></a>
+                        <a href="single-post.html"><img src="~/User/images/blogs/3.png" class="img-fluid rounded-4" alt="image"></a>
                         <div class="card-body p-0">
                             <a href="single-post.html">
-                                <h3 class="card-title pt-4 pb-3 m-0">10 Reasons to be helpful towards any animals</h3>
+                                <h3 class="card-title pt-4 pb-3 m-0">Hậu quả của ô nhiễm môi trường biển</h3>
                             </a>
 
                             <div class="card-text">
                                 <p class="blog-paragraph fs-6">
-                                    At the core of our practice is the idea that cities are the incubators of
-                                    our greatest
-                                    achievements, and the best hope for a sustainable future.
+                                    Ô nhiễm môi trường biển hiện đang là thách thức của Việt Nam khi tình trạng ô nhiễm ngày càng trở nên nghiêm trọng hơn. Nếu không thể khắc phục kịp thời, cuộc sống con người hiện tại và tương lai sẽ bị ảnh hưởng...
                                 </p>
-                                <a href="single-post.html" class="blog-read">read more</a>
+                                <a href="single-post.html" class="blog-read">Đọc thêm</a>
                             </div>
 
                         </div>
@@ -802,23 +825,23 @@
                 <div class="col-md-4 my-4 my-md-0">
                     <div class="z-1 position-absolute rounded-3 m-2 px-3 pt-1 bg-light">
                         <h3 class="secondary-font text-primary m-0">21</h3>
-                        <p class="secondary-font fs-6 m-0">Feb</p>
+                        <p class="secondary-font fs-6 m-0">Oct</p>
 
                     </div>
                     <div class="card position-relative">
-                        <a href="single-post.html"><img src="~/User/images/blog2.jpg" class="img-fluid rounded-4" alt="image"></a>
+                        <a href="single-post.html"><img src="~/User/images/blogs/4.png" class="img-fluid rounded-4" alt="image"></a>
                         <div class="card-body p-0">
                             <a href="single-post.html">
-                                <h3 class="card-title pt-4 pb-3 m-0">How to know your pet is hungry</h3>
+                                <h3 class="card-title pt-4 pb-3 m-0">
+                                    Xử lý ô nhiễm môi trường tại các cơ sở tái chế giấy ở Bắc Ninh
+                                </h3>
                             </a>
 
                             <div class="card-text">
                                 <p class="blog-paragraph fs-6">
-                                    At the core of our practice is the idea that cities are the incubators of
-                                    our greatest
-                                    achievements, and the best hope for a sustainable future.
+                                    Tại Phong Khê (tỉnh Bắc Ninh), hơn chục năm qua, hàng loạt cơ sở tái chế giấy phế liệu tồn tại, trở thành điểm đen về ô nhiễm môi trường, kéo theo nhiều hệ lụy khác...
                                 </p>
-                                <a href="single-post.html" class="blog-read">read more</a>
+                                <a href="single-post.html" class="blog-read">Đọc thêm</a>
                             </div>
 
                         </div>
@@ -827,23 +850,22 @@
                 <div class="col-md-4 my-4 my-md-0">
                     <div class="z-1 position-absolute rounded-3 m-2 px-3 pt-1 bg-light">
                         <h3 class="secondary-font text-primary m-0">22</h3>
-                        <p class="secondary-font fs-6 m-0">Feb</p>
+                        <p class="secondary-font fs-6 m-0">Oct</p>
 
                     </div>
                     <div class="card position-relative">
-                        <a href="single-post.html"><img src="~/User/images/blog3.jpg" class="img-fluid rounded-4" alt="image"></a>
+                        <a href="single-post.html"><img src="~/User/images/blogs/5.png" class="img-fluid rounded-4" alt="image"></a>
                         <div class="card-body p-0">
                             <a href="single-post.html">
-                                <h3 class="card-title pt-4 pb-3 m-0">Best home for your pets</h3>
+                                <h3 class="card-title pt-4 pb-3 m-0">Mất bao lâu rác thải nhựa mới phân hủy</h3>
                             </a>
 
                             <div class="card-text">
                                 <p class="blog-paragraph fs-6">
-                                    At the core of our practice is the idea that cities are the incubators of
-                                    our greatest
-                                    achievements, and the best hope for a sustainable future.
+                                    Thời gian rác phân huỷ Lượng rác nhựa khổng lồ được thải ra môi trường hàng ngày có thể mất đến 1.000 năm để phân huỷ hoàn toàn. Đây thực sự là mối đe doạ tới môi trường cũng như sức khỏe...
+
                                 </p>
-                                <a href="single-post.html" class="blog-read">read more</a>
+                                <a href="single-post.html" class="blog-read">Đọc thêm</a>
                             </div>
 
                         </div>
@@ -853,111 +875,58 @@
         </div>
     </section>
 
-    <section id="service">
-        <div class="container py-5 my-5">
-            <div class="row g-md-5 pt-4">
-                <div class="col-md-3 my-3">
-                    <div class="card">
-                        <div>
-                            <iconify-icon class="service-icon text-primary" icon="la:shopping-cart"></iconify-icon>
-                        </div>
-                        <h3 class="card-title py-2 m-0">Free Delivery</h3>
-                        <div class="card-text">
-                            <p class="blog-paragraph fs-6">Lorem ipsum dolor sit amet, consectetur adipi elit.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 my-3">
-                    <div class="card">
-                        <div>
-                            <iconify-icon class="service-icon text-primary" icon="la:user-check"></iconify-icon>
-                        </div>
-                        <h3 class="card-title py-2 m-0">100% secure payment</h3>
-                        <div class="card-text">
-                            <p class="blog-paragraph fs-6">Lorem ipsum dolor sit amet, consectetur adipi elit.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 my-3">
-                    <div class="card">
-                        <div>
-                            <iconify-icon class="service-icon text-primary" icon="la:tag"></iconify-icon>
-                        </div>
-                        <h3 class="card-title py-2 m-0">Daily Offer</h3>
-                        <div class="card-text">
-                            <p class="blog-paragraph fs-6">Lorem ipsum dolor sit amet, consectetur adipi elit.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 my-3">
-                    <div class="card">
-                        <div>
-                            <iconify-icon class="service-icon text-primary" icon="la:award"></iconify-icon>
-                        </div>
-                        <h3 class="card-title py-2 m-0">Quality guarantee</h3>
-                        <div class="card-text">
-                            <p class="blog-paragraph fs-6">Lorem ipsum dolor sit amet, consectetur adipi elit.</p>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
     <section id="insta" class="my-5">
         <div class="row g-0 py-5">
-            <div class="col instagram-item  text-center position-relative">
+            <div class="col instagram-item text-center position-relative">
                 <div class="icon-overlay d-flex justify-content-center position-absolute">
                     <iconify-icon class="text-white" icon="la:instagram"></iconify-icon>
                 </div>
                 <a href="#">
-                    <img src="~/User/images/insta1.jpg" alt="insta-img" class="img-fluid rounded-3">
+                    <img src="~/User/images/tuthien/image1.png" alt="insta-img" class="img-fluid rounded-3 insta-img">
                 </a>
             </div>
-            <div class="col instagram-item  text-center position-relative">
+            <div class="col instagram-item text-center position-relative">
                 <div class="icon-overlay d-flex justify-content-center position-absolute">
                     <iconify-icon class="text-white" icon="la:instagram"></iconify-icon>
                 </div>
                 <a href="#">
-                    <img src="~/User/images/insta2.jpg" alt="insta-img" class="img-fluid rounded-3">
+                    <img src="~/User/images/tuthien/image5.png" alt="insta-img" class="img-fluid rounded-3 insta-img">
                 </a>
             </div>
-            <div class="col instagram-item  text-center position-relative">
+            <div class="col instagram-item text-center position-relative">
                 <div class="icon-overlay d-flex justify-content-center position-absolute">
                     <iconify-icon class="text-white" icon="la:instagram"></iconify-icon>
                 </div>
                 <a href="#">
-                    <img src="~/User/images/insta3.jpg" alt="insta-img" class="img-fluid rounded-3">
+                    <img src="~/User/images/tuthien/2.png" alt="insta-img" class="img-fluid rounded-3 insta-img">
                 </a>
             </div>
-            <div class="col instagram-item  text-center position-relative">
+            <div class="col instagram-item text-center position-relative">
                 <div class="icon-overlay d-flex justify-content-center position-absolute">
                     <iconify-icon class="text-white" icon="la:instagram"></iconify-icon>
                 </div>
                 <a href="#">
-                    <img src="~/User/images/insta4.jpg" alt="insta-img" class="img-fluid rounded-3">
+                    <img src="~/User/images/tuthien/image.png" alt="insta-img" class="img-fluid rounded-3 insta-img">
                 </a>
             </div>
-            <div class="col instagram-item  text-center position-relative">
+            <div class="col instagram-item text-center position-relative">
                 <div class="icon-overlay d-flex justify-content-center position-absolute">
                     <iconify-icon class="text-white" icon="la:instagram"></iconify-icon>
                 </div>
                 <a href="#">
-                    <img src="~/User/images/insta5.jpg" alt="insta-img" class="img-fluid rounded-3">
+                    <img src="~/User/images/tuthien/image2.png" alt="insta-img" class="img-fluid rounded-3 insta-img">
                 </a>
             </div>
-            <div class="col instagram-item  text-center position-relative">
+            <div class="col instagram-item text-center position-relative">
                 <div class="icon-overlay d-flex justify-content-center position-absolute">
                     <iconify-icon class="text-white" icon="la:instagram"></iconify-icon>
                 </div>
                 <a href="#">
-                    <img src="~/User/images/insta6.jpg" alt="insta-img" class="img-fluid rounded-3">
+                    <img src="~/User/images/tuthien/image3.png" alt="insta-img" class="img-fluid rounded-3 insta-img">
                 </a>
             </div>
         </div>
     </section>
-
 
 </body>
 

@@ -1,0 +1,45 @@
+﻿.account-container {
+    background-image: url('../images/background1-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: repeat-y;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 2rem 0;
+}
+
+.account-box {
+    background-color: rgba(255, 255, 255, 0.8); /* Slightly transparent background */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    max-width: 500px;
+    width: 70%;
+    backdrop-filter: blur(10px); /* Apply blur effect */
+    opacity: 0.8; /* Set opacity to 1 for the box itself */
+}
+
+.btn {
+    background-color: green; /* Set button color to pink */
+    color: white; /* Change button text color to white */
+    font-weight: bold; /* Make button text bold */
+    border: none; /* Remove default border */
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effect */
+}
+
+    .btn:hover {
+        background-color: black; /* Change button background to black on hover */
+        color: white; /* Keep button text color white on hover */
+    }
+
+/* Change color for specific links */
+.text-decoration-none {
+    color: forestgreen; /* Set link color to pink */
+}
+
+    .text-decoration-none:hover {
+        text-decoration: underline; /* Add underline on hover for better interaction */
+    }
