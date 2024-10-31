@@ -6,6 +6,11 @@ namespace Web_bestcoder
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            if (WindowsServiceHelpers.IsWindowsService())
+            {
+                builder.Host.UseWindowsService();
+            }
+            
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
