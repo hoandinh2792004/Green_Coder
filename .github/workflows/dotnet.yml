@@ -40,15 +40,20 @@ jobs:
         Copy-Item -Path "built\*" -Destination "C:\inetpub\wwwroot\greencycle" -Recurse -Force
       shell: powershell
     - name: Add URL Rewrite Rules
-      run: |
-        Import-Module WebAdministration
-        $configPath = "MACHINE/WEBROOT/APPHOST/greencycle.btecit.tech"
-        $ruleCollection = (Get-WebConfiguration -Filter 'system.webServer/rewrite/rules' -PSPath $configPath).AddElement("rule")
-        $ruleCollection.SetAttributeValue("name", "MyRewriteRule")
-        $ruleCollection.Match.AddElement("url").SetAttributeValue("pattern", "^old-path$")
-        $ruleCollection.Action.AddElement("url").SetAttributeValue("url", "/new-path")
-        $ruleCollection.Action.AddElement("redirectType").SetAttributeValue("redirectType", "Permanent")
-        Set-WebConfiguration -Filter 'system.webServer/rewrite/rules' -PSPath $configPath
+      run: Import-Module WebAdministration
+            $configPath = "MACHINE/WEBROOT/APPHOST/greencycle.btecit.tech"
+            $rulesCollection = Get-WebConfigurationProperty -pspath $configPath -filter "system.webServer/rewrite/rules" -name "Collection"
+            $ruleExists = $rulesCollection | Where-Object { $_.Name -eq "MyRewriteRule" }
+            if (-not $ruleExists) {
+                $newRule = New-Object psobject -Property @{
+                    Name = "MyRewriteRule"
+                    StopProcessing = $true
+                }
+                $newRule | Add-Member -MemberType NoteProperty -Name "Match" -Value (New-Object psobject -Property @{ Url = "^old-path$" })
+                $newRule | Add-Member -MemberType NoteProperty -Name "Action" -Value (New-Object psobject -Property @{ Type = "Redirect"; Url = "/new-path"; RedirectType = "Permanent" })
+                $rulesCollection.Add($newRule)
+                Set-WebConfigurationProperty -pspath $configPath -filter "system.webServer/rewrite/rules" -name "Collection" -value $rulesCollection
+            }
       shell: powershell
     - name: Test
       run: dotnet test --no-build --verbosity normal
