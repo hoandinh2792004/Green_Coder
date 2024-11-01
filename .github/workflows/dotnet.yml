@@ -28,7 +28,9 @@ jobs:
       run: dotnet publish -c Release -o built
     - name: Deploy files to IIS Server
       run: |
-        # Copy các file đã build đến thư mục deploy trên server
+        # Xóa thư mục đích nếu tồn tại
+        if (Test-Path "C:\inetpub\wwwroot\greencyle") { Remove-Item -Path "C:\inetpub\wwwroot\greencyle" -Recurse -Force }
+        # Sao chép các file từ built vào thư mục đích
         Copy-Item -Path "built\*" -Destination "C:\inetpub\wwwroot\greencyle" -Recurse -Force
       shell: powershell
     - name: Test
