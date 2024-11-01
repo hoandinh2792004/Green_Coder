@@ -29,9 +29,9 @@ jobs:
     - name: Deploy files to IIS Server
       run: |
         # Xóa thư mục đích nếu tồn tại
-        if (Test-Path "C:\inetpub\wwwroot\greencyle") { Remove-Item -Path "C:\inetpub\wwwroot\greencyle" -Recurse -Force }
+        if (Test-Path "C:\inetpub\wwwroot\greencycle") { Remove-Item -Path "C:\inetpub\wwwroot\greencycle" -Recurse -Force }
         # Sao chép các file từ built vào thư mục đích
-        Copy-Item -Path "built\*" -Destination "C:\inetpub\wwwroot\greencyle" -Recurse -Force
+        Copy-Item -Path "built\*" -Destination "C:\inetpub\wwwroot\greencycle\" -Recurse -Force
       shell: powershell
     - name: Test
       run: dotnet test --no-build --verbosity normal
