@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Web_bestcoder.Data;
 
-public partial class DonationRegistration
+public partial class CharityRegistration
 {
     public int RegistrationId { get; set; }
 

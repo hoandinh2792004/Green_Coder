@@ -9,21 +9,25 @@ public partial class User
 
     public string UserName { get; set; } = null!;
 
+    public string? FullName { get; set; }
+
     public string Email { get; set; } = null!;
+
+    public string? Phone { get; set; }
+
+    public string? Address { get; set; }
 
     public string PasswordHash { get; set; } = null!;
 
-    public int? RoleId { get; set; }
+    public DateTime? CreatedDate { get; set; }
 
-    public DateTime? CreatedAt { get; set; }
+    public bool? IsActive { get; set; }
 
     public virtual ICollection<Cart> Carts { get; set; } = new List<Cart>();
 
-    public virtual ICollection<DonationManagement> DonationManagements { get; set; } = new List<DonationManagement>();
+    public virtual ICollection<Charity> Charities { get; set; } = new List<Charity>();
 
-    public virtual ICollection<DonationRegistration> DonationRegistrations { get; set; } = new List<DonationRegistration>();
+    public virtual ICollection<CharityRegistration> CharityRegistrations { get; set; } = new List<CharityRegistration>();
 
     public virtual ICollection<Donation> Donations { get; set; } = new List<Donation>();
-
-    public virtual Role? Role { get; set; }
 }

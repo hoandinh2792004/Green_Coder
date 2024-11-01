@@ -15,15 +15,13 @@ public partial class GreenCoderContext : DbContext
     {
     }
 
-    public virtual DbSet<Admin> Admins { get; set; }
-
     public virtual DbSet<Cart> Carts { get; set; }
 
+    public virtual DbSet<Charity> Charities { get; set; }
+
+    public virtual DbSet<CharityRegistration> CharityRegistrations { get; set; }
+
     public virtual DbSet<Donation> Donations { get; set; }
-
-    public virtual DbSet<DonationManagement> DonationManagements { get; set; }
-
-    public virtual DbSet<DonationRegistration> DonationRegistrations { get; set; }
 
     public virtual DbSet<Location> Locations { get; set; }
 
@@ -31,38 +29,25 @@ public partial class GreenCoderContext : DbContext
 
     public virtual DbSet<Product> Products { get; set; }
 
+    public virtual DbSet<ProductCategory> ProductCategories { get; set; }
+
     public virtual DbSet<Role> Roles { get; set; }
+
+    public virtual DbSet<Supplier> Suppliers { get; set; }
 
     public virtual DbSet<User> Users { get; set; }
 
-//    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-//        => optionsBuilder.UseSqlServer("Data Source=DESKTOP-CE76DCB\\HOANDINH;Initial Catalog=GreenCoder;Integrated Security=True;Trust Server Certificate=True");
+    public virtual DbSet<UserRole> UserRoles { get; set; }
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
+        => optionsBuilder.UseSqlServer("Data Source=DESKTOP-CE76DCB\\HOANDINH;Initial Catalog=GreenCoder;Integrated Security=True;Trust Server Certificate=True");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<Admin>(entity =>
-        {
-            entity.HasKey(e => e.AdminId).HasName("PK__Admin__719FE4E873BDD198");
-
-            entity.ToTable("Admin");
-
-            entity.HasIndex(e => e.Email, "UQ__Admin__A9D105346060D56D").IsUnique();
-
-            entity.Property(e => e.AdminId).HasColumnName("AdminID");
-            entity.Property(e => e.AdminName).HasMaxLength(100);
-            entity.Property(e => e.Email).HasMaxLength(100);
-            entity.Property(e => e.PasswordHash).HasMaxLength(255);
-            entity.Property(e => e.RoleId).HasColumnName("RoleID");
-
-            entity.HasOne(d => d.Role).WithMany(p => p.Admins)
-                .HasForeignKey(d => d.RoleId)
-                .HasConstraintName("FK__Admin__RoleID__3A81B327");
-        });
-
         modelBuilder.Entity<Cart>(entity =>
         {
-            entity.HasKey(e => e.CartId).HasName("PK__Cart__51BCD79756CCAC12");
+            entity.HasKey(e => e.CartId).HasName("PK__Cart__51BCD797A74DAFC7");
 
             entity.ToTable("Cart");
 
@@ -74,59 +59,34 @@ public partial class GreenCoderContext : DbContext
 
             entity.HasOne(d => d.User).WithMany(p => p.Carts)
                 .HasForeignKey(d => d.UserId)
-                .HasConstraintName("FK__Cart__UserID__44FF419A");
+                .HasConstraintName("FK__Cart__UserID__5441852A");
         });
 
-        modelBuilder.Entity<Donation>(entity =>
+        modelBuilder.Entity<Charity>(entity =>
         {
-            entity.HasKey(e => e.DonationId).HasName("PK__Donation__C5082EDB378B8137");
+            entity.HasKey(e => e.DonationId).HasName("PK__Charity__C5082EDB6D29B1F0");
 
-            entity.ToTable("Donation");
+            entity.ToTable("Charity");
 
             entity.Property(e => e.DonationId).HasColumnName("DonationID");
-            entity.Property(e => e.Amount).HasColumnType("decimal(10, 2)");
+            entity.Property(e => e.DonationContent).HasMaxLength(255);
             entity.Property(e => e.DonationDate)
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime");
+            entity.Property(e => e.IsAnonymous).HasDefaultValue(false);
             entity.Property(e => e.UserId).HasColumnName("UserID");
 
-            entity.HasOne(d => d.User).WithMany(p => p.Donations)
+            entity.HasOne(d => d.User).WithMany(p => p.Charities)
                 .HasForeignKey(d => d.UserId)
-                .HasConstraintName("FK__Donation__UserID__5535A963");
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__Charity__UserID__60A75C0F");
         });
 
-        modelBuilder.Entity<DonationManagement>(entity =>
+        modelBuilder.Entity<CharityRegistration>(entity =>
         {
-            entity.HasKey(e => e.DonationId).HasName("PK__Donation__C5082EDBB4CFC144");
+            entity.HasKey(e => e.RegistrationId).HasName("PK__CharityR__6EF588302D9697C9");
 
-            entity.ToTable("DonationManagement");
-
-            entity.Property(e => e.DonationId).HasColumnName("DonationID");
-            entity.Property(e => e.DonatedProductId).HasColumnName("DonatedProductID");
-            entity.Property(e => e.DonationDate)
-                .HasDefaultValueSql("(getdate())")
-                .HasColumnType("datetime");
-            entity.Property(e => e.LocationId).HasColumnName("LocationID");
-            entity.Property(e => e.UserId).HasColumnName("UserID");
-
-            entity.HasOne(d => d.DonatedProduct).WithMany(p => p.DonationManagements)
-                .HasForeignKey(d => d.DonatedProductId)
-                .HasConstraintName("FK__DonationM__Donat__5070F446");
-
-            entity.HasOne(d => d.Location).WithMany(p => p.DonationManagements)
-                .HasForeignKey(d => d.LocationId)
-                .HasConstraintName("FK__DonationM__Locat__5165187F");
-
-            entity.HasOne(d => d.User).WithMany(p => p.DonationManagements)
-                .HasForeignKey(d => d.UserId)
-                .HasConstraintName("FK__DonationM__UserI__4F7CD00D");
-        });
-
-        modelBuilder.Entity<DonationRegistration>(entity =>
-        {
-            entity.HasKey(e => e.RegistrationId).HasName("PK__Donation__6EF58830069B92CE");
-
-            entity.ToTable("DonationRegistration");
+            entity.ToTable("CharityRegistration");
 
             entity.Property(e => e.RegistrationId).HasColumnName("RegistrationID");
             entity.Property(e => e.LocationId).HasColumnName("LocationID");
@@ -139,20 +99,38 @@ public partial class GreenCoderContext : DbContext
                 .HasDefaultValue("Registered");
             entity.Property(e => e.UserId).HasColumnName("UserID");
 
-            entity.HasOne(d => d.Location).WithMany(p => p.DonationRegistrations)
+            entity.HasOne(d => d.Location).WithMany(p => p.CharityRegistrations)
                 .HasForeignKey(d => d.LocationId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__DonationR__Locat__59FA5E80");
+                .HasConstraintName("FK__CharityRe__Locat__68487DD7");
 
-            entity.HasOne(d => d.User).WithMany(p => p.DonationRegistrations)
+            entity.HasOne(d => d.User).WithMany(p => p.CharityRegistrations)
                 .HasForeignKey(d => d.UserId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__DonationR__UserI__59063A47");
+                .HasConstraintName("FK__CharityRe__UserI__6754599E");
+        });
+
+        modelBuilder.Entity<Donation>(entity =>
+        {
+            entity.HasKey(e => e.DonationId).HasName("PK__Donation__C5082EDB33C1C774");
+
+            entity.ToTable("Donation");
+
+            entity.Property(e => e.DonationId).HasColumnName("DonationID");
+            entity.Property(e => e.Amount).HasColumnType("decimal(10, 2)");
+            entity.Property(e => e.DonationDate)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime");
+            entity.Property(e => e.UserId).HasColumnName("UserID");
+
+            entity.HasOne(d => d.User).WithMany(p => p.Donations)
+                .HasForeignKey(d => d.UserId)
+                .HasConstraintName("FK__Donation__UserID__6383C8BA");
         });
 
         modelBuilder.Entity<Location>(entity =>
         {
-            entity.HasKey(e => e.LocationId).HasName("PK__Location__E7FEA4775119468C");
+            entity.HasKey(e => e.LocationId).HasName("PK__Location__E7FEA4779A464138");
 
             entity.ToTable("Location");
 
@@ -166,7 +144,7 @@ public partial class GreenCoderContext : DbContext
 
         modelBuilder.Entity<OrderDetail>(entity =>
         {
-            entity.HasKey(e => e.OrderDetailId).HasName("PK__OrderDet__D3B9D30CA95E2A83");
+            entity.HasKey(e => e.OrderDetailId).HasName("PK__OrderDet__D3B9D30C1F61FEE7");
 
             entity.Property(e => e.OrderDetailId).HasColumnName("OrderDetailID");
             entity.Property(e => e.CartId).HasColumnName("CartID");
@@ -178,30 +156,61 @@ public partial class GreenCoderContext : DbContext
 
             entity.HasOne(d => d.Cart).WithMany(p => p.OrderDetails)
                 .HasForeignKey(d => d.CartId)
-                .HasConstraintName("FK__OrderDeta__CartI__48CFD27E");
+                .HasConstraintName("FK__OrderDeta__CartI__5812160E");
 
             entity.HasOne(d => d.Product).WithMany(p => p.OrderDetails)
                 .HasForeignKey(d => d.ProductId)
-                .HasConstraintName("FK__OrderDeta__Produ__49C3F6B7");
+                .HasConstraintName("FK__OrderDeta__Produ__59063A47");
         });
 
         modelBuilder.Entity<Product>(entity =>
         {
-            entity.HasKey(e => e.ProductId).HasName("PK__Product__B40CC6ED4C81A03D");
+            entity.HasKey(e => e.ProductId).HasName("PK__Product__B40CC6ED5768B221");
 
             entity.ToTable("Product");
 
             entity.Property(e => e.ProductId).HasColumnName("ProductID");
-            entity.Property(e => e.CreatedAt)
+            entity.Property(e => e.CategoryId).HasColumnName("CategoryID");
+            entity.Property(e => e.CostPrice).HasColumnType("decimal(18, 2)");
+            entity.Property(e => e.CreatedDate)
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime");
-            entity.Property(e => e.Price).HasColumnType("decimal(10, 2)");
+            entity.Property(e => e.Image).HasMaxLength(255);
+            entity.Property(e => e.IsActive).HasDefaultValue(true);
             entity.Property(e => e.ProductName).HasMaxLength(100);
+            entity.Property(e => e.SellingPrice).HasColumnType("decimal(18, 2)");
+            entity.Property(e => e.Status).HasMaxLength(50);
+            entity.Property(e => e.SupplierId).HasColumnName("SupplierID");
+
+            entity.HasOne(d => d.Category).WithMany(p => p.Products)
+                .HasForeignKey(d => d.CategoryId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__Product__Categor__5070F446");
+
+            entity.HasOne(d => d.Supplier).WithMany(p => p.Products)
+                .HasForeignKey(d => d.SupplierId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__Product__Supplie__5165187F");
+        });
+
+        modelBuilder.Entity<ProductCategory>(entity =>
+        {
+            entity.HasKey(e => e.CategoryId).HasName("PK__ProductC__19093A2BE5D0723F");
+
+            entity.ToTable("ProductCategory");
+
+            entity.Property(e => e.CategoryId).HasColumnName("CategoryID");
+            entity.Property(e => e.CategoryName).HasMaxLength(100);
+            entity.Property(e => e.CreatedDate)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime");
+            entity.Property(e => e.Description).HasMaxLength(255);
+            entity.Property(e => e.IsActive).HasDefaultValue(true);
         });
 
         modelBuilder.Entity<Role>(entity =>
         {
-            entity.HasKey(e => e.RoleId).HasName("PK__Role__8AFACE3A714BD910");
+            entity.HasKey(e => e.RoleId).HasName("PK__Role__8AFACE3A624AE55C");
 
             entity.ToTable("Role");
 
@@ -209,26 +218,57 @@ public partial class GreenCoderContext : DbContext
             entity.Property(e => e.RoleName).HasMaxLength(50);
         });
 
-        modelBuilder.Entity<User>(entity =>
+        modelBuilder.Entity<Supplier>(entity =>
         {
-            entity.HasKey(e => e.UserId).HasName("PK__User__1788CCAC2517837A");
+            entity.HasKey(e => e.SupplierId).HasName("PK__Supplier__4BE66694E751EDEC");
 
-            entity.ToTable("User");
+            entity.ToTable("Supplier");
 
-            entity.HasIndex(e => e.Email, "UQ__User__A9D105347B373AA0").IsUnique();
-
-            entity.Property(e => e.UserId).HasColumnName("UserID");
-            entity.Property(e => e.CreatedAt)
+            entity.Property(e => e.SupplierId).HasColumnName("SupplierID");
+            entity.Property(e => e.Address).HasMaxLength(255);
+            entity.Property(e => e.ContactName).HasMaxLength(100);
+            entity.Property(e => e.CreatedDate)
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime");
             entity.Property(e => e.Email).HasMaxLength(100);
-            entity.Property(e => e.PasswordHash).HasMaxLength(255);
-            entity.Property(e => e.RoleId).HasColumnName("RoleID");
-            entity.Property(e => e.UserName).HasMaxLength(100);
+            entity.Property(e => e.IsActive).HasDefaultValue(true);
+            entity.Property(e => e.Phone).HasMaxLength(20);
+            entity.Property(e => e.SupplierName).HasMaxLength(100);
+        });
 
-            entity.HasOne(d => d.Role).WithMany(p => p.Users)
+        modelBuilder.Entity<User>(entity =>
+        {
+            entity.HasKey(e => e.UserId).HasName("PK__Users__1788CCACB8042F12");
+
+            entity.HasIndex(e => e.Email, "UQ__Users__A9D105342DD88DD5").IsUnique();
+
+            entity.Property(e => e.UserId).HasColumnName("UserID");
+            entity.Property(e => e.Address).HasMaxLength(255);
+            entity.Property(e => e.CreatedDate)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime");
+            entity.Property(e => e.Email).HasMaxLength(100);
+            entity.Property(e => e.FullName).HasMaxLength(100);
+            entity.Property(e => e.IsActive).HasDefaultValue(true);
+            entity.Property(e => e.PasswordHash).HasMaxLength(255);
+            entity.Property(e => e.Phone).HasMaxLength(20);
+            entity.Property(e => e.UserName).HasMaxLength(100);
+        });
+
+        modelBuilder.Entity<UserRole>(entity =>
+        {
+            entity.HasNoKey();
+
+            entity.Property(e => e.RoleId).HasColumnName("RoleID");
+            entity.Property(e => e.UserId).HasColumnName("UserID");
+
+            entity.HasOne(d => d.Role).WithMany()
                 .HasForeignKey(d => d.RoleId)
-                .HasConstraintName("FK__User__RoleID__3E52440B");
+                .HasConstraintName("FK__UserRoles__RoleI__412EB0B6");
+
+            entity.HasOne(d => d.User).WithMany()
+                .HasForeignKey(d => d.UserId)
+                .HasConstraintName("FK__UserRoles__UserI__403A8C7D");
         });
 
         OnModelCreatingPartial(modelBuilder);

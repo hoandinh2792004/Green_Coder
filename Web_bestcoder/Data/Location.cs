@@ -17,7 +17,5 @@ public partial class Location
 
     public decimal? Longitude { get; set; }
 
-    public virtual ICollection<DonationManagement> DonationManagements { get; set; } = new List<DonationManagement>();
-
-    public virtual ICollection<DonationRegistration> DonationRegistrations { get; set; } = new List<DonationRegistration>();
+    public virtual ICollection<CharityRegistration> CharityRegistrations { get; set; } = new List<CharityRegistration>();
 }
