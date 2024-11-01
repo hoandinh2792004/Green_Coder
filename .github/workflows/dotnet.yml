@@ -14,8 +14,8 @@ jobs:
 
     runs-on: self-hosted
     steps:
-    - name: Stop IIS Web Service
-      run: Stop-Service "GreenCycleIISWebService"
+    # - name: Stop IIS Web Service
+    #   run: Stop-Service "GreenCycleIISWebService"
       shell: powershell
     - uses: actions/checkout@v4
     - name: Setup .NET
@@ -41,8 +41,8 @@ jobs:
       shell: powershell
     - name: Test
       run: dotnet test --no-build --verbosity normal
-    - name: Start Kestrel Service
-      run: Start-Service "GreenCycleIISWebService"
+    # - name: Start Kestrel Service
+    #   run: Start-Service "GreenCycleIISWebService"
     - name: Recycle IIS Application Pool
       run: |
         Import-Module WebAdministration
