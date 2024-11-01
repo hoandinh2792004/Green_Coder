@@ -39,37 +39,6 @@ jobs:
         # Sao chép toàn bộ nội dung từ thư mục built mà không copy thư mục chính
         Copy-Item -Path "built\*" -Destination "C:\inetpub\wwwroot\greencycle" -Recurse -Force
       shell: powershell
-    - name: Add URL Rewrite Rules
-      run: |
-        Import-Module WebAdministration
-        # Đường dẫn đến cấu hình IIS cho site
-        $configPath = "MACHINE/WEBROOT/APPHOST/greencycle.btecit.tech"
-        
-        # Lấy danh sách hiện tại của các rules
-        $rulesCollection = Get-WebConfigurationProperty -pspath $configPath -filter "system.webServer/rewrite/rules" -name "Collection"
-        
-        # Kiểm tra nếu rule đã tồn tại, nếu chưa thì thêm mới
-        $ruleExists = $rulesCollection | Where-Object { $_.Name -eq "MyRewriteRule" }
-        if (-not $ruleExists) {
-            # Tạo một rule mới và cấu hình các thuộc tính của nó
-            $newRule = New-Object psobject -Property @{
-                Name           = "MyRewriteRule";
-                StopProcessing = $true
-            }
-            $newRule | Add-Member -MemberType NoteProperty -Name "Match" -Value (New-Object psobject -Property @{
-                Url = "^old-path$"
-            })
-            $newRule | Add-Member -MemberType NoteProperty -Name "Action" -Value (New-Object psobject -Property @{
-                Type         = "Redirect";
-                Url          = "/new-path";
-                RedirectType = "Permanent"
-            })
-        
-            # Thêm rule vào collection
-            $rulesCollection.Add($newRule)
-            Set-WebConfigurationProperty -pspath $configPath -filter "system.webServer/rewrite/rules" -name "Collection" -value $rulesCollection
-        }
-      shell: powershell
     - name: Test
       run: dotnet test --no-build --verbosity normal
     - name: Start Kestrel Service
