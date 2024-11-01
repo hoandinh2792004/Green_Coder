@@ -1,4 +1,6 @@
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting.WindowsServices;
+using Web_bestcoder.Data;
 
 namespace Web_bestcoder
 {
@@ -15,6 +17,10 @@ namespace Web_bestcoder
             
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            builder.Services.AddDbContext<GreenCoderContext>(options =>
+            {
+                options.UseSqlServer(builder.Configuration.GetConnectionString("GreenCoder"));
+            });
 
             var app = builder.Build();
 
