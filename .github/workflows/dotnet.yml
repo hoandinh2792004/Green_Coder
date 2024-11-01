@@ -39,6 +39,17 @@ jobs:
         # Sao chép toàn bộ nội dung từ thư mục built mà không copy thư mục chính
         Copy-Item -Path "built\*" -Destination "C:\inetpub\wwwroot\greencycle" -Recurse -Force
       shell: powershell
+    - name: Add URL Rewrite Rules
+      run: |
+        Import-Module WebAdministration
+        $configPath = "MACHINE/WEBROOT/APPHOST/greencycle.btecit.tech"
+        $ruleCollection = (Get-WebConfiguration -Filter 'system.webServer/rewrite/rules' -PSPath $configPath).AddElement("rule")
+        $ruleCollection.SetAttributeValue("name", "MyRewriteRule")
+        $ruleCollection.Match.AddElement("url").SetAttributeValue("pattern", "^old-path$")
+        $ruleCollection.Action.AddElement("url").SetAttributeValue("url", "/new-path")
+        $ruleCollection.Action.AddElement("redirectType").SetAttributeValue("redirectType", "Permanent")
+        Set-WebConfiguration -Filter 'system.webServer/rewrite/rules' -PSPath $configPath
+      shell: powershell
     - name: Test
       run: dotnet test --no-build --verbosity normal
     - name: Start Kestrel Service
