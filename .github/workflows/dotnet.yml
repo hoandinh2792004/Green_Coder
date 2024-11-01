@@ -14,9 +14,9 @@ jobs:
 
     runs-on: self-hosted
     steps:
-    # - name: Stop IIS Web Service
-    #   run: Stop-Service "GreenCycleIISWebService"
-      # shell: powershell
+    - name: Stop IIS Web Service
+      run: Stop-Service "GreenCycleIISWebService"
+      shell: powershell
     - uses: actions/checkout@v4
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
@@ -28,21 +28,21 @@ jobs:
       run: dotnet publish -c Release -o built
     - name: Deploy files to IIS Server
       run: |
-        # Đảm bảo thư mục đích tồn tại và không có các file cũ
-        if (!(Test-Path -Path "C:\inetpub\wwwroot\greencycle.btecit.tech")) {
-          New-Item -ItemType Directory -Force -Path "C:\inetpub\wwwroot\greencycle.btecit.tech"
-        }
-        else {
-          Remove-Item -Path "C:\inetpub\wwwroot\greencycle.btecit.tech\*" -Recurse -Force
-        }
-        
-        # Sao chép toàn bộ nội dung từ thư mục built mà không copy thư mục chính
-        Copy-Item -Path "built\*" -Destination "C:\inetpub\wwwroot\greencycle.btecit.tech" -Recurse -Force
+          # Tạo thư mục đích nếu chưa tồn tại
+          if (!(Test-Path -Path "C:\inetpub\wwwroot\greencycle.btecit.tech")) {
+            New-Item -ItemType Directory -Force -Path "C:\inetpub\wwwroot\greencycle.btecit.tech"
+          }
+
+          # Xóa toàn bộ nội dung trong thư mục đích, trừ web.config
+          Get-ChildItem -Path "C:\inetpub\wwwroot\greencycle.btecit.tech" -Exclude "web.config" | Remove-Item -Recurse -Force
+
+          # Sao chép các file từ thư mục build vào thư mục đích mà không ghi đè web.config
+          Copy-Item -Path "built\*" -Destination "C:\inetpub\wwwroot\greencycle.btecit.tech" -Recurse -Force -Exclude "web.config"
       shell: powershell
     - name: Test
       run: dotnet test --no-build --verbosity normal
-    # - name: Start Kestrel Service
-    #   run: Start-Service "GreenCycleIISWebService"
+    - name: Start Kestrel Service
+      run: Start-Service "GreenCycleIISWebService"
     - name: Recycle IIS Application Pool
       run: |
         Import-Module WebAdministration
