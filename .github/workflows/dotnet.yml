@@ -26,6 +26,11 @@ jobs:
       run: dotnet restore
     - name: Build
       run: dotnet publish -c Release -o built
+    - name: Deploy files to IIS Server
+      run: |
+        # Copy các file đã build đến thư mục deploy trên server
+        Copy-Item -Path "built\*" -Destination "C:\inetpub\wwwroot\greencyle" -Recurse -Force
+      shell: powershell
     - name: Test
       run: dotnet test --no-build --verbosity normal
     - name: Restart Kestrel Service
