@@ -25,4 +25,13 @@ jobs:
       run: dotnet publish -c Release -o built
     - name: Test
       run: dotnet test --no-build --verbosity normal
+    - name: Restart Kestrel Service
+      run: |
+          Stop-Service -Name "GreenCycleService"
+          Start-Service -Name "GreenCycleService"
+    - name: Recycle IIS Application Pool
+      run: |
+        Import-Module WebAdministration
+        Restart-WebAppPool -Name "greencycle.btecit.tech"
       shell: powershell
+
