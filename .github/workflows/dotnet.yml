@@ -29,15 +29,15 @@ jobs:
     - name: Deploy files to IIS Server
       run: |
         # Đảm bảo thư mục đích tồn tại và không có các file cũ
-        if (!(Test-Path -Path "C:\inetpub\wwwroot\greencycle")) {
-          New-Item -ItemType Directory -Force -Path "C:\inetpub\wwwroot\greencycle"
+        if (!(Test-Path -Path "C:\inetpub\wwwroot\greencycle.btecit.tech")) {
+          New-Item -ItemType Directory -Force -Path "C:\inetpub\wwwroot\greencycle.btecit.tech"
         }
         else {
-          Remove-Item -Path "C:\inetpub\wwwroot\greencycle\*" -Recurse -Force
+          Remove-Item -Path "C:\inetpub\wwwroot\greencycle.btecit.tech\*" -Recurse -Force
         }
         
         # Sao chép toàn bộ nội dung từ thư mục built mà không copy thư mục chính
-        Copy-Item -Path "built\*" -Destination "C:\inetpub\wwwroot\greencycle" -Recurse -Force
+        Copy-Item -Path "built\*" -Destination "C:\inetpub\wwwroot\greencycle.btecit.tech" -Recurse -Force
       shell: powershell
     - name: Test
       run: dotnet test --no-build --verbosity normal
