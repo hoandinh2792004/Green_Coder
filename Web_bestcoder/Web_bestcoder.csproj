@@ -23,13 +23,24 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\Admin\Controllers\" />
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Models\" />
-    <Folder Include="Areas\Admin\Views\" />
     <Folder Include="Data\" />
     <Folder Include="wwwroot\Admin\uploads\images\" />
     <Folder Include="wwwroot\User\images\detail\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Areas\Admin\Views\Admin\Index.cshtml" />
+    <None Include="Areas\Admin\Views\QuanLyDonHang\Index.cshtml" />
+    <None Include="Areas\Admin\Views\QuanLyDonHang\ThemDonHang.cshtml" />
+    <None Include="Areas\Admin\Views\QuanLyKhachHang\Index.cshtml" />
+    <None Include="Areas\Admin\Views\QuanLySanPham\Index.cshtml" />
+    <None Include="Areas\Admin\Views\QuanLySanPham\ThemSanPham.cshtml" />
+    <None Include="Areas\Admin\Views\QuanLySanPham\Update.cshtml" />
+    <None Include="Areas\Admin\Views\Shared\Error.cshtml" />
+    <None Include="Areas\Admin\Views\Shared\_AdminLayout.cshtml" />
+    <None Include="Areas\Admin\Views\Shared\_ValidationScriptsPartial.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
