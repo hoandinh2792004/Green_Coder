@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace Web_bestcoder.Controllers
+namespace Web_bestcoder.Areas.Admin.Controllers
 {
-    public class AdminController : Controller
+    public class QuanLySanPham : Controller
     {
         public IActionResult Index()
         {
