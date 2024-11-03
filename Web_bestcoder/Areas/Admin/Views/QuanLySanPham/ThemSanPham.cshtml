@@ -4,255 +4,213 @@
 }
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
- <main class="app-content">
+@model Web_bestcoder.Areas.Admin.ViewModels.ProductViewModel;
+
+<main class="app-content">
     <div class="app-title">
-      <ul class="app-breadcrumb breadcrumb">
-        <li class="breadcrumb-item">Danh sách sản phẩm</li>
-        <li class="breadcrumb-item"><a href="#">Thêm sản phẩm</a></li>
-      </ul>
+        <ul class="app-breadcrumb breadcrumb">
+            <li class="breadcrumb-item">Danh sách sản phẩm</li>
+            <li class="breadcrumb-item"><a href="#">Thêm sản phẩm</a></li>
+        </ul>
     </div>
     <div class="row">
-      <div class="col-md-12">
-        <div class="tile">
-          <h3 class="tile-title">Tạo mới sản phẩm</h3>
-          <div class="tile-body">
-            <div class="row element-button">
-              <div class="col-sm-2">
-                <a class="btn btn-add btn-sm" data-toggle="modal" data-target="#exampleModalCenter"><i
-                    class="fas fa-folder-plus"></i> Thêm nhà cung cấp</a>
-              </div>
-              <div class="col-sm-2">
-                <a class="btn btn-add btn-sm" data-toggle="modal" data-target="#adddanhmuc"><i
-                    class="fas fa-folder-plus"></i> Thêm danh mục</a>
-              </div>
-              <div class="col-sm-2">
-                <a class="btn btn-add btn-sm" data-toggle="modal" data-target="#addtinhtrang"><i
-                    class="fas fa-folder-plus"></i> Thêm tình trạng</a>
-              </div>
-            </div>
-           @*  <form method="post" asp-action="ThemSanPham" asp-controller="QuanLySanPham" class="row" enctype="multipart/form-data">
-              <div class="form-group col-md-3">
-                            <label asp-for="Id" class="control-label"></label>
-                            <input asp-for="Id" class="form-control" />
-                            <span  asp-validation-for ="Id" class="text-danger"></span>
-                
-              </div>
-              <div class="form-group col-md-3">
-                <label asp-for="TenSanPham" class="control-label"> Tên Sản Phẩm </label>
-                <input asp-for="TenSanPham" class="form-control" />
-                <span asp-validation-for="TenSanPham" class="text-danger"></span>
-              </div>
-              <div class="form-group  col-md-3">
-                <label asp-for="SoLuong" class="control-label"> Số Lượng </label>
-               <input asp-for="SoLuong" class="form-control" />
-                <span asp-validation-for="SoLuong" class="text-danger"></span>
-              </div>
-              <div class="form-group col-md-3 ">
-              <label asp-for="TinhTrang" class="control-label">Tình Trạng </label> 
-                <select asp-for="TinhTrang" class="form-control" id="exampleSelect1">
-                  <option>-- Chọn tình trạng --</option>
-                  <option>Còn hàng</option>
-                  <option>Hết hàng</option>
-                </select>
-              <span asp-validation-for="TinhTrang" class="text-danger"></span>
-              </div>
-              <div class="form-group col-md-3">
-               <label asp-for="DanhMuc" class="control-label">Danh Mục</label>
-                <select asp-for ="DanhMuc" class="form-control" id="exampleSelect1">
-                  <option>-- Chọn danh mục --</option>
-                  <option>Bàn ăn</option>
-                  <option>Bàn thông minh</option>
-                  <option>Tủ</option>
-                  <option>Ghế gỗ</option>
-                  <option>Ghế sắt</option>
-                  <option>Giường người lớn</option>
-                  <option>Giường trẻ em</option>
-                  <option>Bàn trang điểm</option>
-                  <option>Giá đỡ</option>
-                </select>
-   
-                <span asp-validation-for="DanhMuc" class="text-danger"></span>
-              </div>
-              <div class="form-group col-md-3 ">
-                <label asp-for="NhaCungCap" class="control-label">Nhà Cung Cấp</label>
-                <select asp-for = "NhaCungCap" class="form-control" id="exampleSelect1">
-                  <option>-- Chọn nhà cung cấp --</option>
-                  <option>Phong vũ</option>
-                  <option>Thế giới di động</option>
-                  <option>FPT</option>
-                  <option>Võ Trường</option>
-                </select>
-                
-                <span asp-validation-for="NhaCungCap"></span>
-              </div>
-              <div class="form-group col-md-3">
-                            <label asp-for="GiaBan" class="control-label"> Giá Bán </label>
-                            <input asp-for="GiaBan" class="form-control" />
-                            <span asp-validation-for="GiaBan" class="text-danger"></span>
-              </div>
-              <div class="form-group col-md-3">
-                            <label asp-for="GiaVon" class="control-label">Giá Vốn </label>
-                            <input asp-for="GiaVon" class="form-control" />
-                            <span asp-validation-for="GiaVon" class="text-danger"></span>
-                </div>
-                        <div class="form-group col-md-12">
-                            <label asp-for="AnhSanPham" class="control-label"></label>
-                            <input type="file" class="form-control" asp-for="AnhSanPham" />
-                            <span asp-validation-for="AnhSanPham" class="text-danger"></span>
+        <div class="col-md-12">
+            <div class="tile">
+                <h3 class="tile-title">Tạo mới sản phẩm</h3>
+                <div class="tile-body">
+                    <div class="row element-button mb-3">
+                        <div class="col-sm-4">
+                            <a class="btn btn-add btn-sm" data-toggle="modal" data-target="#addSupplierModal"><i class="fas fa-folder-plus"></i> Thêm nhà cung cấp</a>
                         </div>
-                        <div class="form-group col-md-12">
-                            <label asp-for="MoTa" class="control-label"> Mô tả</label>
-                       <textarea class="form-control" name="mota" id="mota"></textarea>
-                       <script>CKEDITOR.replace('mota');</script>
-                           
-                            <span asp-validation-for="MoTa" class="text-danger"></span>
-              </div>
-                        <div class="form-group">
-                            <input type="submit" value="Create" class="btn btn-primary" />
+                        <div class="col-sm-4">
+                            <a class="btn btn-add btn-sm" data-toggle="modal" data-target="#addCategoryModal"><i class="fas fa-folder-plus"></i> Thêm danh mục</a>
                         </div>
-              </form> *@
-          </div>
-          
-         
-        </div>
+                        <div class="col-sm-4">
+                            <a class="btn btn-add btn-sm" data-toggle="modal" data-target="#addStatusModal"><i class="fas fa-folder-plus"></i> Thêm tình trạng</a>
+                        </div>
+                    </div>
+
+                    <div class="container">
+                        <form method="post" asp-action="ThemSanPham" asp-controller="QuanLySanPham" class="row" enctype="multipart/form-data">
+                            <div class="form-group col-md-3">
+                                <label asp-for="Product.ProductId" class="control-label"></label>
+                                <input asp-for="Product.ProductId" class="form-control" readonly />
+                                <span asp-validation-for="Product.ProductId" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group col-md-3">
+                                <label asp-for="Product.ProductName" class="control-label">Tên Sản Phẩm</label>
+                                <input asp-for="Product.ProductName" class="form-control" required />
+                                <span asp-validation-for="Product.ProductName" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group col-md-3">
+                                <label asp-for="Product.Quantity" class="control-label">Số Lượng</label>
+                                <input asp-for="Product.Quantity" class="form-control" type="number" min="0" required />
+                                <span asp-validation-for="Product.Quantity" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group col-md-3">
+                                <label asp-for="Product.Status" class="control-label">Tình Trạng</label>
+                                <select asp-for="Product.Status" class="form-control" required>
+                                    <option value="">-- Chọn tình trạng --</option>
+                                    <option value="Còn hàng">Còn hàng</option>
+                                    <option value="Hết hàng">Hết hàng</option>
+                                </select>
+                                <span asp-validation-for="Product.Status" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group col-md-3">
+                                <label asp-for="Product.CategoryId" class="control-label">Danh Mục</label>
+                                <select asp-for="Product.CategoryId" class="form-control" required>
+                                    <option value="">-- Chọn danh mục --</option>
+                                    @foreach (var category in Model.ProductCategories)
+                                    {
+                                        <option value="@category.CategoryId">@category.CategoryName</option>
+                                    }
+                                </select>
+                                <span asp-validation-for="Product.CategoryId" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group col-md-3">
+                                <label asp-for="Product.SupplierId" class="control-label">Nhà Cung Cấp</label>
+                                <select asp-for="Product.SupplierId" class="form-control" required>
+                                    <option value="">-- Chọn nhà cung cấp --</option>
+                                    @foreach (var supplier in Model.Suppliers)
+                                    {
+                                        <option value="@supplier.SupplierId">@supplier.SupplierName</option>
+                                    }
+                                </select>
+                                <span asp-validation-for="Product.SupplierId" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group col-md-3">
+                                <label asp-for="Product.SellingPrice" class="control-label">Giá Bán</label>
+                                <input asp-for="Product.SellingPrice" class="form-control" type="number" step="0.01" required />
+                                <span asp-validation-for="Product.SellingPrice" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group col-md-3">
+                                <label asp-for="Product.CostPrice" class="control-label">Giá Vốn</label>
+                                <input asp-for="Product.CostPrice" class="form-control" type="number" step="0.01" required />
+                                <span asp-validation-for="Product.CostPrice" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group col-md-12">
+                                <label asp-for="Product.Image" class="control-label">Ảnh sản phẩm</label>
+                                <div id="myfileupload">
+                                    <input asp-for="Product.Image" type="file" id="uploadfile" name="ImageUpload" onchange="readURL(this);" />
+                                </div>
+                                <div id="thumbbox">
+                                    <img height="450" width="400" alt="Thumb image" id="thumbimage" style="display: none" />
+                                    <a class="removeimg" href="javascript:"></a>
+                                </div>
+                                <div id="boxchoice">
+                                    <a href="javascript:" class="Choicefile"><i class="fas fa-cloud-upload-alt"></i> Chọn ảnh</a>
+                                    <p style="clear:both"></p>
+                                </div>
+
+                            </div>
+
+                            <div class="form-group col-md-12">
+                                <label asp-for="Product.Description" class="control-label">Mô Tả</label>
+                                <textarea asp-for="Product.Description" class="form-control" id="mota" required></textarea>
+                                <script>CKEDITOR.replace('mota');</script>
+                                <span asp-validation-for="Product.Description" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group col-md-12">
+                                <input type="submit" value="Tạo mới" class="btn btn-primary" />
+                            </div>
+                        </form>
+                    </div>
+
             <div>
-                <a asp-action="Index">Back to List</a>
+                <a asp-action="Index" class="btn btn-secondary">Quay lại danh sách</a>
             </div>
-  </main>
+        </div>
+    </div>
+</main>
 
-
-  <!--
-  MODAL CHỨC VỤ 
--->
-  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-    data-backdrop="static" data-keyboard="false">
+<!-- Modal for Adding New Supplier -->
+<div class="modal fade" id="addSupplierModal" tabindex="-1" role="dialog" aria-labelledby="addSupplierModalLabel">
     <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-
-        <div class="modal-body">
-          <div class="row">
-            <div class="form-group  col-md-12">
-              <span class="thong-tin-thanh-toan">
+        <div class="modal-content">
+            <div class="modal-body">
                 <h5>Thêm mới nhà cung cấp</h5>
-              </span>
+                <input asp-for="Suppliers" class="form-control" type="text" placeholder="Nhập tên nhà cung cấp mới" required>
+                <button class="btn btn-save mt-3" type="submit">Lưu lại</button>
+                <a class="btn btn-cancel mt-3" data-dismiss="modal" href="#">Hủy bỏ</a>
             </div>
-            <div class="form-group col-md-12">
-              <label class="control-label">Nhập tên chức vụ mới</label>
-              <input class="form-control" type="text" required>
-            </div>
-          </div>
-          <BR>
-          <button class="btn btn-save" type="button">Lưu lại</button>
-          <a class="btn btn-cancel" data-dismiss="modal" href="#">Hủy bỏ</a>
-          <BR>
         </div>
-        <div class="modal-footer">
-        </div>
-      </div>
     </div>
-  </div>
-  <!--
-MODAL
--->
-  <!--
-  MODAL DANH MỤC
--->
-  <div class="modal fade" id="adddanhmuc" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-    data-backdrop="static" data-keyboard="false">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
+</div>
 
-        <div class="modal-body">
-          <div class="row">
-            <div class="form-group  col-md-12">
-              <span class="thong-tin-thanh-toan">
-                <h5>Thêm mới danh mục </h5>
-              </span>
+<!-- Modal for Adding New Category -->
+<div class="modal fade" id="addCategoryModal" tabindex="-1" role="dialog" aria-labelledby="addCategoryModalLabel">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h5>Thêm mới danh mục</h5>
+                <input asp-for ="ProductCategories" class="form-control" type="text" placeholder="Nhập tên danh mục mới" required>
+                <button class="btn btn-save mt-3" type="submit">Lưu lại</button>
+                <a class="btn btn-cancel mt-3" data-dismiss="modal" href="#">Hủy bỏ</a>
             </div>
-            <div class="form-group col-md-12">
-              <label class="control-label">Nhập tên danh mục mới</label>
-              <input class="form-control" type="text" required>
-            </div>
-            <div class="form-group col-md-12">
-              <label class="control-label">Danh mục sản phẩm hiện đang có</label>
-              <ul style="padding-left: 20px;">
-                <li>Bàn ăn</li>
-              <li>Bàn thông minh</li>
-              <li>Tủ</li>
-              <li>Ghế gỗ</li>
-              <li>Ghế sắt</li>
-              <li>Giường người lớn</li>
-              <li>Giường trẻ em</li>
-              <li>Bàn trang điểm</li>
-              <li>Giá đỡ</li>
-              </ul>
-            </div>
-          </div>
-          <BR>
-          <button class="btn btn-save" type="button">Lưu lại</button>
-          <a class="btn btn-cancel" data-dismiss="modal" href="#">Hủy bỏ</a>
-          <BR>
         </div>
-        <div class="modal-footer">
-        </div>
-      </div>
     </div>
-  </div>
-  <!--
-MODAL
--->
-  <!--
-  MODAL TÌNH TRẠNG
--->
-  <div class="modal fade" id="addtinhtrang" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-    data-backdrop="static" data-keyboard="false">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
+</div>
 
-        <div class="modal-body">
-          <div class="row">
-            <div class="form-group  col-md-12">
-              <span class="thong-tin-thanh-toan">
+<!-- Modal for Adding New Status -->
+<div class="modal fade" id="addStatusModal" tabindex="-1" role="dialog" aria-labelledby="addStatusModalLabel">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
                 <h5>Thêm mới tình trạng</h5>
-              </span>
+                <input class="form-control" type="text" placeholder="Nhập tình trạng mới" required>
+                <button class="btn btn-save mt-3" type="button">Lưu lại</button>
+                <a class="btn btn-cancel mt-3" data-dismiss="modal" href="#">Hủy bỏ</a>
             </div>
-            <div class="form-group col-md-12">
-              <label class="control-label">Nhập tình trạng mới</label>
-              <input class="form-control" type="text" required>
-            </div>
-          </div>
-          <BR>
-          <button class="btn btn-save" type="button">Lưu lại</button>
-          <a class="btn btn-cancel" data-dismiss="modal" asp-controller="QuanLySanPham" asp-action="Index">Hủy bỏ</a>
-          <BR>
         </div>
-        <div class="modal-footer">
-        </div>
-      </div>
     </div>
-  </div>
-  <!--
-MODAL
--->
+</div>
+
 
 <script>
-    const inpFile = document.getElementById("inpFile");
-    const loadFile = document.getElementById("loadFile");
-    const previewContainer = document.getElementById("imagePreview");
-    const previewContainer = document.getElementById("imagePreview");
-    const previewImage = previewContainer.querySelector(".image-preview__image");
-    const previewDefaultText = previewContainer.querySelector(".image-preview__default-text");
-    inpFile.addEventListener("change", function () {
-        const file = this.files[0];
-        if (file) {
-            const reader = new FileReader();
-            previewDefaultText.style.display = "none";
-            previewImage.style.display = "block";
-            reader.addEventListener("load", function () {
-                previewImage.setAttribute("src", this.result);
-            });
-            reader.readAsDataURL(file);
+    function readURL(input, thumbimage) {
+        if (input.files && input.files[0]) { //Sử dụng  cho Firefox - chrome
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $("#thumbimage").attr('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
         }
-    });
+        else { // Sử dụng cho IE
+            $("#thumbimage").attr('src', input.value);
 
+        }
+        $("#thumbimage").show();
+        $('.filename').text($("#uploadfile").val());
+        $('.Choicefile').css('background', '#14142B');
+        $('.Choicefile').css('cursor', 'default');
+        $(".removeimg").show();
+        $(".Choicefile").unbind('click');
+
+    }
+    $(document).ready(function () {
+        $(".Choicefile").bind('click', function () {
+            $("#uploadfile").click();
+
+        });
+        $(".removeimg").click(function () {
+            $("#thumbimage").attr('src', '').hide();
+            $("#myfileupload").html('<input type="file" id="uploadfile"  onchange="readURL(this);" />');
+            $(".removeimg").hide();
+            $(".Choicefile").bind('click', function () {
+                $("#uploadfile").click();
+            });
+            $('.Choicefile').css('background', '#14142B');
+            $('.Choicefile').css('cursor', 'pointer');
+            $(".filename").text("");
+        });
+    })
 </script>
