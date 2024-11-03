@@ -11,5 +11,5 @@ public partial class UserRole
 
     public virtual Role? Role { get; set; }
 
-    public virtual User? User { get; set; }
+    public virtual Users? User { get; set; }
 }

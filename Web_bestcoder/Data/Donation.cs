@@ -13,5 +13,5 @@ public partial class Donation
 
     public DateTime? DonationDate { get; set; }
 
-    public virtual User? User { get; set; }
+    public virtual Users? User { get; set; }
 }

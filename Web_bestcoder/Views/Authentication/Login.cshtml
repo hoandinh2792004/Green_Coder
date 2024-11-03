@@ -1,1 +1,54 @@
-﻿ 
+﻿@using Web_bestcoder.ViewModels;
+@model LoginViewModel;
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Views/Shared/_AccountLayout.cshtml";
+}
+<div class="account-container">
+    <div class="account-box d-flex">
+        <div class="form-container">
+            <!-- Container for the form -->
+            <h2 class="login-title">Login</h2>
+            <form asp-action="Login" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="mb-3">
+                    <label asp-for="Email" class="form-label"></label>
+                    <input asp-for="Email" class="form-control" placeholder="Enter your email" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Password" class="form-label"></label>
+                    <input asp-for="Password" class="form-control" placeholder="Enter your password" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+
+                <div class="float-end">
+                    <a asp-controller="Authentication" asp-action="VerifyEmail" class="forgot-link text-decoration-none">
+                        Forgot password?
+                    </a>
+                </div>
+
+                <input type="submit" value="Login" class="btn btn-primary w-100 p-2 login-btn" />
+
+                <p class="text-center mt-2">
+                    Don't have an account?
+                    <a asp-controller="Authentication" asp-action="Register" class="signup-link text-decoration-none">
+                        Register now
+                    </a>
+                </p>
+            </form>
+        </div>
+
+        <div class="image-container">
+            <!-- New section for the image and text -->
+           
+            @* <img src="~/images/donation.jpg" alt="Decorative Image" class="right-image" /> *@
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial.cshtml");
+    }
+}

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Web_bestcoder.Data;
 
@@ -11,9 +12,11 @@ using Web_bestcoder.Data;
 namespace Web_bestcoder.Migrations
 {
     [DbContext(typeof(GreenCoderContext))]
-    partial class GreenCoderContextModelSnapshot : ModelSnapshot
+    [Migration("20241103042000_RemoveConfirmPasswordFromUsers")]
+    partial class RemoveConfirmPasswordFromUsers
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
