@@ -2,7 +2,7 @@
 
 namespace Web_bestcoder.Controllers
 {
-    public class Diadiem : Controller
+    public class Homecharity : Controller
     {
         public IActionResult Index()
         {
