@@ -39,6 +39,13 @@ public partial class GreenCoderContext : DbContext
 
     public virtual DbSet<UserRole> UserRoles { get; set; }
 
+<<<<<<< HEAD
+=======
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
+        => optionsBuilder.UseSqlServer("Data Source=MSI\\SQLEXPRESS;Initial Catalog=GreenCoder;Integrated Security=True;Trust Server Certificate=True");
+
+>>>>>>> d6d01be3197c6e58492f99b63f7258d16b832c53
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Cart>(entity =>
@@ -177,6 +184,10 @@ public partial class GreenCoderContext : DbContext
             entity.Property(e => e.SellingPrice).HasColumnType("decimal(18, 2)");
             entity.Property(e => e.Status).HasMaxLength(50);
             entity.Property(e => e.SupplierId).HasColumnName("SupplierID");
+
+            // Thêm cấu hình cho trường mô tả
+            entity.Property(e => e.Description)
+                .HasMaxLength(500); // Bạn có thể điều chỉnh độ dài tối đa tùy ý
 
             entity.HasOne(d => d.Category).WithMany(p => p.Products)
                 .HasForeignKey(d => d.CategoryId)

@@ -23,6 +23,9 @@ public partial class Product
 
     public int SupplierId { get; set; }
 
+    
+    public string Description { get; set; } 
+
     public DateTime? CreatedDate { get; set; }
 
     public bool? IsActive { get; set; }
