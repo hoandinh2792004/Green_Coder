@@ -8,12 +8,8 @@ using Web_bestcoder.Data; // Assuming this is your DbContext namespace
 namespace Web_bestcoder.Areas.Admin.Controllers
 {
     [Area("Admin")]
-<<<<<<< HEAD
 
-    public class QuanLySanPham : Controller
-=======
     public class QuanLySanPhamController : Controller
->>>>>>> d6d01be3197c6e58492f99b63f7258d16b832c53
     {
         private readonly GreenCoderContext _context; // Replace with your actual DbContext
 
