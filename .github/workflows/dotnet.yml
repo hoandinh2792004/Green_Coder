@@ -34,10 +34,10 @@ jobs:
           }
 
           # Xóa toàn bộ nội dung trong thư mục đích, trừ web.config
-          Get-ChildItem -Path "C:\inetpub\wwwroot\greencycle.btecit.tech" -Exclude "web.config" | Remove-Item -Recurse -Force
+          Get-ChildItem -Path "C:\inetpub\wwwroot\greencycle.btecit.tech" -Exclude "web.config", "appsettings.json" | Remove-Item -Recurse -Force
 
           # Sao chép các file từ thư mục build vào thư mục đích mà không ghi đè web.config
-          Copy-Item -Path "built\*" -Destination "C:\inetpub\wwwroot\greencycle.btecit.tech" -Recurse -Force -Exclude "web.config"
+          Copy-Item -Path "built\*" -Destination "C:\inetpub\wwwroot\greencycle.btecit.tech" -Recurse -Force -Exclude "web.config", "appsettings.json"
       shell: powershell
     - name: Test
       run: dotnet test --no-build --verbosity normal

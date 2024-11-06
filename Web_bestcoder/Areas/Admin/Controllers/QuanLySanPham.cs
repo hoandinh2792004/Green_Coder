@@ -1,9 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
 using Web_bestcoder.Areas.Admin.Models;
-using Web_bestcoder.Areas.Admin.ViewModels;
-using Web_bestcoder.Data; // Assuming this is your DbContext namespace
+
+
 
 
 namespace Web_bestcoder.Areas.Admin.Controllers
@@ -12,33 +13,27 @@ namespace Web_bestcoder.Areas.Admin.Controllers
 
     public class QuanLySanPhamController : Controller
     {
-        private readonly GreenCoderContext _context; // Replace with your actual DbContext
 
-        public QuanLySanPhamController(GreenCoderContext context) // Constructor for Dependency Injection
+        private readonly IWebHostEnvironment _webHostEnvironment;
+        private static List<Products> products = new List<Products>();
+
+        // Constructor to get the web hosting environment
+        public QuanLySanPhamController(IWebHostEnvironment webHostEnvironment)
         {
-            _context = context;
+            _webHostEnvironment = webHostEnvironment;
         }
 
-        // GET: /Admin/QuanLySanPham/
+        [HttpGet]
         public IActionResult Index()
         {
-            // Fetch the product data from your data source, for example:
-            var products = _context.Products.ToList();
-
-            // Map to ProductViewModel
-            var productViewModels = products.Select(product => new ProductViewModel
-            {
-                Product = product,
-               
-            }).ToList();
-            // Pass the correctly typed model to the view
+            LoadSubjectsFromFile("Areas/Admin/Data/product.json");
             return View(products);
         }
 
-
-        // GET: /Admin/QuanLySanPham/ThemSanPham
+        [HttpGet]
         public IActionResult ThemSanPham()
         {
+<<<<<<< HEAD
             var viewModel = new ProductViewModel
             {
                 ProductCategories = _context.ProductCategories.ToList(),
@@ -80,115 +75,94 @@ namespace Web_bestcoder.Areas.Admin.Controllers
             model.Suppliers = _context.Suppliers.ToList();
 
             return View(model); // Pass the updated model back to the view
+=======
+            return View();
         }
 
-        // GET: /Admin/QuanLySanPham/Edit/5
-        public IActionResult Edit(int id)
-        {
-            var product = _context.Products.Find(id); // Find the product by ID
-            if (product == null)
-            {
-                return NotFound(); // Return 404 if the product does not exist
-            }
-
-            var viewModel = new ProductViewModel
-            {
-                Product = product,
-                ProductCategories = _context.ProductCategories.ToList(),
-                Suppliers = _context.Suppliers.ToList()
-            };
-
-            return View(viewModel); // Pass the view model to the edit view
-        }
-
-        // POST: /Admin/QuanLySanPham/Edit/5
         [HttpPost]
-        [ValidateAntiForgeryToken] // Prevent CSRF attacks
-        public IActionResult Edit(ProductViewModel model)
+        public IActionResult Products(Products product, IFormFile? Image)
         {
-            if (ModelState.IsValid)
+            LoadSubjectsFromFile("Areas/Admin/Data/product.json"); // Load data from file before adding new product
+
+            // Handle image upload if an image is provided
+            if (Image != null)
             {
-                // Update the existing product in the database
-                _context.Products.Update(model.Product);
-                _context.SaveChanges();
-                return RedirectToAction("Index"); // Redirect to the product list
+                // Define the path where the image will be saved
+                string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "images");
+                Directory.CreateDirectory(uploadsFolder); // Ensure the directory exists
+
+                string uniqueFileName = Guid.NewGuid().ToString() + "_" + Image.FileName;
+                string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+
+                // Save the image file to the specified path
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    Image.CopyTo(fileStream);
+                }
+
+                // Set the image path in the product object
+                product.Image = "/images/" + uniqueFileName;
             }
 
-            // If validation fails, reload categories and suppliers
-            model.ProductCategories = _context.ProductCategories.ToList();
-            model.Suppliers = _context.Suppliers.ToList();
-            return View(model);
+            products.Add(product); // Add the product to the list
+            SaveProductToFile("Areas/Admin/Data/product.json"); // Save the updated list to file
+            return RedirectToAction("Index");
+>>>>>>> 100091154970fa22928008c1da44670316523a62
         }
 
-        // GET: /Admin/QuanLySanPham/Delete/5
-        public IActionResult Delete(int id)
+        public List<Products>? LoadSubjectsFromFile(string filename)
         {
-            var product = _context.Products.Find(id);
-            if (product == null)
+            if (System.IO.File.Exists(filename))
             {
-                return NotFound(); // Return 404 if the product does not exist
+                string readText = System.IO.File.ReadAllText(filename);
+                return JsonSerializer.Deserialize<List<Products>>(readText);
             }
-
-            return View(product); // Pass the product to the delete view
+            return new List<Products>();
         }
 
-        // POST: /Admin/QuanLySanPham/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken] // Prevent CSRF attacks
-        public IActionResult DeleteConfirmed(int id)
+        public void SaveProductToFile(string filename)
         {
-            var product = _context.Products.Find(id);
-            if (product != null)
+            var options = new JsonSerializerOptions { WriteIndented = true };
+            string jsonString = JsonSerializer.Serialize(products, options);
+
+            // Save the updated list to the JSON file
+            using (StreamWriter writer = new StreamWriter(filename))
             {
-                _context.Products.Remove(product); // Remove the product from the database
-                _context.SaveChanges();
+                writer.WriteLine(jsonString);
             }
-
-            return RedirectToAction("Index"); // Redirect to the product list
         }
 
-        // GET: /Admin/QuanLySanPham/ThemDanhMuc
-        public IActionResult ThemDanhMuc()
-        {
-            return View(); // Show the view for adding a category
-        }
 
-        // POST: /Admin/QuanLySanPham/ThemDanhMuc
-        [HttpPost]
-        [ValidateAntiForgeryToken] // Prevent CSRF attacks
-        public IActionResult ThemDanhMuc(Data.ProductCategory category)
+
+        public IActionResult Delete(int Id)
         {
-            if (ModelState.IsValid)
+            var product = LoadSubjectsFromFile("Areas/Admin/Data/product.json");
+            var searchSubject = product.FirstOrDefault(t => t.Id == Id);
+            products.Remove(searchSubject);
+            var options = new JsonSerializerOptions { WriteIndented = true };
+            string jsonString = JsonSerializer.Serialize(products, options);
+
+            using (StreamWriter write = new StreamWriter("Areas/Admin/Data/product.json"))
             {
-                _context.ProductCategories.Add(category); // Add the new category to the database
-                _context.SaveChanges();
-                return RedirectToAction("Index"); // Redirect to the product list
+                write.WriteLine(jsonString);
             }
-
-            return View(category); // Return the view with the model if validation fails
+            return RedirectToAction("Index");
         }
 
-        // GET: /Admin/QuanLySanPham/ThemNhaCungCap
-        public IActionResult ThemNhaCungCap()
+
+
+        //[HttpGet]
+        //public IActionResult SubjectEdit(string Id)
+        //{
+
+        //    var subjectToEdit = subjects.FirstOrDefault(s => s.Id == Id);
+        //    return View(subjectToEdit);
+        //}
+
+        public object Setup(Func<object, object> value)
         {
-            return View(); // Show the view for adding a supplier
+            throw new NotImplementedException();
         }
 
-        // POST: /Admin/QuanLySanPham/ThemNhaCungCap
-        [HttpPost]
-        [ValidateAntiForgeryToken] // Prevent CSRF attacks
-        public IActionResult ThemNhaCungCap(Data.Supplier supplier)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Suppliers.Add(supplier); // Add the new supplier to the database
-                _context.SaveChanges();
-                return RedirectToAction("Index"); // Redirect to the product list
-            }
-
-            return View(supplier); // Return the view with the model if validation fails
-        }
-
-        // Similar methods can be created for managing categories and suppliers
     }
 }
