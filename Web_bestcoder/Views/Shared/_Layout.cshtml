@@ -73,15 +73,29 @@
                 </div>
 
                 <div class="col-sm-8 col-lg-4 d-flex justify-content-end gap-5 align-items-center mt-4 mt-sm-0 justify-content-center justify-content-sm-end">
-                    @*              <div class="support-box text-end d-none d-xl-block">
-                    <span class="fs-6 secondary-font text-muted">Phone</span>
-                    <h5 class="mb-0">+098 109 05 13</h5>
-                    </div> *@
-                    <div class="support-box text-end d-none d-xl-block">
-                        <span class="fs-6 secondary-font text-muted">Email</span>
-                        <h5 class="mb-0">GreenCycle@gmail.com</h5>
-                    </div>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                <img src="@User.FindFirst("AvatarUrl")?.Value" alt="Avatar" style="width: 30px; height: 30px; border-radius: 50%;">
+                                @User.Identity.Name
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <li>
+                                    <a class="dropdown-item" asp-controller="Profile" asp-action="Index">Hồ sơ cá nhân</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" asp-controller="Login" asp-action="Logout">Đăng xuất</a>
+                                </li>
+                            </ul>
+                        </div>
+                    }
+                    else
+                    {
+                        <span></span>
+                    }
                 </div>
+
             </div>
         </div>
 
@@ -168,12 +182,35 @@
                                         <iconify-icon icon="mdi:heart" class="fs-4"></iconify-icon>
                                     </a>
                                 </li>
-                                <li>
-                                    <a href="index.html" class="mx-3" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart" aria-controls="offcanvasCart">
-                                        <iconify-icon icon="mdi:cart" class="fs-4 position-relative"></iconify-icon>
-                                        <span class="position-absolute translate-middle badge rounded-circle bg-primary pt-2">03</span>
-                                    </a>
-                                </li>
+                                <ul class="nav">
+                                    @if (Context.Session.GetString("UserName") != null)
+                                    {
+                                        <!-- Dropdown for logged-in users -->
+                                        <div class="dropdown">
+                                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                                Hello, @Context.Session.GetString("UserName")
+                                            </button>
+                                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                <li>
+                                                    <a class="dropdown-item" asp-controller="Profile" asp-action="Profile">Profile</a>
+                                                </li>
+                                                <li>
+                                                    <a class="dropdown-item" asp-controller="Login" asp-action="Logout">Logout</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <!-- Display the login icon when not logged in -->
+                                        <a asp-action="Login" asp-controller="Login" class="mx-3">
+                                            <iconify-icon icon="healthicons:person" class="fs-4"></iconify-icon>
+                                        </a>
+                                    }
+
+                                  
+                                </ul>
+
                             </ul>
                         </div>
                     </div>
