@@ -1,10 +1,9 @@
-﻿using Web_bestcoder.Data;
-
+﻿
 namespace Web_bestcoder.Areas.Admin.Models
 {
     public class Products
     {
-        public int ProductId { get; set; } // Unique identifier for the product
+        public int Id { get; set; } // Unique identifier for the product
 
         public string ProductName { get; set; } = string.Empty; // Name of the product
 
@@ -18,19 +17,15 @@ namespace Web_bestcoder.Areas.Admin.Models
 
         public decimal CostPrice { get; set; } // Cost price of the product
 
-        public int CategoryId { get; set; } // Foreign key to the product category
+        public int Category { get; set; } // Foreign key to the product category
 
-        public int SupplierId { get; set; } // Foreign key to the supplier
+        public int Supplier { get; set; } // Foreign key to the supplier
         public string Description { get; set; }
-        public DateTime? CreatedDate { get; set; } // Date when the product was created
+        
 
-        public bool? IsActive { get; set; } // Whether the product is active or not
+        public Products()
+        {
 
-        // Navigation properties to link with other models
-        public ProductCategory? Category { get; set; } // Navigation property for category
-        public Supplier? Supplier { get; set; } // Navigation property for supplier
-
-        // Collection of related order details
-        public List<OrderDetail> OrderDetails { get; set; } = new List<OrderDetail>();
+        }
     }
 }

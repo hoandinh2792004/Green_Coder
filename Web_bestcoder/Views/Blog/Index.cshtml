@@ -1,0 +1,246 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Hero Start -->
+<div class="container-fluid py-5 hero-header wow fadeIn" data-wow-delay="0.1s">
+    <div class="container py-5">
+        <div class="row g-5">
+            <!-- <div class="col-lg-7 col-md-12"> -->
+            <!-- <h1 class="mb-3 text-primary">Chia sẻ từ tâm</h1>
+            <h1 class="mb-5 display-1 text-white">Lan tỏa điều tốt đẹp</h1> -->
+            <!-- <div style="margin-top: 00px;"> -->
+            <!-- <a href="" class="btn btn-primary px-4 py-3 px-md-5  me-4 btn-border-radius">Tình nguyện</a>
+            <a href="" class="btn btn-primary px-4 py-3 px-md-5 btn-border-radius">Quyên góp</a> -->
+        </div>
+
+    </div>
+</div>
+<!-- Hero End -->
+<!-- About Start -->
+<div class="container-fluid py-5 about bg-light">
+    <div class="container py-4">
+        <div class="row g-5 align-items-center">
+            <div class="col-lg-5 wow fadeIn" data-wow-delay="0.1s">
+                <div class="overflow-hidden img-border-radius">
+                    <img src="~/Charity/img/tinhnguyen/1.png" class="img-fluid w-100" alt="Image">
+                </div>
+            </div>
+            <div class="col-lg-7 wow fadeIn" data-wow-delay="0.3s">
+                <h4 class="text-primary mb-4 border-bottom border-primary border-2 d-inline-block p-2 title-border-radius">Giới thiệu</h4>
+                <h1 class="text-dark mb-4 display-5"> Tại sao nên tham gia tour du lịch tình nguyện</h1>
+                <p class="text-dark mb-4">
+                    Chuyến đi cùng Green Heart sẽ giúp bạn trải nghiệm những điều mà trước đây chưa từng thử qua, khám phá những điều chưa biết ở bản thân, bứt phá khỏi giới hạn của chính mình. Và đây cũng là hoạt động tình nguyện giúp đỡ các bạn có hoàn cảnh khó khăn, lũ lụt, bão... Nhằm mang lại những giá trị bền vững cho cộng đồng và xã hội.
+                </p>
+                <div class="row mb-4">
+                    <div class="col-lg-6">
+                        <h6 class="mb-3"></i>🚀 Phát triển bản thân</h6>
+                        <h6 class="mb-3"></i>🏅 Chứng nhận tình nguyện</h6>
+                        <h6 class="mb-3"></i>💓 Hỗ trợ cộng đồng</h6>
+                    </div>
+                    <div class="col-lg-6">
+                        <h6 class="mb-3"></i>🌐 Kết nối toàn cầu</h6>
+                        <h6 class="mb-3"></i>🌟 Trải nghiệm độc đáo</h6>
+                    </div>
+                </div>
+                <a href="" class="btn btn-primary px-5 py-3 btn-border-radius">Đăng ký ngay</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- About End -->
+<!-- Programs Start -->
+<div class="container-fluid program py-2">
+    <div class="container py-5">
+        <div class="mx-auto text-center wow fadeIn" data-wow-delay="0.1s" style="max-width: 700px;">
+            <h4 class="text-primary mb-4 border-bottom border-primary border-2 d-inline-block p-2 title-border-radius">Tour tình nguyện</h4>
+            <h1 class="mb-5 display-5">
+                Nam Trà My, Nghệ An 
+            </h1>
+        </div>
+        <div class="row g-5 justify-content-center">
+            <button id="soundToggleButton" class="btn col-3 text-center">🔇 Bật âm thanh</button>
+            <div class="col-12 text-center">
+                <!-- Video Element -->
+                <video id="volunteerVideo" autoplay muted loop style="max-width: 100%; border-radius: 10px;">
+                    <source src="~/Video/QuangLinhVlog.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+               
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Program End -->
+<!-- Events Start -->
+<div class="container-fluid events py-2">
+    <div class="container py-5">
+        <div class="mx-auto text-center wow fadeIn" data-wow-delay="0.1s" style="max-width: 700px;">
+            <h4 class="text-primary mb-4 border-bottom border-primary border-2 d-inline-block p-2 title-border-radius">Ủng Hộ</h4>
+            <h1 class="mb-5 display-3">Các hoạt động ủng hộ</h1>
+        </div>
+        <div class="row g-5 justify-content-center">
+            <div class="col-md-6 col-lg-6 col-xl-4" data-wow-delay="0.1s">
+                <div class="events-item bg-primary rounded">
+                    <div class="events-inner position-relative">
+                        <div class="events-img overflow-hidden rounded-circle position-relative">
+                            <img src="~/img/baoYagi.jpg" class="img-fluid w-100 rounded-circle" alt="Image">
+                          
+                        </div>
+                    </div>
+                    <div class="events-text p-4 border border-primary bg-white border-top-0 rounded-bottom">
+                        <a href="#" class="h4">Ủng Hộ Khắc Phục Bão Yagi</a>
+                       
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-6 col-xl-4 " data-wow-delay="0.1s">
+                <div class="events-item bg-primary rounded">
+                    <div class="events-inner position-relative">
+                        <div class="events-img overflow-hidden rounded-circle position-relative">
+                            <img src="~/img/chay.jpg" class="img-fluid w-100 rounded-circle" alt="Image">
+
+                        </div>
+                    </div>
+                    <div class="events-text p-4 border border-primary bg-white border-top-0 rounded-bottom">
+                        <a href="#" class="h4">Ủng Hộ Nạn Vụ Cháy Chung Cư </a>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-6 col-xl-4 wow fadeIn" data-wow-delay="0.1s">
+                <div class="events-item bg-primary rounded">
+                    <div class="events-inner position-relative">
+                        <div class="events-img overflow-hidden rounded-circle position-relative">
+                            <img src="~/img/HaGiang.jpg" class="img-fluid w-100 rounded-circle" alt="Image">
+
+                        </div>
+                    </div>
+                    <div class="events-text p-4 border border-primary bg-white border-top-0 rounded-bottom">
+                        <a href="#" class="h4">Ủng Hộ Xây Trường Ở Hà Giang</a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Events End-->
+<!-- Testimonial Start -->
+<div class="container-fluid testimonial program py-2">
+    <div class="container py-5">
+        <div class="mx-auto text-center wow fadeIn" data-wow-delay="0.1s" style="max-width: 700px;">
+            <h4 class="text-primary mb-4 border-bottom border-primary border-2 d-inline-block p-2 title-border-radius">Our Testimonials</h4>
+            <h1 class="mb-5 display-3">Parents Say About Us</h1>
+        </div>
+        <div class="owl-carousel testimonial-carousel wow fadeIn" data-wow-delay="0.3s">
+            <div class="testimonial-item img-border-radius bg-light border border-primary p-4">
+                <div class="p-4 position-relative">
+                    <i class="fa fa-quote-right fa-2x text-primary position-absolute" style="top: 15px; right: 15px;"></i>
+                    <div class="d-flex align-items-center">
+                        <div class="border border-primary bg-white rounded-circle">
+                            <img src="~/Charity/img/testimonial-2.jpg" class="rounded-circle p-2" style="width: 80px; height: 80px; border-style: dotted; border-color: var(--bs-primary);" alt="">
+                        </div>
+                        <div class="ms-4">
+                            <h4 class="text-dark">Client Name</h4>
+                            <p class="m-0 pb-3">Profession</p>
+                            <div class="d-flex pe-5">
+                                <i class="fas fa-star text-primary"></i>
+                                <i class="fas fa-star text-primary"></i>
+                                <i class="fas fa-star text-primary"></i>
+                                <i class="fas fa-star text-primary"></i>
+                                <i class="fas fa-star text-primary"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="border-top border-primary mt-4 pt-3">
+                        <p class="mb-0">
+                            Lorem Ipsum is simply dummy text of the printing Ipsum has been the industry's standard dummy text ever since the 1500s,
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-item img-border-radius bg-light border border-primary p-4">
+                <div class="p-4 position-relative">
+                    <i class="fa fa-quote-right fa-2x text-primary position-absolute" style="top: 15px; right: 15px;"></i>
+                    <div class="d-flex align-items-center">
+                        <div class="border border-primary bg-white rounded-circle">
+                            <img src="~/Charity/img/testimonial-2.jpg" class="rounded-circle p-2" style="width: 80px; height: 80px; border-style: dotted; border-color: var(--bs-primary);" alt="">
+                        </div>
+                        <div class="ms-4">
+                            <h4 class="text-dark">Client Name</h4>
+                            <p class="m-0 pb-3">Profession</p>
+                            <div class="d-flex pe-5">
+                                <i class="fas fa-star text-primary"></i>
+                                <i class="fas fa-star text-primary"></i>
+                                <i class="fas fa-star text-primary"></i>
+                                <i class="fas fa-star text-primary"></i>
+                                <i class="fas fa-star text-primary"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="border-top border-primary mt-4 pt-3">
+                        <p class="mb-0">
+                            Lorem Ipsum is simply dummy text of the printing Ipsum has been the industry's standard dummy text ever since the 1500s,
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-item img-border-radius bg-light border border-primary p-4">
+                <div class="p-4 position-relative">
+                    <i class="fa fa-quote-right fa-2x text-primary position-absolute" style="top: 15px; right: 15px;"></i>
+                    <div class="d-flex align-items-center">
+                        <div class="border border-primary bg-white rounded-circle">
+                            <img src="~/Charity/img/testimonial-2.jpg" class="rounded-circle p-2" style="width: 80px; height: 80px; border-style: dotted; border-color: var(--bs-primary);" alt="">
+                        </div>
+                        <div class="ms-4">
+                            <h4 class="text-dark">Client Name</h4>
+                            <p class="m-0 pb-3">Profession</p>
+                            <div class="d-flex pe-5">
+                                <i class="fas fa-star text-primary"></i>
+                                <i class="fas fa-star text-primary"></i>
+                                <i class="fas fa-star text-primary"></i>
+                                <i class="fas fa-star text-primary"></i>
+                                <i class="fas fa-star text-primary"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="border-top border-primary mt-4 pt-3">
+                        <p class="mb-0">
+                            Lorem Ipsum is simply dummy text of the printing Ipsum has been the industry's standard dummy text ever since the 1500s,
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Testimonial End -->
+<!-- Blog Start-->
+
+
+<script>
+    // JavaScript to toggle sound
+    const video = document.getElementById('volunteerVideo');
+    const soundButton = document.getElementById('soundToggleButton');
+
+    soundButton.addEventListener('click', function () {
+        if (video.muted) {
+            video.muted = false;
+            soundButton.textContent = '🔊 Tắt âm thanh';
+        } else {
+            video.muted = true;
+            soundButton.textContent = '🔇 Bật âm thanh';
+        }
+    });
+
+    // Function to switch videos
+    function switchVideo(videoPath) {
+        video.src = videoPath;
+        video.load();
+        video.play();
+    }
+</script>

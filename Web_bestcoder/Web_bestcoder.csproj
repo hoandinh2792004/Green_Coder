@@ -23,9 +23,17 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\Admin\Data\" />
+    <Content Remove="Areas\Admin\Data\charity.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="Areas\Admin\Data\charity.json" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Data\" />
     <Folder Include="wwwroot\Admin\uploads\images\" />
+    <Folder Include="wwwroot\images\" />
     <Folder Include="wwwroot\User\images\detail\" />
   </ItemGroup>
 
