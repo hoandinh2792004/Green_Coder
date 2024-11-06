@@ -2,10 +2,12 @@
     ViewData["Title"] = "Thêm Sản Phẩm";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
+@model Web_bestcoder.Areas.Admin.ViewModels.ProductViewModel
+
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
-@model Web_bestcoder.Areas.Admin.ViewModels.ProductViewModel;
-
+ @* @model Web_bestcoder.Areas.Admin.ViewModels.ProductViewModel;
+ *@
 <main class="app-content">
     <div class="app-title">
         <ul class="app-breadcrumb breadcrumb">
@@ -32,11 +34,11 @@
 
                     <div class="container">
                         <form method="post" asp-action="ThemSanPham" asp-controller="QuanLySanPham" class="row" enctype="multipart/form-data">
-                            <div class="form-group col-md-3">
+                       @*      <div class="form-group col-md-3">
                                 <label asp-for="Product.ProductId" class="control-label"></label>
                                 <input asp-for="Product.ProductId" class="form-control" readonly />
                                 <span asp-validation-for="Product.ProductId" class="text-danger"></span>
-                            </div>
+                            </div> *@
 
                             <div class="form-group col-md-3">
                                 <label asp-for="Product.ProductName" class="control-label">Tên Sản Phẩm</label>
