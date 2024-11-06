@@ -8,10 +8,15 @@ namespace Web_bestcoder.Areas.Admin.ViewModels
     public class ProductViewModel
     {
 
-        public Product Product { get; set; }
+        // Remove the Product property
+        public string ProductName { get; set; } // Only include ProductName
+
         public List<Data.Product> Products { get; set; }
-        public List<Data.ProductCategory> ProductCategories { get; set; } // Ensure this is the same type used in your DbContext
+        public List<Data.ProductCategory> ProductCategories { get; set; }
         public List<Data.Supplier> Suppliers { get; set; }
+        public Product Product { get; internal set; }
+        public int CategoryId { get; internal set; }
+        public int SupplierId { get; internal set; }
 
         // Constructor to initialize the lists
         public ProductViewModel()
@@ -19,9 +24,8 @@ namespace Web_bestcoder.Areas.Admin.ViewModels
             ProductCategories = new List<Data.ProductCategory>();
             Suppliers = new List<Data.Supplier>();
             Products = new List<Product>();
-            Product = new Product();
         }
 
-      
+
     }
 }

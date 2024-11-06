@@ -8,5 +8,9 @@ namespace Web_bestcoder.Controllers
         {
             return View();
         }
+        public IActionResult Payment()
+        {
+            return View();
+        }
     }
 }

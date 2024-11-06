@@ -1,6 +1,6 @@
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Hosting.WindowsServices;
-using Web_bestcoder.Data;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
 namespace Web_bestcoder
 {
@@ -10,21 +10,34 @@ namespace Web_bestcoder
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            if (WindowsServiceHelpers.IsWindowsService())
+            // Add session services to the DI container
+            builder.Services.AddSession(options =>
             {
-                builder.Host.UseWindowsService();
-            }
-
-            // Add services to the container.
-            builder.Services.AddControllersWithViews();
-            builder.Services.AddDbContext<GreenCoderContext>(options =>
-            {
-                options.UseSqlServer(builder.Configuration.GetConnectionString("GreenCoder"));
+                options.IdleTimeout = TimeSpan.FromMinutes(30);  // Set session timeout if needed
+                options.Cookie.HttpOnly = true;  // For security reasons
+                options.Cookie.IsEssential = true;  // Ensure session cookie is essential
             });
+
+            // Add authentication services
+            builder.Services.AddAuthentication("YourCookieScheme")
+                .AddCookie("YourCookieScheme", options =>
+                {
+                    options.LoginPath = "/Login"; // Redirect here if not authenticated
+                    options.AccessDeniedPath = "/AccessDenied"; // Path for access denied
+                });
+
+            // Add services to the container
+            builder.Services.AddControllersWithViews();
 
             var app = builder.Build();
 
-            // Configure the HTTP request pipeline.
+            // Add session middleware before routing
+            app.UseSession();
+
+            // Add authentication middleware before routing
+            app.UseAuthentication(); // Make sure to add authentication middleware
+
+            // Configure the HTTP request pipeline
             if (!app.Environment.IsDevelopment())
             {
                 app.UseExceptionHandler("/Home/Error");
@@ -33,17 +46,10 @@ namespace Web_bestcoder
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
             app.UseRouting();
-
             app.UseAuthorization();
 
-            // Area route configuration
-            app.MapControllerRoute(
-                name: "areas",
-                pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
-
-            // Default route configuration
+            // Map default controller route
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
