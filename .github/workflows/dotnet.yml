@@ -11,7 +11,10 @@ on:
 
 jobs:
   build:
-
+  # Thêm kiểm tra sự tồn tại của thư mục trước khi xoá
+if (Test-Path 'C:\actions-runner\_work\Green_coder\Green_coder\b641ea6a-12b1-49bd-b998-32dcd8a6ff0a\hoandinh2792004-Green_coder-132dde6\.github\') {
+    Remove-Item 'C:\actions-runner\_work\Green_coder\Green_coder\b641ea6a-12b1-49bd-b998-32dcd8a6ff0a\hoandinh2792004-Green_coder-132dde6\.github\' -Force -Recurse
+}
     runs-on: self-hosted
     steps:
     - name: Stop IIS Web Project Service
