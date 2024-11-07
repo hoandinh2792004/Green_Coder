@@ -32,12 +32,6 @@ jobs:
             New-Item -ItemType Directory -Force -Path "C:\inetpub\wwwroot\greencycle.btecit.tech"
           }
 
-          # Kiểm tra sự tồn tại của thư mục .github trước khi xoá
-          $githubPath = 'C:\actions-runner\_work\Green_coder\Green_coder\b641ea6a-12b1-49bd-b998-32dcd8a6ff0a\hoandinh2792004-Green_coder-132dde6\.github\'
-          if (Test-Path -Path $githubPath) {
-            Remove-Item -Path $githubPath -Recurse -Force
-          }
-
           # Xóa toàn bộ nội dung trong thư mục đích, trừ web.config
           Get-ChildItem -Path "C:\inetpub\wwwroot\greencycle.btecit.tech" -Exclude "web.config", "appsettings.json" | Remove-Item -Recurse -Force
 
