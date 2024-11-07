@@ -1,17 +1,10 @@
-﻿@{
+﻿﻿@{
     ViewData["Title"] = "ThemSanPham";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
-@model Web_bestcoder.Areas.Admin.ViewModels.ProductViewModel
-
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
-<<<<<<< HEAD
- @* @model Web_bestcoder.Areas.Admin.ViewModels.ProductViewModel;
- *@
-=======
 @model Web_bestcoder.Areas.Admin.Models.Products
->>>>>>> 100091154970fa22928008c1da44670316523a62
 <main class="app-content">
     <div class="app-title">
         <ul class="app-breadcrumb breadcrumb">
@@ -41,16 +34,6 @@
                             </a>
                         </div>
                     </div>
-<<<<<<< HEAD
-
-                    <div class="container">
-                        <form method="post" asp-action="ThemSanPham" asp-controller="QuanLySanPham" class="row" enctype="multipart/form-data">
-                       @*      <div class="form-group col-md-3">
-                                <label asp-for="Product.ProductId" class="control-label"></label>
-                                <input asp-for="Product.ProductId" class="form-control" readonly />
-                                <span asp-validation-for="Product.ProductId" class="text-danger"></span>
-                            </div> *@
-=======
                     <form method="post" asp-controller="QuanLySanPham" asp-action="Products" class="row">
                         <div class="form-group col-md-3">
                             <label class="control-label">Mã sản phẩm</label>
@@ -115,7 +98,6 @@
                                 <a href="javascript:" class="Choicefile"><i class="fas fa-cloud-upload-alt"></i> Chọn ảnh</a>
                                 <p style="clear:both"></p>
                             </div>
->>>>>>> 100091154970fa22928008c1da44670316523a62
 
                         </div>
                         <div class="form-group col-md-12">
@@ -128,7 +110,7 @@
                         <a class="btn btn-cancel" asp-controller="QuanLySanPham" asp-action="Index">Hủy bỏ</a>
                     </form>
                 </div>
-               
+
             </div>
 </main>
 

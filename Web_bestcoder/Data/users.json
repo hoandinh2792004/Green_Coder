@@ -16,5 +16,14 @@
     "AvatarUrl": null,
     "PhoneNumber": "1234456677",
     "Address": "Nghia Hung"
+  },
+  {
+    "Id": "6b4bbe07-224a-403b-8cf2-c3258b895e02",
+    "UserName": "hoandzai",
+    "Email": "hoandinh2792004@gmail.com",
+    "Password": "12345678",
+    "AvatarUrl": null,
+    "PhoneNumber": "0123456789",
+    "Address": "B\u1EAFc Giang"
   }
 ]

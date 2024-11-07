@@ -6,7 +6,6 @@ using Web_bestcoder.Areas.Admin.Models;
 
 
 
-
 namespace Web_bestcoder.Areas.Admin.Controllers
 {
     [Area("Admin")]
@@ -33,49 +32,6 @@ namespace Web_bestcoder.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult ThemSanPham()
         {
-<<<<<<< HEAD
-            var viewModel = new ProductViewModel
-            {
-                ProductCategories = _context.ProductCategories.ToList(),
-                Suppliers = _context.Suppliers.ToList()
-                // Removed Product initialization since it's no longer in the view model
-            };
-
-            return View(viewModel); // Pass the view model to the view
-        }
-
-        // Updated POST: /Admin/QuanLySanPham/ThemSanPham
-        [HttpPost]
-        [ValidateAntiForgeryToken] // Prevent CSRF attacks
-        public async Task<IActionResult> ThemSanPham(ProductViewModel model) // Change here
-        {
-            if (ModelState.IsValid)
-            {
-                Product product = new Product
-                {
-                    //ProductId = model.ProductId,
-                    ProductName = model.ProductName,
-                    SellingPrice = 0, // Default or fetch from somewhere
-                    CostPrice = 0, // Default or fetch from somewhere
-                    Image = string.Empty, // Default or fetch from somewhere
-                    Description = string.Empty, // Default or fetch from somewhere
-                    Quantity = 0, // Default or fetch from somewhere
-                    Status = "Active", // Changed from boolean to string
-                    CategoryId = model.CategoryId, // Assuming CategoryId is part of ProductViewModel
-                    SupplierId = model.SupplierId // Assuming SupplierId is part of ProductViewModel
-                };
-
-                _context.Products.Add(product);
-                await _context.SaveChangesAsync();
-                return RedirectToAction("Index");
-            }
-
-            // If validation fails, reload categories and suppliers
-            model.ProductCategories = _context.ProductCategories.ToList();
-            model.Suppliers = _context.Suppliers.ToList();
-
-            return View(model); // Pass the updated model back to the view
-=======
             return View();
         }
 
@@ -107,7 +63,6 @@ namespace Web_bestcoder.Areas.Admin.Controllers
             products.Add(product); // Add the product to the list
             SaveProductToFile("Areas/Admin/Data/product.json"); // Save the updated list to file
             return RedirectToAction("Index");
->>>>>>> 100091154970fa22928008c1da44670316523a62
         }
 
         public List<Products>? LoadSubjectsFromFile(string filename)
