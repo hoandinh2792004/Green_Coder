@@ -13,31 +13,31 @@ namespace Web_bestcoder.Controllers
             return View();
         }
 
-        [HttpPost]
-        public IActionResult Index(OrderData orderData)
-        {
-            // Đường dẫn tới tệp JSON (cần điều chỉnh đường dẫn này tùy thuộc vào cấu trúc dự án của bạn)
-            var filePath = Path.Combine(Directory.GetCurrentDirectory(), "payment.json");
+        //[HttpPost]
+        //public IActionResult Index(OrderData orderData)
+        //{
+        //    // Đường dẫn tới tệp JSON (cần điều chỉnh đường dẫn này tùy thuộc vào cấu trúc dự án của bạn)
+        //    var filePath = Path.Combine(Directory.GetCurrentDirectory(), "payment.json");
 
-            // Đọc nội dung hiện có của tệp JSON (nếu có)
-            var existingData = new List<OrderData>();
-            if (System.IO.File.Exists(filePath))
-            {
-                var json = System.IO.File.ReadAllText(filePath);
-                existingData = JsonConvert.DeserializeObject<List<OrderData>>(json) ?? new List<OrderData>();
-            }
+        //    // Đọc nội dung hiện có của tệp JSON (nếu có)
+        //    var existingData = new List<OrderData>();
+        //    if (System.IO.File.Exists(filePath))
+        //    {
+        //        var json = System.IO.File.ReadAllText(filePath);
+        //        existingData = JsonConvert.DeserializeObject<List<OrderData>>(json) ?? new List<OrderData>();
+        //    }
 
-            // Thêm thông tin đặt hàng mới vào danh sách
-            existingData.Add(orderData);
+        //    // Thêm thông tin đặt hàng mới vào danh sách
+        //    existingData.Add(orderData);
 
-            // Ghi danh sách cập nhật vào tệp JSON
-            var updatedJson = JsonConvert.SerializeObject(existingData, Formatting.Indented);
-            System.IO.File.WriteAllText(filePath, updatedJson);
+        //    // Ghi danh sách cập nhật vào tệp JSON
+        //    var updatedJson = JsonConvert.SerializeObject(existingData, Formatting.Indented);
+        //    System.IO.File.WriteAllText(filePath, updatedJson);
 
-            // Trả về view với thông báo thành công (hoặc chuyển hướng nếu cần)
-            ViewBag.Message = "Đặt hàng thành công!";
-            return View();
-        }
+        //    // Trả về view với thông báo thành công (hoặc chuyển hướng nếu cần)
+        //    ViewBag.Message = "Đặt hàng thành công!";
+        //    return View();
+        //}
     }
 
     public class OrderData
