@@ -19,13 +19,16 @@ jobs:
 
       - uses: actions/checkout@v4
 
-      # Thêm kiểm tra sự tồn tại của thư mục trước khi xóa
-      - name: Remove .github Directory if Exists
-        run: |
-          if (Test-Path 'C:\actions-runner\_work\Green_coder\Green_coder\b641ea6a-12b1-49bd-b998-32dcd8a6ff0a\hoandinh2792004-Green_coder-132dde6\.github\') {
-              Remove-Item 'C:\actions-runner\_work\Green_coder\Green_coder\b641ea6a-12b1-49bd-b998-32dcd8a6ff0a\hoandinh2792004-Green_coder-132dde6\.github\' -Force -Recurse
-          }
-        shell: powershell
+     - name: Remove .github Directory if Exists
+  run: |
+    $ErrorActionPreference = "Continue"
+    if (Test-Path 'C:\actions-runner\_work\Green_coder\Green_coder\b641ea6a-12b1-49bd-b998-32dcd8a6ff0a\hoandinh2792004-Green_coder-132dde6\.github\') {
+        Write-Output "Directory exists. Removing..."
+        Remove-Item 'C:\actions-runner\_work\Green_coder\Green_coder\b641ea6a-12b1-49bd-b998-32dcd8a6ff0a\hoandinh2792004-Green_coder-132dde6\.github\' -Force -Recurse
+    } else {
+        Write-Output "Directory does not exist. Skipping removal."
+    }
+  shell: powershell
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
