@@ -13,56 +13,37 @@ jobs:
   build:
     runs-on: self-hosted
     steps:
-      - name: Stop IIS Web Project Service
-        run: Stop-Service "GreenCycleIISWebService"
-        shell: powershell
+    - name: Stop IIS Web Project Service
+      run: Stop-Service "GreenCycleIISWebService"
+      shell: powershell
+    - uses: actions/checkout@v4
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 8.0.x
+    - name: Restore dependencies
+      run: dotnet restore
+    - name: Build
+      run: dotnet publish -c Release -o built
+    - name: Deploy files to IIS Server
+      run: |
+          # Tạo thư mục đích nếu chưa tồn tại
+          if (!(Test-Path -Path "C:\inetpub\wwwroot\greencycle.btecit.tech")) {
+            New-Item -ItemType Directory -Force -Path "C:\inetpub\wwwroot\greencycle.btecit.tech"
+          }
 
-      - uses: actions/checkout@v4
+          # Xóa toàn bộ nội dung trong thư mục đích, trừ web.config
+          Get-ChildItem -Path "C:\inetpub\wwwroot\greencycle.btecit.tech" -Exclude "web.config", "appsettings.json" | Remove-Item -Recurse -Force
 
-     - name: Remove .github Directory if Exists
-  run: |
-    $ErrorActionPreference = "Continue"
-    if (Test-Path 'C:\actions-runner\_work\Green_coder\Green_coder\b641ea6a-12b1-49bd-b998-32dcd8a6ff0a\hoandinh2792004-Green_coder-132dde6\.github\') {
-        Write-Output "Directory exists. Removing..."
-        Remove-Item 'C:\actions-runner\_work\Green_coder\Green_coder\b641ea6a-12b1-49bd-b998-32dcd8a6ff0a\hoandinh2792004-Green_coder-132dde6\.github\' -Force -Recurse
-    } else {
-        Write-Output "Directory does not exist. Skipping removal."
-    }
-  shell: powershell
-
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: 8.0.x
-
-      - name: Restore dependencies
-        run: dotnet restore
-
-      - name: Build
-        run: dotnet publish -c Release -o built
-
-      - name: Deploy files to IIS Server
-        run: |
-            # Tạo thư mục đích nếu chưa tồn tại
-            if (!(Test-Path -Path "C:\inetpub\wwwroot\greencycle.btecit.tech")) {
-              New-Item -ItemType Directory -Force -Path "C:\inetpub\wwwroot\greencycle.btecit.tech"
-            }
-
-            # Xóa toàn bộ nội dung trong thư mục đích, trừ web.config
-            Get-ChildItem -Path "C:\inetpub\wwwroot\greencycle.btecit.tech" -Exclude "web.config", "appsettings.json" | Remove-Item -Recurse -Force
-
-            # Sao chép các file từ thư mục build vào thư mục đích mà không ghi đè web.config
-            Copy-Item -Path "built\*" -Destination "C:\inetpub\wwwroot\greencycle.btecit.tech" -Recurse -Force -Exclude "web.config", "appsettings.json"
-        shell: powershell
-
-      - name: Test
-        run: dotnet test --no-build --verbosity normal
-
-      - name: Start IIS Web Project Service
-        run: Start-Service "GreenCycleIISWebService"
-
-      - name: Recycle IIS Application Pool
-        run: |
-          Import-Module WebAdministration
-          Restart-WebAppPool -Name "greencycle.btecit.tech"
-        shell: powershell
+          # Sao chép các file từ thư mục build vào thư mục đích mà không ghi đè web.config
+          Copy-Item -Path "built\*" -Destination "C:\inetpub\wwwroot\greencycle.btecit.tech" -Recurse -Force -Exclude "web.config", "appsettings.json"
+      shell: powershell
+    - name: Test
+      run: dotnet test --no-build --verbosity normal
+    - name: Start IIS Web Project Service
+      run: Start-Service "GreenCycleIISWebService"
+    - name: Recycle IIS Application Pool
+      run: |
+        Import-Module WebAdministration
+        Restart-WebAppPool -Name "greencycle.btecit.tech"
+      shell: powershell
