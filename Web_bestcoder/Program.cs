@@ -49,6 +49,10 @@ namespace Web_bestcoder
             app.UseRouting();
             app.UseAuthorization();
 
+            app.MapControllerRoute(
+                name: "areas",
+                pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+
             // Map default controller route
             app.MapControllerRoute(
                 name: "default",

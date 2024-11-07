@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "TuThien";
+    ViewData["Title"] = "Danh Sách Từ Thiện";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
@@ -16,13 +16,11 @@
                 <div class="tile-body">
                     <div class="row element-button">
                         <div class="col-sm-2">
-
                             <a class="btn btn-add btn-sm" asp-controller="Charity" asp-action="Add" title="Thêm">
                                 <i class="fas fa-plus"></i>
                                 Tạo mới
                             </a>
                         </div>
-                       
                     </div>
                     <table class="table table-hover table-bordered" id="sampleTable">
                         <thead>
@@ -30,25 +28,43 @@
                                 <th width="10"><input type="checkbox" id="all"></th>
                                 <th>Họ và Tên</th>
                                 <th>Số Điện Thoại</th>
-                                <th>Nội dung khuyên góp </th>
+                                <th>Nội dung khuyên góp</th>
                                 <th>Tình trạng</th>
                                 <th>Chức năng</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td width="10"><input type="checkbox" name="check1" value="1"></td>
-                                <td>Kiều Thái Anh</td>
-                                <td>10/09/1998</td>
-                              
-                                <td>Gian lận trong công việc đã lấy trộm tiền của công ty và thái độ không ăn năn hối lỗi</td>
-                                <td><span class="badge bg-danger">Sa thải</span></td>
-                                <td>
-                                    <button class="btn btn-primary btn-sm trash" type="button" title="Xóa"><i class="fas fa-trash-alt"></i></button>
-                                    <button class="btn btn-primary btn-sm edit" type="button" title="Sửa"><i class="fa fa-edit"></i></button>
-                                </td>
-                            </tr>
-                          
+                            @foreach (var charity in Model)
+                            {
+                                <tr>
+                                    <td width="10"><input type="checkbox" name="check1" value="@charity.Id"></td>
+                                    <td>@charity.Name</td>
+                                    <td>@charity.PhoneNumber</td>
+                                    <td>@charity.Description</td>
+                                    <td>
+                                        @if (charity.Status == "Active")
+                                        {
+                                            <span class="badge bg-success">Hoạt động</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="badge bg-danger">Ngừng hoạt động</span>
+                                        }
+                                    </td>
+                                    <td>
+                                        <a href="@Url.Action("Edit", "Charity", new { id = charity.Id })" class="btn btn-primary btn-sm" title="Sửa">
+                                            <i class="fa fa-edit"></i>
+                                        </a>
+
+                                        <!-- Add Delete Button -->
+                                        <form asp-controller="Charity" asp-action="Delete" asp-route-id="@charity.Id" method="post" style="display:inline;">
+                                            <button class="btn btn-danger btn-sm trash" type="submit" title="Xóa" onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này?');">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            }
                         </tbody>
                     </table>
                 </div>

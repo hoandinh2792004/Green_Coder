@@ -1,14 +1,14 @@
 [
   {
     "Id": 1,
-    "ProductName": "sad",
+    "ProductName": "b\u00E0n",
     "Image": null,
-    "Quantity": 12,
+    "Quantity": 1000,
     "Status": "Available",
-    "SellingPrice": 123213,
-    "CostPrice": 123123,
-    "Category": 1,
-    "Supplier": 1,
-    "Description": "\u00E1dsad"
+    "SellingPrice": 10000,
+    "CostPrice": 1000,
+    "Category": 4,
+    "Supplier": 3,
+    "Description": "\u0111\u1EB9p"
   }
 ]

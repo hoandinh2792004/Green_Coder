@@ -76,15 +76,15 @@
                                         </td>
                                         <td>@String.Format("{0:C}", product.SellingPrice) đ</td>
                                         <td>@product.Category</td>
-                                        <td class="text-end">
-                                            <div class="actions">
-                                                <a href="@Url.Action("Delete", "QuanLySanPham", new {id = product.Id})" class="btn btn-sm bg-success-light me-2">
-                                                    <i class="fa-sharp fa-solid fa-trash"></i>
-                                                </a>
-                                                <a href="@Url.Action("Edit", "QuanLySanPham", new {id = product.Id})" class="btn btn-sm bg-danger-light">
-                                                    <i class="feather-edit"></i>
-                                                </a>
-                                            </div>
+                                        <td>
+                                            <form asp-controller="QuanLySanPham" asp-action="Delete" asp-route-id="@product.Id" method="post" style="display:inline;">
+                                                <button class="btn btn-danger btn-sm trash" type="submit" title="Xóa" onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này?');">
+                                                    <i class="fas fa-trash-alt"></i>
+                                                </button>
+                                            </form>
+                                            <button class="btn btn-primary btn-sm edit" type="button" title="Sửa" id="show-emp" data-toggle="modal" data-target="#ModalUP">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
                                         </td>
                                     </tr>
                                 }
@@ -96,6 +96,7 @@
                                 </tr>
                             }
                         </tbody>
+
                     </table>
 
                     
