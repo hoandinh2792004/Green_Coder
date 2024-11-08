@@ -21,7 +21,7 @@ namespace Web_bestcoder.Areas.Admin.Models
 
         public int Supplier { get; set; } // Foreign key to the supplier
         public string Description { get; set; }
-        
+        public string ImagePath { get; internal set; }
 
         public Products()
         {

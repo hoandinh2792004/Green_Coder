@@ -7,6 +7,7 @@ using System.Text.Json;
 using Web_bestcoder.Areas.Admin.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Web_bestcoder.Areas.Admin.Helper;
 
 namespace Web_bestcoder.Areas.Admin.Controllers
 {
@@ -48,48 +49,39 @@ namespace Web_bestcoder.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult Index()
         {
+            ViewBag.Categories = _categoryNames;
+            ViewBag.Suppliers = _supplierNames;
             return View(products);
         }
 
         [HttpGet]
         public IActionResult ThemSanPham()
         {
-            // Pass category and supplier names to the view using ViewBag
             ViewBag.Categories = _categoryNames;
             ViewBag.Suppliers = _supplierNames;
-
             return View();
         }
 
         [HttpPost]
         public IActionResult Products(Products product, IFormFile? Image)
         {
+            // Check if the product ID already exists
             if (products.Any(p => p.Id == product.Id))
             {
                 ModelState.AddModelError("Id", "Product ID already exists.");
                 return View("ThemSanPham", product);
             }
 
+            // Handle image upload if an image file is provided
             if (Image != null)
             {
-                string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "images");
-                Directory.CreateDirectory(uploadsFolder);
+                string folderName = "images";
+                string uploadedFileName = UploadImage.UpLoadFile(Image, folderName);
 
-                string uniqueFileName = Guid.NewGuid().ToString() + "_" + Image.FileName;
-                string filePath = Path.Combine(uploadsFolder, uniqueFileName);
-
-                try
+                // If the upload was successful, set the image path in the product object
+                if (!string.IsNullOrEmpty(uploadedFileName))
                 {
-                    using (var fileStream = new FileStream(filePath, FileMode.Create))
-                    {
-                        Image.CopyTo(fileStream);
-                    }
-                    product.Image = "/images/" + uniqueFileName;
-                }
-                catch (Exception ex)
-                {
-                    ModelState.AddModelError("ImageUpload", "Error uploading image: " + ex.Message);
-                    return View("ThemSanPham", product);
+                    product.ImagePath = Path.Combine("/uploads", folderName, uploadedFileName);
                 }
             }
 
