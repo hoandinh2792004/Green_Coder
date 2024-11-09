@@ -1,22 +1,23 @@
 ﻿@inject IConfiguration Configuration
 @{
-    ViewData["Title"] = "Diadiem";
-    Layout = "~/Views/Shared/_Layout_charity.cshtml";
+    ViewData["Title"] = "QuyenGop";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<!-- Page Header Start -->
-<div class="container-fluid page-header1 py-5 wow fadeIn" data-wow-delay="0.1s">
-    <div class="container text-center py-5">
-        <h1 class="display-2 text-white mb-4">About Us</h1>
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb justify-content-center mb-0">
-                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                <li class="breadcrumb-item"><a href="#">Pages</a></li>
-                <li class="breadcrumb-item text-white" aria-current="page">About Us</li>
-            </ol>
-        </nav>
-    </div>
-</div>
-<!-- Page Header End -->
+
+ <!-- Icon Font Stylesheet -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+@*<!-- Libraries Stylesheet -->
+<link href="~/quyengop/lib/animate/animate.min.css" rel="stylesheet">
+<link href="~/quyengop/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+<link href="~/quyengop/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+<!-- Customized Bootstrap Stylesheet -->
+@* <link href="~/quyengop/css/bootstrap.min.css" rel="stylesheet"> *@
+
+<!-- Template Stylesheet -->
+<link href="~/quyengop/css/style.css" rel="stylesheet"> 
 <head>
     <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
     <meta name="mobile-web-app-capable" content="yes">
@@ -78,197 +79,488 @@
                 display: flex;
                 align-items: center;
             }
+        /* Equal height for program items */
+        .program-item {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .program-img img {
+            height: 200px; /* Set fixed height for images */
+            object-fit: cover;
+            width: 100%;
+            border-radius: 5px 5px 0 0;
+        }
+
+        /* Padding and spacing adjustments */
+        .program-text {
+            flex-grow: 1;
+            padding-top: 15px;
+            padding-bottom: 15px;
+            margin-top: 10px; /* Add margin between image and text */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .program-text-inner {
+            margin-bottom: 20px; /* Space between text and price section */
+        }
+
+        /* Price section */
+        .program-teacher {
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+
+        /* Button section at the bottom */
+        .program-item .d-flex {
+            margin-top: auto;
+        }
+
+        .page-header2 {
+            position: relative;
+            padding: 0;
+            overflow: hidden;
+        }
+        /* Hover effect for the h4 text */
+        .program-text-inner a.h4 {
+            color: inherit; /* Keeps the original color */
+            text-decoration: none; /* Removes underline if present */
+            transition: color 0.3s ease; /* Smooth transition */
+        }
+
+            .program-text-inner a.h4:hover {
+                color: rgb(222, 173, 111); /* Hover color */
+            }
+
+            .page-header2 .header-img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                position: absolute;
+                top: 0;
+                left: 0;
+                z-index: -1;
+            }
+
+            .page-header2 .container {
+                position: relative;
+                z-index: 1;
+            }
+
+        .insta-img {
+            width: 100%;
+            height: 250px; /* Bạn có thể chỉnh chiều cao theo ý muốn */
+            object-fit: cover; /* Đảm bảo ảnh vừa khung và không bị biến dạng */
+            border-radius: 10px;
+        }
+     
     </style>
 </head>
+<!-- Page Header Start -->
+<div class="container-fluid page-header2 py-5 wow fadeIn" data-wow-delay="0.1s">
+    <img src="~/User/images/slide_quyengop.png" alt="Header Image" class="img-fluid header-img">
+    <div class="container text-center py-5">
+        <h1 class="display-2 text-white mb-4">Quyên Góp</h1>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb justify-content-center mb-0">
+                <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+                <li class="breadcrumb-item"><a href="#">Trang</a></li>
+                <li class="breadcrumb-item text-white" aria-current="page">Quyên góp</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+<!-- Page Header End -->
+<!-- About Start -->
+<div class="container-fluid py-5 about bg-light">
+    <div class="container py-4">
+        <div class="row g-5 align-items-center">
+            <div class="col-lg-5 wow fadeIn" data-wow-delay="0.1s">
+                <div class="overflow-hidden img-border-radius">
+                    <img src="~/quyengop/img/tinhnguyen/1.png" class="img-fluid w-100" alt="Image">
+                </div>
+            </div>
+            <div class="col-lg-7 wow fadeIn" data-wow-delay="0.3s">
+                <h4 class="text-primary mb-4 border-bottom border-primary border-2 d-inline-block p-2 title-border-radius">Giới thiệu</h4>
+                <h2 class="text-dark mb-4 display-5">Trao đi yêu thương nhận lại yêu thương</h2>
+                <p class="text-dark mb-4">
+                    Cơn bão Yagi đã gây ra muôn vàn khó khăn cho các tỉnh phía Bắc, trong đó chắc chắn các trẻ em ở các vùng núi sẽ bị ảnh hưởng nhiều, còn mùa đông thì sắp đến, theo dự báo mùa đông năm nay sẽ lạnh dài hơn năm ngoái.<br>
+                    Vì vậy GreenCycle muốn làm một dự án lớn hơn. Vẫn biết sức mình còn nhỏ, dự án cũng chưa lớn, nhưng đội ngũ GreenCycle tin chắc rằng với sự chung tay của nhiều người thì chúng ta sẽ làm được những điều lớn lao
+                </p>
+                <h6 class="mb-3">
+                    </i> Dự án Trao đi yêu thương 2024 đã ra đời như vậy.</h6>
+                <p class="text-dark mb-4">
+                    Dự án được chung tay bởi các bạn học sinh, sinh viên trên toàn quốc tại nhiều trường học và những người khách hàng yêu quý của GreenCyle, những người bạn, những người quan tâm đến dự án chúng mình. Và nhờ đó chúng ta có thể làm nên hàng trăm ngàn sản phẩm tới cho các em trong mùa đông năm nay.
+                </p>
+                <h4 class="text-primary mb-4 border-bottom border-primary border-2 d-inline-block p-2 title-border-radius">Mục Tiêu</h4>
+
+                <div class="row mb-4">
+                    <div class="lg-6">
+                        <h6 class="mb-3"></i>🚀 Tặng các sản phẩm quyên góp tới các trẻ em ở các vùng núi phía Bắc trong mùa đông 2024!</h6>
+                        <h6 class="mb-3"></i>🌟 Lan tỏa tình yêu thương tới mọi người kém may mắn, bị ảnh hưởng bởi lũ, bão.</h6>
+                        <h6 class="mb-3"></i>🌐 Kết nối được với số lượng lớn các đơn vị hoạt động từ thiện</h6>
+                        <h6 class="mb-3"></i>💓 Quy tụ được sức mạnh, sự đoàn kết của Việt Nam</h6>
+
+                    </div>
+                    @* <div class="col-lg-6">
+                        <h6 class="mb-3"></i>🌐 Kết nối toàn cầu</h6>
+                        <h6 class="mb-3"></i>🌟 Trải nghiệm độc đáo</h6>
+                    </div> *@
+                </div>
+                <a href="" class="btn btn-primary px-5 py-3 btn-border-radius">Đăng ký ngay</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- About End -->
+
 <body>
     <script src="https://cdn.jsdelivr.net/npm/@@mapbox/polyline/src/polyline.js"></script>
     <script src="https://unpkg.com/@@goongmaps/goong-sdk/umd/goong-sdk.min.js"></script>
-    <section id="foodies" class="my-5">
-        <div class="container map-container">
-            <!-- Search Bars for Destination and User's Address -->
-            <div class="search-bar1">
-                <input type="text" id="user-address" placeholder="Nhập địa chỉ của bạn" />
+    <div class="container-fluid program py-2">
+        <div class="container py-5">
+            <div class="mx-auto text-center wow fadeIn" data-wow-delay="0.1s" style="max-width: 700px;">
+@*                 <h4 class="text-primary mb-4 border-bottom border-primary border-2 d-inline-block p-2 title-border-radius">Quyên góp</h4>
+ *@                <h1 class="mb-5 display-5">
+                    🔥 Địa điểm quyên góp tình nguyện
+                </h1>
             </div>
-            <div class="search-bar1">
-                <input type="text" id="search-input" placeholder="Nhập địa điểm quyên góp" onkeypress="if(event.key === 'Enter') searchLocation()" />
-                <button onclick="searchLocation()">Tìm Kiếm</button>
-            </div>
-            <!-- Map -->
-            <div id="map"></div>
+                <section id="foodies" class="my-5">
+                    <div class="container map-container ">
+                        <!-- Search Bars for Destination and User's Address -->
+                        <div class="search-bar1">
+                            <input type="text" id="user-address" placeholder="Nhập địa chỉ của bạn" />
+                        </div>
+                        <div class="search-bar1">
+                            <input type="text" id="search-input" placeholder="Nhập địa điểm quyên góp" onkeypress="if(event.key === 'Enter') searchLocation()" />
+                            <button onclick="searchLocation()">Tìm Kiếm</button>
+                        </div>
+                        <!-- Map -->
+                        <div id="map"></div>
 
-            <script>
-                var accessToken = '@Configuration["GoongMap:MaptilesKey"]';
-                goongjs.accessToken = accessToken;
+                        <script>
+                            var accessToken = '@Configuration["GoongMap:MaptilesKey"]';
+                            goongjs.accessToken = accessToken;
 
-                var map = new goongjs.Map({
-                    container: 'map',
-                    style: 'https://tiles.goong.io/assets/goong_map_web.json',
-                    center: [105.79449389547807, 21.023262952893536],
-                    zoom: 8
-                });
-
-                var markers = [
-                    [105.79449389547807, 21.023262952893536],
-                    [105.79969171424, 21.03145698011039],
-                    [105.7463049346494, 21.038202237863658],
-                    [105.8449280838239, 21.03606203346743],
-                    [105.84872309736471, 21.009139690306966],
-                    [105.89861318021843, 21.06003589119038],
-                    [105.34241795451874, 20.82357592939995],
-                    [106.05056351778904, 20.6800965470578],
-                    [104.88130233508849, 21.71023507970105]
-                ];
-
-                markers.forEach(function (coord) {
-                    new goongjs.Marker()
-                        .setLngLat(coord)
-                        .addTo(map);
-                });
-
-
-
-
-
-
-                // Variable to keep track of the current route ID
-                let currentRouteId = null;
-                // Variable to store the current search marker
-                let currentSearchMarker = null;
-
-                // Function to add a route to the map
-                function addRoute(currentLocation, destination, routeId) {
-                    var goongClient = goongSdk({
-                        accessToken: '@Configuration["APIKey:MaptilesKey"]'
-                    });
-
-                    goongClient.directions
-                        .getDirections({
-                            origin: `${currentLocation.lat},${currentLocation.lng}`,
-                            destination: `${destination[1]},${destination[0]}`,
-                            vehicle: 'car'
-                        })
-                        .send()
-                        .then(function (response) {
-                            var directions = response.body;
-                            var route = directions.routes[0];
-
-                            var geometry_string = route.overview_polyline.points;
-                            var geoJSON = polyline.toGeoJSON(geometry_string);
-
-                            // Remove any previous route before adding a new one
-                            if (currentRouteId) {
-                                removeRoute(currentRouteId);
-                            }
-
-                            // Add the new route to the map
-                            map.addSource(routeId, {
-                                'type': 'geojson',
-                                'data': geoJSON
+                            var map = new goongjs.Map({
+                                container: 'map',
+                                style: 'https://tiles.goong.io/assets/goong_map_web.json',
+                                center: [105.79449389547807, 21.023262952893536],
+                                zoom: 8
                             });
 
-                            map.addLayer({
-                                'id': routeId,
-                                'type': 'line',
-                                'source': routeId,
-                                'layout': {
-                                    'line-join': 'round',
-                                    'line-cap': 'round'
-                                },
-                                'paint': {
-                                    'line-color': '#1e88e5',
-                                    'line-width': 8
-                                }
+                            var markers = [
+                                [105.79449389547807, 21.023262952893536],
+                                [105.79969171424, 21.03145698011039],
+                                [105.7463049346494, 21.038202237863658],
+                                [105.8449280838239, 21.03606203346743],
+                                [105.84872309736471, 21.009139690306966],
+                                [105.89861318021843, 21.06003589119038],
+                                [105.34241795451874, 20.82357592939995],
+                                [106.05056351778904, 20.6800965470578],
+                                [104.88130233508849, 21.71023507970105]
+                            ];
+
+                            markers.forEach(function (coord) {
+                                new goongjs.Marker()
+                                    .setLngLat(coord)
+                                    .addTo(map);
                             });
 
-                            // Update the currentRouteId with the new route ID
-                            currentRouteId = routeId;
-                        });
-                }
+                            // Variable to keep track of the current route ID
+                            let currentRouteId = null;
+                            // Variable to store the current search marker
+                            let currentSearchMarker = null;
 
-                // Function to remove a route from the map
-                function removeRoute(routeId) {
-                    if (map.getLayer(routeId)) {
-                        map.removeLayer(routeId);
-                    }
-                    if (map.getSource(routeId)) {
-                        map.removeSource(routeId);
-                    }
-                }
+                            // Function to add a route to the map
+                            function addRoute(currentLocation, destination, routeId) {
+                                var goongClient = goongSdk({
+                                    accessToken: '@Configuration["APIKey:MaptilesKey"]'
+                                });
 
-                // Get the user's current location and initialize markers with click event
-                navigator.geolocation.getCurrentPosition(function (position) {
-                    var currentLocation = {
-                        lat: position.coords.latitude,
-                        lng: position.coords.longitude
-                    };
+                                goongClient.directions
+                                    .getDirections({
+                                        origin: `${currentLocation.lat},${currentLocation.lng}`,
+                                        destination: `${destination[1]},${destination[0]}`,
+                                        vehicle: 'car'
+                                    })
+                                    .send()
+                                    .then(function (response) {
+                                        var directions = response.body;
+                                        var route = directions.routes[0];
 
-                    map.flyTo({ center: [currentLocation.lng, currentLocation.lat], zoom: 12 });
+                                        var geometry_string = route.overview_polyline.points;
+                                        var geoJSON = polyline.toGeoJSON(geometry_string);
 
-                    // Add a marker for the user's current location
-                    new goongjs.Marker({ color: 'red' })
-                        .setLngLat([currentLocation.lng, currentLocation.lat])
-                        .addTo(map);
+                                        // Remove any previous route before adding a new one
+                                        if (currentRouteId) {
+                                            removeRoute(currentRouteId);
+                                        }
 
-                    // Loop through each destination marker
-                    markers.forEach(function (destination, index) {
-                        var marker = new goongjs.Marker()
-                            .setLngLat(destination)
-                            .addTo(map);
+                                        // Add the new route to the map
+                                        map.addSource(routeId, {
+                                            'type': 'geojson',
+                                            'data': geoJSON
+                                        });
 
-                        var routeId = `route-${index}`;
+                                        map.addLayer({
+                                            'id': routeId,
+                                            'type': 'line',
+                                            'source': routeId,
+                                            'layout': {
+                                                'line-join': 'round',
+                                                'line-cap': 'round'
+                                            },
+                                            'paint': {
+                                                'line-color': '#1e88e5',
+                                                'line-width': 8
+                                            }
+                                        });
 
-                        // Show route on marker click
-                        marker.getElement().addEventListener('click', function () {
-                            addRoute(currentLocation, destination, routeId);
-                        });
-                    });
-                }, function (error) {
-                    console.error("Error obtaining location:", error);
-                    alert("Unable to retrieve your location.");
-                });
+                                        // Update the currentRouteId with the new route ID
+                                        currentRouteId = routeId;
+                                    });
+                            }
 
-                function searchLocation() {
-                    var query = document.getElementById("search-input").value;
-                    if (!query) {
-                        alert("Vui lòng nhập địa chỉ quyên góp.");
-                        return;
-                    }
+                            // Function to remove a route from the map
+                            function removeRoute(routeId) {
+                                if (map.getLayer(routeId)) {
+                                    map.removeLayer(routeId);
+                                }
+                                if (map.getSource(routeId)) {
+                                    map.removeSource(routeId);
+                                }
+                            }
 
-                    var apiKey = '@Configuration["APIKey:MaptilesKey"]';
-                    var url = `https://rsapi.goong.io/Geocode?address=${encodeURIComponent(query)}&api_key=${apiKey}`;
+                            // Get the user's current location and initialize markers with click event
+                            navigator.geolocation.getCurrentPosition(function (position) {
+                                var currentLocation = {
+                                    lat: position.coords.latitude,
+                                    lng: position.coords.longitude
+                                };
 
-                    fetch(url)
-                        .then(response => response.json())
-                        .then(data => {
-                            if (data.results && data.results.length > 0) {
-                                var result = data.results[0];
-                                var lngLat = [result.geometry.location.lng, result.geometry.location.lat];
+                                map.flyTo({ center: [currentLocation.lng, currentLocation.lat], zoom: 12 });
 
-                                map.flyTo({ center: lngLat, zoom: 12 });
+                                // Add a marker for the user's current location
+                                new goongjs.Marker({ color: 'red' })
+                                    .setLngLat([currentLocation.lng, currentLocation.lat])
+                                    .addTo(map);
 
-                                // Remove any existing search marker
-                                if (currentSearchMarker) {
-                                    currentSearchMarker.remove();
+                                // Loop through each destination marker
+                                markers.forEach(function (destination, index) {
+                                    var marker = new goongjs.Marker()
+                                        .setLngLat(destination)
+                                        .addTo(map);
+
+                                    var routeId = `route-${index}`;
+
+                                    // Show route on marker click
+                                    marker.getElement().addEventListener('click', function () {
+                                        addRoute(currentLocation, destination, routeId);
+                                    });
+                                });
+                            }, function (error) {
+                                console.error("Error obtaining location:", error);
+                                alert("Unable to retrieve your location.");
+                            });
+
+                            function searchLocation() {
+                                var query = document.getElementById("search-input").value;
+                                if (!query) {
+                                    alert("Vui lòng nhập địa chỉ quyên góp.");
+                                    return;
                                 }
 
-                                // Just update map center without adding a new marker
-                            } else {
-                                alert("Không tìm thấy địa điểm, vui lòng thử lại.");
+                                var apiKey = '@Configuration["APIKey:MaptilesKey"]';
+                                var url = `https://rsapi.goong.io/Geocode?address=${encodeURIComponent(query)}&api_key=${apiKey}`;
+
+                                fetch(url)
+                                    .then(response => response.json())
+                                    .then(data => {
+                                        if (data.results && data.results.length > 0) {
+                                            var result = data.results[0];
+                                            var lngLat = [result.geometry.location.lng, result.geometry.location.lat];
+
+                                            map.flyTo({ center: lngLat, zoom: 12 });
+
+                                            // Remove any existing search marker
+                                            if (currentSearchMarker) {
+                                                currentSearchMarker.remove();
+                                            }
+
+                                            // Just update map center without adding a new marker
+                                        } else {
+                                            alert("Không tìm thấy địa điểm, vui lòng thử lại.");
+                                        }
+                                    });
                             }
-                        });
-                }
 
-                map.addControl(
-                    new GoongGeocoder({
-                        accessToken: '@Configuration["APIKey:MaptilesKey"]',
-                        goongjs: goongjs
-                    })
-                );
+                            map.addControl(
+                                new GoongGeocoder({
+                                    accessToken: '@Configuration["APIKey:MaptilesKey"]',
+                                    goongjs: goongjs
+                                })
+                            );
 
-    </script>
+                        </script>
 
+                    </div>
+                </section>
+       </div>
+   </div>
+
+    <!-- Programs Start -->
+    <div class="container-fluid py-2">
+        <div class="container py-4">
+            <div class="mx-auto text-center wow fadeIn" data-wow-delay="0.1s" style="max-width: 700px;">
+                <h1 class="mb-5 display-5">
+                    🚌 Tour tình nguyện sắp diễn ra
+                </h1>
+            </div>
+            <div class="row g-5 justify-content-center">
+                <div class="col-md-6 col-lg-6 col-xl-4 wow fadeIn" data-wow-delay="0.1s">
+                    <div class="program-item rounded">
+                        <div class="program-img position-relative">
+                            <div class="overflow-hidden img-border-radius">
+                                <img src="~/quyengop/img/slide_charity.jpg" class="img-fluid w-100" alt="Image">
+                            </div>
+                        </div>
+                        <div class="program-text bg-white px-4 pb-3">
+                            <div class="program-text-inner">
+                                <a href="#" class="h4">Hỗ trợ đưa các sản phẩm tới tay các em nhỏ tại thôn Làng Nủ </a>
+                                <p class="mt-3 mb-0">
+                                    Ngày khởi hành: 15-11-2024<br>
+                                    Thời gian: 1 ngày<br>
+                                    Khởi hành từ: Hà Nội
+                                </p>
+                            </div>
+                        </div>
+                        <div class="program-teacher d-flex align-items-center border-top border-primary bg-white px-4 ">
+                        </div>
+                        <div class="d-flex justify-content-between px-4 py-2 bg-primary rounded-bottom">
+                            <small class="text-white">Miễn Phí</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-6 col-xl-4 wow fadeIn" data-wow-delay="0.3s">
+                    <div class="program-item rounded">
+                        <div class="program-img position-relative">
+                            <div class="overflow-hidden img-border-radius">
+                                <img src="~/quyengop/img/LoLoChai.jpg" class="img-fluid w-100" alt="Image">
+                            </div>
+                        </div>
+                        <div class="program-text bg-white px-4 pb-3">
+                            <div class="program-text-inner">
+                                <a href="#" class="h4">Tour du lịch tình nguyện Lô Lô Chải - Hà Giang</a>
+                                <p class="mt-3 mb-0">
+                                    Ngày khởi hành: 22-11-2024<br>
+                                    Thời gian: 2 ngày 3 đêm<br>
+                                    Khởi hành từ: Hà Nội
+                                </p>
+                            </div>
+                        </div>
+                        <div class="program-teacher d-flex align-items-center border-top border-primary bg-white px-4 ">
+                        </div>
+                        <div class="d-flex justify-content-between px-4 py-2 bg-primary rounded-bottom">
+                            <small class="text-white">💰699.000đ</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-6 col-xl-4 wow fadeIn" data-wow-delay="0.5s">
+                    <div class="program-item rounded">
+                        <div class="program-img position-relative">
+                            <div class="overflow-hidden img-border-radius">
+                                <img src="~/quyengop/img/LungCu.jpg" class="img-fluid w-100" alt="Image">
+                            </div>
+                        </div>
+                        <div class="program-text bg-white px-4 pb-3">
+                            <div class="program-text-inner">
+                                <a href="#" class="h4">Tour du lịch tình nguyện Lũng Cú - Hà Giang</a>
+                                <p class="mt-3 mb-0">
+                                    Ngày khởi hành: 29-11-2024<br>
+                                    Thời gian: 2 ngày 2 đêm<br>
+                                    Khởi hành từ: Hà Nội
+                                </p>
+                            </div>
+                        </div>
+                        <div class="program-teacher d-flex align-items-center border-top border-primary bg-white px-4 ">
+                        </div>
+                        <div class="d-flex justify-content-between px-4 py-2 bg-primary rounded-bottom">
+                            <small class="text-white">💰799.000đ</small>
+                        </div>
+                    </div>
+                </div>
+               @*  <div class="d-inline-block text-center wow fadeIn" data-wow-delay="0.1s">
+                    <a href="#" class="btn btn-primary px-5 py-3 text-white btn-border-radius">Xem tất cả</a>
+                </div> *@
+            </div>
+        </div>
+    </div>
+    <!-- Programs End -->
+
+
+    <section id="insta" class="my-5">
+        <div class="row g-0 py-5">
+            <div class="col instagram-item text-center position-relative">
+                <div class="icon-overlay d-flex justify-content-center position-absolute">
+                    <iconify-icon class="text-white" icon="la:instagram"></iconify-icon>
+                </div>
+                <a href="#">
+                    <img src="~/User/images/tuthien/image1.png" alt="insta-img" class="img-fluid rounded-3 insta-img">
+                </a>
+            </div>
+            <div class="col instagram-item text-center position-relative">
+                <div class="icon-overlay d-flex justify-content-center position-absolute">
+                    <iconify-icon class="text-white" icon="la:instagram"></iconify-icon>
+                </div>
+                <a href="#">
+                    <img src="~/quyengop/img/slide/s1.jpg" alt="insta-img" class="img-fluid rounded-3 insta-img">
+                </a>
+            </div>
+            <div class="col instagram-item text-center position-relative">
+                <div class="icon-overlay d-flex justify-content-center position-absolute">
+                    <iconify-icon class="text-white" icon="la:instagram"></iconify-icon>
+                </div>
+                <a href="#">
+                    <img src="~/quyengop/img/slide/s2.jpg" alt="insta-img" class="img-fluid rounded-3 insta-img">
+                </a>
+            </div>
+            <div class="col instagram-item text-center position-relative">
+                <div class="icon-overlay d-flex justify-content-center position-absolute">
+                    <iconify-icon class="text-white" icon="la:instagram"></iconify-icon>
+                </div>
+                <a href="#">
+                    <img src="~/User/images/tuthien/image.png" alt="insta-img" class="img-fluid rounded-3 insta-img">
+                </a>
+            </div>
+            <div class="col instagram-item text-center position-relative">
+                <div class="icon-overlay d-flex justify-content-center position-absolute">
+                    <iconify-icon class="text-white" icon="la:instagram"></iconify-icon>
+                </div>
+                <a href="#">
+                    <img src="~/User/images/tuthien/image2.png" alt="insta-img" class="img-fluid rounded-3 insta-img">
+                </a>
+            </div>
+            <div class="col instagram-item text-center position-relative">
+                <div class="icon-overlay d-flex justify-content-center position-absolute">
+                    <iconify-icon class="text-white" icon="la:instagram"></iconify-icon>
+                </div>
+                <a href="#">
+                    <img src="~/User/images/tuthien/image3.png" alt="insta-img" class="img-fluid rounded-3 insta-img">
+                </a>
+            </div>
         </div>
     </section>
+
+ 
+
+
 
 
         <section id="register" style="height: 100vh; background-image: url('/User/images/background.jpg'); background-size: cover; background-position: center;">
@@ -323,5 +615,7 @@
                 </div>
             </div>
         </section>
+
+
 
 </body>

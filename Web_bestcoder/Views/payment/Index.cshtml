@@ -45,7 +45,6 @@
                         </div>
                         <input type="hidden" id="cartItems" name="CartItems" value="">
                         <input type="hidden" id="totalPrice" name="TotalPrice" value="">
-                        <button type="submit" class="btn btn-primary w-100">Đặt hàng</button>
                     </form>
                 </div>
             </div>
@@ -63,24 +62,18 @@
                     </ul>
                     <p class="mt-3">Tổng giá trị: <span id="checkout-total-price">0đ</span></p>
                 </div>
+                <!-- Nút Đặt hàng -->
+                <div class="card-footer">
+                    <button type="submit" form="orderForm" class="btn btn-primary w-100">Đặt hàng</button>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
 <style>
-    .payment-option {
-        cursor: pointer;
-    }
-
-        .payment-option:hover {
-            border-color: #007bff;
-            background-color: #f8f9fa;
-        }
-
-    .form-check-input:checked ~ .form-check-label::before {
-        background-color: #007bff;
-        border-color: #007bff;
+    .card-footer {
+        text-align: right;
     }
 </style>
 
@@ -90,7 +83,6 @@
 <script>
     // Hàm để cập nhật các giá trị ẩn
     function updateHiddenFields() {
-        // Giả sử bạn có hàm lấy thông tin giỏ hàng và tổng giá trị
         var cartItems = getCartItems(); // Hàm này trả về mảng các sản phẩm trong giỏ hàng
         var totalPrice = getTotalPrice(); // Hàm này trả về tổng giá trị giỏ hàng
 

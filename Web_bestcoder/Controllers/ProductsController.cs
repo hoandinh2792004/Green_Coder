@@ -12,5 +12,9 @@ namespace Web_bestcoder.Controllers
         {
             return View();
         }
+        public IActionResult DetailProduct()
+        {
+            return View();
+        }
     }
 }

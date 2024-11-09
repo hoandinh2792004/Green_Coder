@@ -1,0 +1,183 @@
+is_global = true
+build_property.TargetFramework = net8.0
+build_property.TargetFramework = net8.0
+build_property.TargetPlatformMinVersion = 
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = Web_bestcoder
+build_property.RootNamespace = Web_bestcoder
+build_property.ProjectDir = D:\Hoandinh\project.Net\Web_bestcoder\Web_bestcoder\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 8.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = D:\Hoandinh\project.Net\Web_bestcoder\Web_bestcoder
+build_property._RazorSourceGeneratorDebug = 
+
+[D:/Hoandinh/project.Net/Web_bestcoder/Web_bestcoder/Areas/Admin/Views/Admin/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5cSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Hoandinh/project.Net/Web_bestcoder/Web_bestcoder/Areas/Admin/Views/Charity/Add.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQ2hhcml0eVxBZGQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Hoandinh/project.Net/Web_bestcoder/Web_bestcoder/Areas/Admin/Views/Charity/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQ2hhcml0eVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Hoandinh/project.Net/Web_bestcoder/Web_bestcoder/Areas/Admin/Views/QuanLyDonHang/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUXVhbkx5RG9uSGFuZ1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Hoandinh/project.Net/Web_bestcoder/Web_bestcoder/Areas/Admin/Views/QuanLyDonHang/ThemDonHang.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUXVhbkx5RG9uSGFuZ1xUaGVtRG9uSGFuZy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Hoandinh/project.Net/Web_bestcoder/Web_bestcoder/Areas/Admin/Views/QuanLyKhachHang/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUXVhbkx5S2hhY2hIYW5nXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Hoandinh/project.Net/Web_bestcoder/Web_bestcoder/Areas/Admin/Views/QuanLySanPham/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUXVhbkx5U2FuUGhhbVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Hoandinh/project.Net/Web_bestcoder/Web_bestcoder/Areas/Admin/Views/QuanLySanPham/ThemSanPham.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUXVhbkx5U2FuUGhhbVxUaGVtU2FuUGhhbS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Hoandinh/project.Net/Web_bestcoder/Web_bestcoder/Areas/Admin/Views/QuanLySanPham/Update.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUXVhbkx5U2FuUGhhbVxVcGRhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Hoandinh/project.Net/Web_bestcoder/Web_bestcoder/Areas/Admin/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Hoandinh/project.Net/Web_bestcoder/Web_bestcoder/Areas/Admin/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Hoandinh/project.Net/Web_bestcoder/Web_bestcoder/Areas/Admin/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Hoandinh/project.Net/Web_bestcoder/Web_bestcoder/Areas/Admin/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Hoandinh/project.Net/Web_bestcoder/Web_bestcoder/Views/Blog/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmxvZ1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Hoandinh/project.Net/Web_bestcoder/Web_bestcoder/Views/Charity/About.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2hhcml0eVxBYm91dC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Hoandinh/project.Net/Web_bestcoder/Web_bestcoder/Views/Charity/Blog.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2hhcml0eVxCbG9nLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Hoandinh/project.Net/Web_bestcoder/Web_bestcoder/Views/Charity/detailTinhNguyen.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2hhcml0eVxkZXRhaWxUaW5oTmd1eWVuLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Hoandinh/project.Net/Web_bestcoder/Web_bestcoder/Views/Charity/GayQuy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2hhcml0eVxHYXlRdXkuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Hoandinh/project.Net/Web_bestcoder/Web_bestcoder/Views/Charity/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2hhcml0eVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Hoandinh/project.Net/Web_bestcoder/Web_bestcoder/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Hoandinh/project.Net/Web_bestcoder/Web_bestcoder/Views/Login/Forgot.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9naW5cRm9yZ290LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Hoandinh/project.Net/Web_bestcoder/Web_bestcoder/Views/Login/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9naW5cTG9naW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Hoandinh/project.Net/Web_bestcoder/Web_bestcoder/Views/Login/ResetPassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9naW5cUmVzZXRQYXNzd29yZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Hoandinh/project.Net/Web_bestcoder/Web_bestcoder/Views/payment/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NccGF5bWVudFxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Hoandinh/project.Net/Web_bestcoder/Web_bestcoder/Views/Products/DetailProduct.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdHNcRGV0YWlsUHJvZHVjdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Hoandinh/project.Net/Web_bestcoder/Web_bestcoder/Views/Products/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdHNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Hoandinh/project.Net/Web_bestcoder/Web_bestcoder/Views/Products/Payment.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdHNcUGF5bWVudC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Hoandinh/project.Net/Web_bestcoder/Web_bestcoder/Views/Profile/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZmlsZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Hoandinh/project.Net/Web_bestcoder/Web_bestcoder/Views/Register/Register.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVnaXN0ZXJcUmVnaXN0ZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Hoandinh/project.Net/Web_bestcoder/Web_bestcoder/Views/ResgisterCharity/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzZ2lzdGVyQ2hhcml0eVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Hoandinh/project.Net/Web_bestcoder/Web_bestcoder/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Hoandinh/project.Net/Web_bestcoder/Web_bestcoder/Views/Shared/_AccountLayout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9BY2NvdW50TGF5b3V0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Hoandinh/project.Net/Web_bestcoder/Web_bestcoder/Views/Shared/_Forgot.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Gb3Jnb3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Hoandinh/project.Net/Web_bestcoder/Web_bestcoder/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Hoandinh/project.Net/Web_bestcoder/Web_bestcoder/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Hoandinh/project.Net/Web_bestcoder/Web_bestcoder/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Hoandinh/project.Net/Web_bestcoder/Web_bestcoder/Areas/Admin/Views/Shared/_AdminLayout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2hhcmVkXF9BZG1pbkxheW91dC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = b-rfcljj2unw
+
+[D:/Hoandinh/project.Net/Web_bestcoder/Web_bestcoder/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-4psx7izkwj
+
+[D:/Hoandinh/project.Net/Web_bestcoder/Web_bestcoder/Views/Shared/_Layout_Charity.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXRfQ2hhcml0eS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = b-7csmb6n4gk

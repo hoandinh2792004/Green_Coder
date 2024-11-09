@@ -19,14 +19,16 @@
     <script src="https://kit.fontawesome.com/09a5fdf6ba.js" crossorigin="anonymous"></script>
 </head>
 
-<body>
-
+<body style="background-image: url('@Url.Content("~/User/images/bg_login.png")');
+             background-size: cover;
+             background-position: center;
+             background-repeat: no-repeat;">
     <div class="main-wrapper login-body">
         <div class="login-wrapper">
             <div class="container">
                 <div class="loginbox">
                     <div class="login-left">
-                        <img class="img-fluid full-width" src="~/img/donation.jpg" alt="Logo" style="object-fit: cover; width: 100%; height: 100%;">
+                        <img class="img-fluid full-width" src="~/User/images/login.png" alt="Logo" style="object-fit: cover; width: 100%; height: 100%;">
 
                     </div>
                     <div class="login-right">
@@ -34,11 +36,17 @@
                             <h1>Đặt lại mật khẩu</h1>
                             <p class="account-subtitle">Hãy để chúng tôi giúp bạn</p>
 
-                            <form asp-controller="Login" asp-action="Forgot">
+                            <form asp-controller="Login" asp-action="Forgot" method="post">
                                 <div class="form-group">
                                     <label>Nhập địa chỉ email đã đăng ký của bạn <span class="login-danger">*</span></label>
                                     <input class="form-control" type="email" name="email" required>
                                     <span class="profile-views"><i class="fas fa-envelope"></i></span>
+                                    @if (ViewData.ModelState["Email"] != null && ViewData.ModelState["Email"].Errors.Count > 0)
+                                    {
+                                        <div class="text-danger mt-2">
+                                            @ViewData.ModelState["Email"].Errors[0].ErrorMessage
+                                        </div>
+                                    }
                                 </div>
                                 <div class="form-group">
                                     <button class="btn btn-primary btn-block" type="submit">Gửi liên kết đặt lại mật khẩu</button>

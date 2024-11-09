@@ -1,0 +1,29 @@
+[
+  {
+    "Id": "d3ff9353-1914-4292-96bb-3abcba225a60",
+    "UserName": "Phuong Diem",
+    "Email": "phuongdiemtranthi23@gmail.com",
+    "Password": "phuongdiem123",
+    "AvatarUrl": null,
+    "PhoneNumber": "1234567899",
+    "Address": "Nam Dinh"
+  },
+  {
+    "Id": "de6e2ee4-06d5-4166-813c-5412babe03eb",
+    "UserName": "Kim Dung",
+    "Email": "kimdungtran26@gmail.com",
+    "Password": "dung123",
+    "AvatarUrl": null,
+    "PhoneNumber": "1234456677",
+    "Address": "Nghia Hung"
+  },
+  {
+    "Id": "6b4bbe07-224a-403b-8cf2-c3258b895e02",
+    "UserName": "hoandzai",
+    "Email": "hoandinh2792004@gmail.com",
+    "Password": "12345678",
+    "AvatarUrl": null,
+    "PhoneNumber": "0123456789",
+    "Address": "B\u1EAFc Giang"
+  }
+]

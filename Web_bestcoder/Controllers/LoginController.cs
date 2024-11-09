@@ -56,7 +56,7 @@ namespace Web_bestcoder.Controllers
                 // Redirect based on role
                 if (role == "Admin")
                 {
-                    return RedirectToAction("Index", "Admin"); // Redirect to Admin dashboard
+                    return RedirectToAction("Index", "Admin", new { area = "Admin" }); // Redirect to Admin dashboard
                 }
                 else
                 {
@@ -97,33 +97,38 @@ namespace Web_bestcoder.Controllers
         [HttpPost]
         public IActionResult Forgot(string email)
         {
-            _logger.LogInformation($"Received email: {email}"); // Ghi log email đã nhận
+            _logger.LogInformation($"Received email: {email}"); // Log the received email
+
             if (string.IsNullOrEmpty(email))
             {
-                // Thông báo lỗi nếu email không được cung cấp
-                ModelState.AddModelError("Email", "Email không thể để trống.");
-                return View(); // Trả về view hiện tại với thông báo lỗi
+                // Add error if email is not provided
+                ModelState.AddModelError("Email", "Email không được để trống.");
+                return View(); // Return the view with the error message
             }
 
-            // Tìm kiếm người dùng theo email
-            var user = LoadUsersFromFile("Data/users.json")?.FirstOrDefault(u => u.Email == email);
+            // Load the user list from JSON
+            var userList = LoadUsersFromFile("Data/users.json");
+
+            // Find the user with the provided email
+            var user = userList?.FirstOrDefault(u => u.Email == email);
+
             if (user == null)
             {
-                // Thông báo lỗi nếu không tìm thấy người dùng
-                ModelState.AddModelError("Email", "Email không tồn tại.");
-                return View();
+                // Add error if no user is found with the provided email
+                ModelState.AddModelError("Email", "Địa chỉ email không tồn tại trong hệ thống của chúng tôi.");
+                return View(); // Return the view with the error message
             }
 
-            // Tạo liên kết đặt lại mật khẩu
-            var token = Guid.NewGuid().ToString(); // Giả lập token
+            // Generate a reset link
+            var token = Guid.NewGuid().ToString(); // Generate a token
             var resetLink = Url.Action("ResetPassword", "Login", new { token, email }, Request.Scheme);
 
-            // Ghi lại liên kết trong ViewBag
+            // Add the reset link to the ViewBag
             ViewBag.ResetLink = resetLink;
 
-            // Thông báo thành công
-            ViewBag.Message = "Chúng tôi đã tạo một liên kết đặt lại mật khẩu. Dưới đây là liên kết:";
-            return View(); // Trả về view hiện tại với thông báo thành công
+            // Success message
+            ViewBag.Message = "Chúng tôi đã tạo một liên kết đặt lại mật khẩu. Đây là liên kết:";
+            return View(); // Return the view with the success message
         }
 
         [HttpGet]
@@ -185,4 +190,3 @@ namespace Web_bestcoder.Controllers
         }
     }
 }
-

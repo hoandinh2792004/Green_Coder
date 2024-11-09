@@ -1,0 +1,14 @@
+[
+  {
+    "Id": 1,
+    "ProductName": "sad",
+    "Image": null,
+    "Quantity": 12,
+    "Status": "Available",
+    "SellingPrice": 123213,
+    "CostPrice": 123123,
+    "Category": 1,
+    "Supplier": 1,
+    "Description": "\u00E1dsad"
+  }
+]
