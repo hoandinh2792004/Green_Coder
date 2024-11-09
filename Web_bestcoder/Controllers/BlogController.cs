@@ -4,17 +4,17 @@ using Web_bestcoder.Areas.Admin.Models;
 
 namespace Web_bestcoder.Controllers
 {
-    public class ProductsController : Controller
+    public class BlogController : Controller
     {
 
         private readonly IWebHostEnvironment _webHostEnvironment;
-        private static List<Products> products = new List<Products>();
+        private static List<Charity> charities = new List<Charity>();
 
         // Constructor to get the web hosting environment
-        public ProductsController(IWebHostEnvironment webHostEnvironment)
+        public BlogController(IWebHostEnvironment webHostEnvironment)
         {
             _webHostEnvironment = webHostEnvironment;
-            LoadProductsFromFile("Areas/Admin/Data/product.json");
+            LoadProductsFromFile("Areas/Admin/Data/charity.json");
         }
 
         private void LoadProductsFromFile(string filename)
@@ -22,25 +22,17 @@ namespace Web_bestcoder.Controllers
             if (System.IO.File.Exists(filename))
             {
                 string readText = System.IO.File.ReadAllText(filename);
-                var loadedProducts = JsonSerializer.Deserialize<List<Products>>(readText);
-                if (loadedProducts != null)
+                var loadedCharity = JsonSerializer.Deserialize<List<Charity>>(readText);
+                if (loadedCharity != null)
                 {
-                    products = loadedProducts;
+                    charities = loadedCharity;
                 }
             }
         }
 
         public IActionResult Index()
         {
-            return View(products);
-        }
-        public IActionResult Payment()
-        {
-            return View();
-        }
-        public IActionResult DetailProduct()
-        {
-            return View();
+            return View(charities);
         }
     }
 }

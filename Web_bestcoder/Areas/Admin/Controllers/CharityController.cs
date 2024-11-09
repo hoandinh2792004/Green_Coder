@@ -2,6 +2,7 @@
 using System.Text.Json;
 using Web_bestcoder.Areas.Admin.Models;
 using System.IO;
+using System.Linq;
 
 namespace Web_bestcoder.Areas.Admin.Controllers
 {
@@ -13,9 +14,19 @@ namespace Web_bestcoder.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult Charity(Charity charity)
         {
-            LoadCharityFromFile("Areas/Admin/Data/charity.json"); // Load data before adding new charity
+            // Load data from the file before adding new charity
+            LoadCharityFromFile("Areas/Admin/Data/charity.json");
+
+            // Generate the next available ID
+            int newId = charitys.Any() ? charitys.Max(c => c.Id) + 1 : 1;
+            charity.Id = newId;
+
+            // Add the charity with the new ID
             charitys.Add(charity);
-            SaveStudentsToFile("Areas/Admin/Data/charity.json"); // Save the updated list back to file
+
+            // Save the updated list back to the file
+            SaveCharityToFile("Areas/Admin/Data/charity.json");
+
             return RedirectToAction("Index");
         }
 
@@ -23,17 +34,22 @@ namespace Web_bestcoder.Areas.Admin.Controllers
         public IActionResult Index()
         {
             LoadCharityFromFile("Areas/Admin/Data/charity.json");
-            return View();
+            return View(charitys);
         }
 
-        // Corrected this method to return List<Charity> instead of List<CharityController>
-        public List<Charity>? LoadCharityFromFile(string filename)
+        // This method loads the charity data from the file
+        public List<Charity> LoadCharityFromFile(string filename)
         {
-            string readText = System.IO.File.ReadAllText(filename);
-            return JsonSerializer.Deserialize<List<Charity>>(readText);
+            if (System.IO.File.Exists(filename))
+            {
+                string readText = System.IO.File.ReadAllText(filename);
+                charitys = JsonSerializer.Deserialize<List<Charity>>(readText) ?? new List<Charity>();
+            }
+            return charitys;
         }
 
-        public void SaveStudentsToFile(string filename)
+        // This method saves the charity data to the file
+        public void SaveCharityToFile(string filename)
         {
             var options = new JsonSerializerOptions { WriteIndented = true };
             string jsonString = JsonSerializer.Serialize(charitys, options);
@@ -43,6 +59,27 @@ namespace Web_bestcoder.Areas.Admin.Controllers
             {
                 write.WriteLine(jsonString);
             }
+        }
+
+        // Add action to handle deletion
+        [HttpPost]
+        public IActionResult Delete(int id)
+        {
+            // Load charity data from file
+            LoadCharityFromFile("Areas/Admin/Data/charity.json");
+
+            // Find the charity with the given id
+            var charityToDelete = charitys.FirstOrDefault(c => c.Id == id);
+            if (charityToDelete != null)
+            {
+                // Remove the charity from the list
+                charitys.Remove(charityToDelete);
+
+                // Save the updated list to the file
+                SaveCharityToFile("Areas/Admin/Data/charity.json");
+            }
+
+            return RedirectToAction("Index");
         }
 
         public IActionResult Add()
