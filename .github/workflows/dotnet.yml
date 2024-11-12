@@ -15,7 +15,6 @@ jobs:
       run: |
         Remove-Item -Recurse -Force "$env:GITHUB_WORKSPACE\**\.github" -ErrorAction SilentlyContinue
       shell: powershell
-
     # Step 2: Clean up the workspace to avoid leftover files
     - name: Clean up workspace
       run: |
@@ -23,22 +22,19 @@ jobs:
           Remove-Item -Recurse -Force "$env:GITHUB_WORKSPACE\*"
         }
       shell: powershell
-
     # Step 3: Set PowerShell Execution Policy using Windows PowerShell
     - name: Set PowerShell Execution Policy
       shell: powershell
       run: |
         Set-ExecutionPolicy -Scope Process -ExecutionPolicy Unrestricted
-
     # Step 4: Download repository as zip to avoid PowerShell extraction issues
     - name: Download repository as zip
       uses: actions/download-artifact@v2
       with:
         name: "repo.zip"
-
     # Step 5: Manually extract repo.zip with 7-Zip
     - name: Manually extract repo.zip with 7-Zip
-      run: "C:\Program Files\7-Zip\7z.exe x repo.zip -o$env:GITHUB_WORKSPACE\repo"
+      run: "C:\\Program Files\\7-Zip\\7z.exe x repo.zip -o$env:GITHUB_WORKSPACE\\repo"
       shell: powershell
 
     # Step 6: Install .NET SDK
