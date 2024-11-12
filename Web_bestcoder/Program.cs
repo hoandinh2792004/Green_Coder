@@ -10,6 +10,11 @@ namespace Web_bestcoder
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            if (WindowsServiceHelpers.IsWindowsService())
+            {
+                builder.Host.UseWindowsService();
+            }
+            
             // Add session services to the DI container
             builder.Services.AddSession(options =>
             {
