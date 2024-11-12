@@ -16,30 +16,37 @@ jobs:
           Remove-Item -Recurse -Force "$env:GITHUB_WORKSPACE\.github"
         }
       shell: powershell
+
     - name: Clean up workspace
       run: |
         if (Test-Path -Path "$env:GITHUB_WORKSPACE") {
           Remove-Item -Recurse -Force "$env:GITHUB_WORKSPACE\*"
         }
       shell: powershell
+
     - name: Set PowerShell Execution Policy
       run: Set-ExecutionPolicy -Scope Process -ExecutionPolicy Unrestricted
       shell: powershell
+
     - name: Check out the repository
       uses: actions/checkout@v4
       with:
-          fetch-depth: 0
-          clean: true
-          submodules: false
-          archive: tar
+        fetch-depth: 0
+        clean: true
+        submodules: false
+        archive: tar
+
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 8.0.x
+
     - name: Restore dependencies
       run: dotnet restore ; Stop-Service "GreenCycleIISWebService"
+
     - name: Build
       run: dotnet publish -c Release -o built
+
     - name: Deploy files to IIS Server
       run: |
           if (!(Test-Path -Path "C:\inetpub\wwwroot\greencycle.btecit.tech")) {
@@ -48,10 +55,13 @@ jobs:
           Get-ChildItem -Path "C:\inetpub\wwwroot\greencycle.btecit.tech" -Exclude "web.config", "appsettings.json" | Remove-Item -Recurse -Force
           Copy-Item -Path "built\*" -Destination "C:\inetpub\wwwroot\greencycle.btecit.tech" -Recurse -Force -Exclude "web.config", "appsettings.json"
       shell: powershell
+
     - name: Test
       run: dotnet test --no-build --verbosity normal
+
     - name: Start IIS Web Project Service
       run: Start-Service "GreenCycleIISWebService"
+
     - name: Recycle IIS Application Pool
       run: |
         Import-Module WebAdministration
