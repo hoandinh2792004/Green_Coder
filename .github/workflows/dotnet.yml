@@ -10,19 +10,16 @@ jobs:
   build:
     runs-on: self-hosted
     steps:
-    - name: Install Chocolatey
-      run: |
-        Set-ExecutionPolicy Bypass -Scope Process -Force; 
-        [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.SecurityProtocolType]::Tls12; 
-        iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
-      shell: powershell
-
-    - name: Install Git
-      run: choco install git -y
-      shell: powershell
-
     - name: Check Git Version
       run: git --version
+      shell: powershell
+
+    # Step to remove the 'repo' folder if it exists
+    - name: Remove existing 'repo' folder
+      run: |
+        if (Test-Path -Path "$env:GITHUB_WORKSPACE\repo") {
+          Remove-Item -Recurse -Force "$env:GITHUB_WORKSPACE\repo"
+        }
       shell: powershell
 
     - name: Manually clone repository
