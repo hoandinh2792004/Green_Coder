@@ -1,6 +1,3 @@
-# This workflow will build a .NET project
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
-
 name: .NET
 
 on:
@@ -13,37 +10,51 @@ jobs:
   build:
     runs-on: self-hosted
     steps:
+    - name: Clean up workspace
+      run: |
+        if (Test-Path -Path "$env:GITHUB_WORKSPACE") {
+          Remove-Item -Recurse -Force "$env:GITHUB_WORKSPACE\*"
+        }
+      shell: powershell
+      
+    - name: Set PowerShell Execution Policy
+      run: Set-ExecutionPolicy -Scope Process -ExecutionPolicy Unrestricted
+      shell: powershell
+
     - name: Check out the repository
       uses: actions/checkout@v4
       with:
         fetch-depth: 0
         clean: true
         submodules: false
+        path: "repo"
+
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 8.0.x
+
     - name: Restore dependencies
       run: dotnet restore ; Stop-Service "GreenCycleIISWebService"
+
     - name: Build
       run: dotnet publish -c Release -o built
+
     - name: Deploy files to IIS Server
       run: |
-          # Tạo thư mục đích nếu chưa tồn tại
           if (!(Test-Path -Path "C:\inetpub\wwwroot\greencycle.btecit.tech")) {
             New-Item -ItemType Directory -Force -Path "C:\inetpub\wwwroot\greencycle.btecit.tech"
           }
-
-          # Xóa toàn bộ nội dung trong thư mục đích, trừ web.config
           Get-ChildItem -Path "C:\inetpub\wwwroot\greencycle.btecit.tech" -Exclude "web.config", "appsettings.json" | Remove-Item -Recurse -Force
-
-          # Sao chép các file từ thư mục build vào thư mục đích mà không ghi đè web.config
           Copy-Item -Path "built\*" -Destination "C:\inetpub\wwwroot\greencycle.btecit.tech" -Recurse -Force -Exclude "web.config", "appsettings.json"
       shell: powershell
+
     - name: Test
       run: dotnet test --no-build --verbosity normal
+
     - name: Start IIS Web Project Service
       run: Start-Service "GreenCycleIISWebService"
+
     - name: Recycle IIS Application Pool
       run: |
         Import-Module WebAdministration
