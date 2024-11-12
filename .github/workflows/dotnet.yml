@@ -13,11 +13,6 @@ jobs:
   build:
     runs-on: self-hosted
     steps:
-    - name: Clean up .github directory
-      run: |
-        $path = "$GITHUB_WORKSPACE/.github"
-        if (Test-Path -Path $path) { Remove-Item -Path $path -Force -Recurse } else { Write-Host "Path not found: $path" }
-      shell: pwsh
     - name: Check out the repository
       uses: actions/checkout@v4
       with:
