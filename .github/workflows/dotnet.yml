@@ -30,36 +30,30 @@ jobs:
       run: |
         Set-ExecutionPolicy -Scope Process -ExecutionPolicy Unrestricted
 
-    # Step 4: Check out the repository code
-    - name: Check out the repository
-      uses: actions/checkout@v4
-      with:
-        fetch-depth: 0
-        clean: true
-        submodules: false
-        path: "repo"  # Checkout to a subdirectory within the allowed directory
+    # Step 4: Manually clone repository to avoid actions/checkout issues
+    - name: Manually clone repository
+      run: |
+        git clone --depth=1 https://github.com/hoandinh2792004/Green_coder.git repo
+      shell: bash
 
-    # Step 5: Manually extract repo.zip with 7-Zip (if needed in other contexts)
-    # NOTE: This step is likely redundant but retained for clarity if manual extraction is required later.
-
-    # Step 6: Install .NET SDK
+    # Step 5: Install .NET SDK
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 8.0.x
 
-    # Step 7: Restore dependencies and stop the IIS service if it’s running
+    # Step 6: Restore dependencies and stop the IIS service if it’s running
     - name: Restore dependencies and stop IIS service
       run: |
         dotnet restore
         Stop-Service -Name "GreenCycleIISWebService" -ErrorAction SilentlyContinue
       shell: powershell
 
-    # Step 8: Build the project
+    # Step 7: Build the project
     - name: Build the project
       run: dotnet publish -c Release -o built
 
-    # Step 9: Deploy files to the IIS Server directory
+    # Step 8: Deploy files to the IIS Server directory
     - name: Deploy files to IIS Server
       run: |
           # Create the destination directory if it doesn’t exist
@@ -72,23 +66,23 @@ jobs:
           Copy-Item -Path "built\*" -Destination "C:\inetpub\wwwroot\greencycle.btecit.tech" -Recurse -Force -Exclude "web.config", "appsettings.json"
       shell: powershell
 
-    # Step 10: Run tests
+    # Step 9: Run tests
     - name: Run tests
       run: dotnet test --no-build --verbosity normal
 
-    # Step 11: Start the IIS Web Project Service
+    # Step 10: Start the IIS Web Project Service
     - name: Start IIS Web Project Service
       run: Start-Service -Name "GreenCycleIISWebService"
       shell: powershell
 
-    # Step 12: Recycle the IIS Application Pool
+    # Step 11: Recycle the IIS Application Pool
     - name: Recycle IIS Application Pool
       run: |
         Import-Module WebAdministration
         Restart-WebAppPool -Name "greencycle.btecit.tech"
       shell: powershell
 
-    # Step 13: Clear temporary files to ensure a clean environment
+    # Step 12: Clear temporary files to ensure a clean environment
     - name: Clear Temp Files
       run: |
         if (Test-Path -Path "C:\Temp") {
