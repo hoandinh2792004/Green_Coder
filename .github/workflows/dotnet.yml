@@ -30,16 +30,17 @@ jobs:
       run: |
         Set-ExecutionPolicy -Scope Process -ExecutionPolicy Unrestricted
 
-    # Step 4: Download repository as zip to avoid PowerShell extraction issues
-    - name: Download repository as zip
-      uses: actions/download-artifact@v3
+    # Step 4: Check out the repository code
+    - name: Check out the repository
+      uses: actions/checkout@v4
       with:
-        name: "repo.zip"
+        fetch-depth: 0
+        clean: true
+        submodules: false
+        path: "repo"  # Checkout to a subdirectory within the allowed directory
 
-    # Step 5: Manually extract repo.zip with 7-Zip
-    - name: Manually extract repo.zip with 7-Zip
-      run: "C:/Program Files/7-Zip/7z.exe x repo.zip -o$env:GITHUB_WORKSPACE/repo"
-      shell: powershell
+    # Step 5: Manually extract repo.zip with 7-Zip (if needed in other contexts)
+    # NOTE: This step is likely redundant but retained for clarity if manual extraction is required later.
 
     # Step 6: Install .NET SDK
     - name: Setup .NET
