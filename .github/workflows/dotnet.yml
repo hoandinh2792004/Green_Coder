@@ -10,12 +10,10 @@ jobs:
   build:
     runs-on: self-hosted
     steps:
-    # Step 1: Clean up any residual .github metadata if it exists
-    - name: Clean up any residual .github metadata
+    # Step 1: Pre-cleanup .github folders if they exist
+    - name: Pre-cleanup .github folders
       run: |
-        if (Test-Path -Path "$env:GITHUB_WORKSPACE\.github") {
-          Remove-Item -Recurse -Force "$env:GITHUB_WORKSPACE\.github"
-        }
+        Remove-Item -Recurse -Force "$env:GITHUB_WORKSPACE\**\.github" -ErrorAction SilentlyContinue
       shell: powershell
 
     # Step 2: Clean up the workspace to avoid leftover files
@@ -32,25 +30,15 @@ jobs:
       run: |
         Set-ExecutionPolicy -Scope Process -ExecutionPolicy Unrestricted
 
-    # Step 4: Check out the repository to a subdirectory under the default working directory
-    - name: Check out the repository
-      uses: actions/checkout@v4
+    # Step 4: Download repository as zip to avoid PowerShell extraction issues
+    - name: Download repository as zip
+      uses: actions/download-artifact@v2
       with:
-        fetch-depth: 0
-        clean: true
-        submodules: false
-        path: "repo"  # Checkout to a subdirectory within the allowed directory
+        name: "repo.zip"
 
-    # Step 5: Manually download and extract repository if checkout fails
-    - name: Download and extract repo manually if checkout fails
-      if: failure()  # Runs only if the checkout step above fails
-      run: |
-        # Use Invoke-WebRequest to download if curl is unavailable
-        $url = "https://github.com/hoandinh2792004/Green_coder/archive/refs/heads/main.zip"
-        $output = "repo.zip"
-        Invoke-WebRequest -Uri $url -OutFile $output
-        mkdir "$env:GITHUB_WORKSPACE\manual_repo"
-        Expand-Archive -Path $output -DestinationPath "$env:GITHUB_WORKSPACE\manual_repo"
+    # Step 5: Manually extract repo.zip with 7-Zip
+    - name: Manually extract repo.zip with 7-Zip
+      run: "C:\Program Files\7-Zip\7z.exe x repo.zip -o$env:GITHUB_WORKSPACE\repo"
       shell: powershell
 
     # Step 6: Install .NET SDK
