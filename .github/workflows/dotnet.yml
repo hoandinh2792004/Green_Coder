@@ -10,6 +10,7 @@ jobs:
   build:
     runs-on: self-hosted
     steps:
+    # Step 1: Clean up any residual .github metadata if it exists
     - name: Clean up any residual .github metadata
       run: |
         if (Test-Path -Path "$env:GITHUB_WORKSPACE\.github") {
@@ -17,6 +18,7 @@ jobs:
         }
       shell: powershell
 
+    # Step 2: Clean up the workspace to avoid leftover files
     - name: Clean up workspace
       run: |
         if (Test-Path -Path "$env:GITHUB_WORKSPACE") {
@@ -24,46 +26,81 @@ jobs:
         }
       shell: powershell
 
+    # Step 3: Set PowerShell Execution Policy to avoid permission issues
     - name: Set PowerShell Execution Policy
-      run: Set-ExecutionPolicy -Scope Process -ExecutionPolicy Unrestricted
-      shell: powershell
+      shell: pwsh
+      run: |
+        Set-ExecutionPolicy -Scope Process -ExecutionPolicy Unrestricted
 
+    # Step 4: Check out the repository to a custom path to avoid conflicts
     - name: Check out the repository
       uses: actions/checkout@v4
       with:
         fetch-depth: 0
         clean: true
         submodules: false
-        archive: tar
+        archive: tar  # Attempt to use 'tar' instead of 'zip' for extraction
+        path: "C:/actions-runner/_work/temp_repo"  # Custom path for checkout
 
+    # Step 5: Manually download and extract repository if checkout fails
+    - name: Download and extract repo manually if checkout fails
+      if: failure()  # Runs only if the checkout step above fails
+      run: |
+        curl -L -o repo.zip https://github.com/hoandinh2792004/Green_coder/archive/refs/heads/main.zip
+        mkdir C:/actions-runner/_work/manual_repo
+        Expand-Archive -Path repo.zip -DestinationPath C:/actions-runner/_work/manual_repo
+      shell: powershell
+
+    # Step 6: Install .NET SDK
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 8.0.x
 
-    - name: Restore dependencies
-      run: dotnet restore ; Stop-Service "GreenCycleIISWebService"
+    # Step 7: Restore dependencies and stop the IIS service if it’s running
+    - name: Restore dependencies and stop IIS service
+      run: |
+        dotnet restore
+        Stop-Service -Name "GreenCycleIISWebService" -ErrorAction SilentlyContinue
+      shell: powershell
 
-    - name: Build
+    # Step 8: Build the project
+    - name: Build the project
       run: dotnet publish -c Release -o built
 
+    # Step 9: Deploy files to the IIS Server directory
     - name: Deploy files to IIS Server
       run: |
+          # Create the destination directory if it doesn’t exist
           if (!(Test-Path -Path "C:\inetpub\wwwroot\greencycle.btecit.tech")) {
             New-Item -ItemType Directory -Force -Path "C:\inetpub\wwwroot\greencycle.btecit.tech"
           }
+          # Remove all content in the destination directory, except for web.config and appsettings.json
           Get-ChildItem -Path "C:\inetpub\wwwroot\greencycle.btecit.tech" -Exclude "web.config", "appsettings.json" | Remove-Item -Recurse -Force
+          # Copy the built files to the destination directory, excluding web.config and appsettings.json
           Copy-Item -Path "built\*" -Destination "C:\inetpub\wwwroot\greencycle.btecit.tech" -Recurse -Force -Exclude "web.config", "appsettings.json"
       shell: powershell
 
-    - name: Test
+    # Step 10: Run tests
+    - name: Run tests
       run: dotnet test --no-build --verbosity normal
 
+    # Step 11: Start the IIS Web Project Service
     - name: Start IIS Web Project Service
-      run: Start-Service "GreenCycleIISWebService"
+      run: Start-Service -Name "GreenCycleIISWebService"
+      shell: powershell
 
+    # Step 12: Recycle the IIS Application Pool
     - name: Recycle IIS Application Pool
       run: |
         Import-Module WebAdministration
         Restart-WebAppPool -Name "greencycle.btecit.tech"
+      shell: powershell
+
+    # Step 13: Clean up temporary files to ensure a clean environment
+    - name: Clear Temp Files
+      run: |
+        if (Test-Path -Path "C:\Temp") {
+          Remove-Item -Path "C:\Temp\*" -Force -Recurse
+        }
       shell: powershell
