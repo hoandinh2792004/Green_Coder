@@ -10,13 +10,20 @@ jobs:
   build:
     runs-on: self-hosted
     steps:
+    - name: Clean up any residual .github metadata
+      run: |
+        if (Test-Path -Path "$env:GITHUB_WORKSPACE\.github") {
+          Remove-Item -Recurse -Force "$env:GITHUB_WORKSPACE\.github"
+        }
+      shell: powershell
+
     - name: Clean up workspace
       run: |
         if (Test-Path -Path "$env:GITHUB_WORKSPACE") {
           Remove-Item -Recurse -Force "$env:GITHUB_WORKSPACE\*"
         }
       shell: powershell
-      
+
     - name: Set PowerShell Execution Policy
       run: Set-ExecutionPolicy -Scope Process -ExecutionPolicy Unrestricted
       shell: powershell
@@ -27,7 +34,8 @@ jobs:
         fetch-depth: 0
         clean: true
         submodules: false
-        path: "repo"
+        archive: tar
+      shell: cmd
 
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
