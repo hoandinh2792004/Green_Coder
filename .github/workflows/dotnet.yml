@@ -10,79 +10,70 @@ jobs:
   build:
     runs-on: self-hosted
     steps:
-    # Step 1: Pre-cleanup .github folders if they exist
-    - name: Pre-cleanup .github folders
+    - name: Install Chocolatey
       run: |
-        Remove-Item -Recurse -Force "$env:GITHUB_WORKSPACE\**\.github" -ErrorAction SilentlyContinue
+        Set-ExecutionPolicy Bypass -Scope Process -Force; 
+        [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.SecurityProtocolType]::Tls12; 
+        iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
       shell: powershell
 
-    # Step 2: Clean up the workspace to avoid leftover files
-    - name: Clean up workspace
-      run: |
-        if (Test-Path -Path "$env:GITHUB_WORKSPACE") {
-          Remove-Item -Recurse -Force "$env:GITHUB_WORKSPACE\*"
-        }
+    - name: Install Git
+      run: choco install git -y
       shell: powershell
 
-    # Step 3: Set PowerShell Execution Policy using Windows PowerShell
-    - name: Set PowerShell Execution Policy
+    - name: Check Git Version
+      run: git --version
       shell: powershell
-      run: |
-        Set-ExecutionPolicy -Scope Process -ExecutionPolicy Unrestricted
 
-    # Step 4: Manually clone repository to avoid actions/checkout issues
     - name: Manually clone repository
       run: |
         git clone --depth=1 https://github.com/hoandinh2792004/Green_coder.git repo
       shell: powershell
 
-    # Step 5: Install .NET SDK
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 8.0.x
 
-    # Step 6: Restore dependencies and stop the IIS service if it’s running
+    # Change directory to `repo` for all dotnet commands
     - name: Restore dependencies and stop IIS service
       run: |
+        cd repo
         dotnet restore
         Stop-Service -Name "GreenCycleIISWebService" -ErrorAction SilentlyContinue
       shell: powershell
 
-    # Step 7: Build the project
     - name: Build the project
-      run: dotnet publish -c Release -o built
+      run: |
+        cd repo
+        dotnet publish -c Release -o ../built
+      shell: powershell
 
-    # Step 8: Deploy files to the IIS Server directory
     - name: Deploy files to IIS Server
       run: |
-          # Create the destination directory if it doesn’t exist
           if (!(Test-Path -Path "C:\inetpub\wwwroot\greencycle.btecit.tech")) {
             New-Item -ItemType Directory -Force -Path "C:\inetpub\wwwroot\greencycle.btecit.tech"
           }
-          # Remove all content in the destination directory, except for web.config and appsettings.json
           Get-ChildItem -Path "C:\inetpub\wwwroot\greencycle.btecit.tech" -Exclude "web.config", "appsettings.json" | Remove-Item -Recurse -Force
-          # Copy the built files to the destination directory, excluding web.config and appsettings.json
           Copy-Item -Path "built\*" -Destination "C:\inetpub\wwwroot\greencycle.btecit.tech" -Recurse -Force -Exclude "web.config", "appsettings.json"
       shell: powershell
 
-    # Step 9: Run tests
     - name: Run tests
-      run: dotnet test --no-build --verbosity normal
+      run: |
+        cd repo
+        dotnet test --no-build --verbosity normal
+      shell: powershell
 
-    # Step 10: Start the IIS Web Project Service
     - name: Start IIS Web Project Service
       run: Start-Service -Name "GreenCycleIISWebService"
       shell: powershell
 
-    # Step 11: Recycle the IIS Application Pool
     - name: Recycle IIS Application Pool
       run: |
         Import-Module WebAdministration
         Restart-WebAppPool -Name "greencycle.btecit.tech"
       shell: powershell
 
-    # Step 12: Clear temporary files to ensure a clean environment
     - name: Clear Temp Files
       run: |
         if (Test-Path -Path "C:\Temp") {
