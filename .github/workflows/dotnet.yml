@@ -34,7 +34,7 @@ jobs:
     - name: Manually clone repository
       run: |
         git clone --depth=1 https://github.com/hoandinh2792004/Green_coder.git repo
-      shell: bash
+      shell: powershell
 
     # Step 5: Install .NET SDK
     - name: Setup .NET
