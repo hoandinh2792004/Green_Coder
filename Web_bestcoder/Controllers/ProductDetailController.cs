@@ -1,20 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
-using Web_bestcoder.Models;
 
 namespace Web_bestcoder.Controllers
 {
-    public class HomeController : Controller
+    public class ProductDetailController : Controller
     {
-        //private readonly ILogger<HomeController> _logger;
-
-        //public HomeController(ILogger<HomeController> logger)
-        //{
-        //    _logger = logger;
-        //}
         private List<Product> products = new List<Product>
         {
-             new Product { Name = "Bình giữ nhiệt", Price = 149000, ImageUrl = "/User/images/Binhnuoc/image.png", Rating = "5.0",Category = "Binhnuoc" },
+            new Product { Name = "Bình giữ nhiệt", Price = 149000, ImageUrl = "/User/images/Binhnuoc/image.png", Rating = "5.0",Category = "Binhnuoc" },
             new Product { Name = "Muỗng bã mía", Price = 59000, ImageUrl = "/User/images/dao,dia/image1.png", Rating = "5.0",Category = "dao" },
             new Product { Name = "Bộ dao, muỗng, nĩa bã mía", Price = 104000, ImageUrl = "/User/images/dao,dia/image5.png", Rating = "5.0",Category = "dao" },
             new Product { Name = "Nĩa bã mía", Price = 59000, ImageUrl = "/User/images/dao,dia/image3.png", Rating = "5.0",Category = "dao" },
@@ -40,37 +32,25 @@ namespace Web_bestcoder.Controllers
             new Product { Name = "Túi vải thiết kế", ImageUrl = "/User/images/Tui/image5.png", Discount = "-10%", Rating = "5.0", Price = 49000,Category = "Tui"  }
         };
 
-
-        public IActionResult Index()
+        public IActionResult ProductDetails(string name)
         {
-            var latestProducts = products.OrderByDescending(p => p.Name).Take(6).ToList();
-            var saleProducts = products.Where(p => !string.IsNullOrEmpty(p.Discount)).Take(6).ToList();
+            var product = products.FirstOrDefault(p => p.Name == name);
+            if (product == null)
+            {
+                return NotFound(); // Or redirect to another page
+            }
 
-            ViewBag.LatestProducts = latestProducts;
-            ViewBag.SaleProducts = saleProducts;
-
-            return View(products);
+            return View(product);
         }
-
-        //[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        //public IActionResult Error()
-        //{
-        //    return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        //}
-        public IActionResult About()
-        {
-            return View();
-        }
-
         public class Product
         {
             public string Name { get; set; }
-            public decimal Price { get; set; }
             public string ImageUrl { get; set; }
-            public string Discount { get; set; } // Optional, if there's a discount
             public string Rating { get; set; }
-            public string Category { get; set; } // Added to classify the product
-
+            public decimal Price { get; set; }
+            public string Category { get; set; }
+            public string Description { get; set; }
+            public string Discount { get; set; }
         }
     }
 }

@@ -1,6 +1,24 @@
-﻿@{
+﻿﻿@{
     ViewData["Title"] = "Home Page";
 }
+<style>
+    .card-title {
+        display: inline-block;
+        max-width: 100%; /* Chiều rộng tối đa của tiêu đề */
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        cursor: pointer; /* Con trỏ chỉ tay khi hover vào */
+        transition: all 0.3s ease; /* Hiệu ứng chuyển đổi mềm mại */
+
+    }
+        .insta-img {
+            width: 100%;
+            height: 250px; /* Bạn có thể chỉnh chiều cao theo ý muốn */
+            object-fit: cover; /* Đảm bảo ảnh vừa khung và không bị biến dạng */
+            border-radius: 10px;
+        }
+</style>
 <body>
 
 
@@ -110,234 +128,43 @@
 
             <div class="products-carousel swiper">
                 <div class="swiper-wrapper">
-
-                    <div class="swiper-slide">
-                        <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-                            New
-                        </div>
-                        <div class="card position-relative">
-                            <a href="single-product.html"><img src="~/User/images/OngHut/image1.png" class="img-fluid rounded-4" alt="image"></a>
-                            <div class="card-body p-0">
-                                <a href="single-product.html">
-                                    <h3 class="card-title pt-4 m-0">Ống Hút Bã Mía</h3>
+                     <!-- Hiển thị 6 sản phẩm mới nhất -->
+                    @foreach (var product in ViewBag.LatestProducts)
+                    {
+                        <div class="swiper-slide">
+                            <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
+                                New
+                            </div>
+                            <div class="card position-relative">
+                                <a href="@Url.Action("ProductDetails", "ProductDetail", new { name = product.Name })">
+                                    <img src="@product.ImageUrl" class="img-fluid rounded-4" alt="@product.Name">
                                 </a>
-
-                                <div class="card-text">
-                                    <span class="rating secondary-font">
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        5.0
-                                    </span>
-
-                                    <h3 class="secondary-font text-primary">59.000đ</h3>
-
-                                    <div class="d-flex flex-wrap mt-3">
-                                        <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
-                                            <h5 class="text-uppercase m-0">Mua ngay</h5>
-                                        </a>
-                                        <a href="#" class="btn-wishlist px-4 pt-3 ">
-                                            <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
-                                        </a>
+                                <div class="card-body p-0">
+                                    <a href="@Url.Action("ProductDetails", "ProductDetail", new { name = product.Name })">
+                                        <h3 class="card-title pt-4 m-0">@product.Name</h3>
+                                    </a>
+                                    <div class="card-text">
+                                        <span class="rating secondary-font">
+                                            @for (int i = 0; i < 5; i++)
+                                            {
+                                                <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                            }
+                                            @product.Rating
+                                        </span>
+                                        <h3 class="secondary-font text-primary">@String.Format("{0:N0}", product.Price)đ</h3>
+                                        <div class="d-flex flex-wrap mt-3">
+                                            <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3" onclick="addToCart('@product.Name', @product.Price)">
+                                                <h5 class="text-uppercase m-0">Mua ngay</h5>
+                                            </a>
+                                                <a href="#" class="btn-wishlist px-4 pt-3 ">
+                                        <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
+                                    </a>
+                                        </div>
                                     </div>
-
-
                                 </div>
-
                             </div>
                         </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-                            New
-                        </div>
-                        <div class="card position-relative">
-                            <a href="single-product.html"><img src="~/User/images/OngHut/image2.png" class="img-fluid rounded-4" alt="image"></a>
-                            <div class="card-body p-0">
-                                <a href="single-product.html">
-                                    <h3 class="card-title pt-4 m-0">Ống Hút Cà Phê</h3>
-                                </a>
-
-                                <div class="card-text">
-                                    <span class="rating secondary-font">
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        5.0
-                                    </span>
-
-                                    <h3 class="secondary-font text-primary">64.000đ</h3>
-
-                                    <div class="d-flex flex-wrap mt-3">
-                                        <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
-                                            <h5 class="text-uppercase m-0">Mua ngay</h5>
-                                        </a>
-                                        <a href="#" class="btn-wishlist px-4 pt-3 ">
-                                            <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
-                                        </a>
-                                    </div>
-
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-                            -10%
-                        </div>
-                        <div class="card position-relative">
-                            <a href="single-product.html"><img src="~/User/images/OngHut/image3.png" class="img-fluid rounded-4" alt="image"></a>
-                            <div class="card-body p-0">
-                                <a href="single-product.html">
-                                    <h3 class="card-title pt-4 m-0">Ống Hút Dừa</h3>
-                                </a>
-
-                                <div class="card-text">
-                                    <span class="rating secondary-font">
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        5.0
-                                    </span>
-
-                                    <h3 class="secondary-font text-primary">59.000đ</h3>
-
-                                    <div class="d-flex flex-wrap mt-3">
-                                        <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
-                                            <h5 class="text-uppercase m-0">Mua ngay</h5>
-                                        </a>
-                                        <a href="#" class="btn-wishlist px-4 pt-3 ">
-                                            <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
-                                        </a>
-                                    </div>
-
-
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-                            New
-                        </div>
-                        <div class="card position-relative">
-                            <a href="single-product.html"><img src="~/User/images/Binhnuoc/image.png" class="img-fluid rounded-4" alt="image"></a>
-                            <div class="card-body p-0">
-                                <a href="single-product.html">
-                                    <h3 class="card-title pt-4 m-0">Bình giữ nhiệt</h3>
-                                </a>
-
-                                <div class="card-text">
-                                    <span class="rating secondary-font">
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        5.0
-                                    </span>
-
-                                    <h3 class="secondary-font text-primary">149.000đ</h3>
-
-                                    <div class="d-flex flex-wrap mt-3">
-                                        <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
-                                            <h5 class="text-uppercase m-0">Mua ngay</h5>
-                                        </a>
-                                        <a href="#" class="btn-wishlist px-4 pt-3 ">
-                                            <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
-                                        </a>
-                                    </div>
-
-
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-                            New
-                        </div>
-                        <div class="card position-relative">
-                            <a href="single-product.html"><img src="~/User/images/HopDoAn/image1.png" class="img-fluid rounded-4" alt="image"></a>
-                            <div class="card-body p-0">
-                                <a href="single-product.html">
-                                    <h3 class="card-title pt-4 m-0">Hộp bã mía</h3>
-                                </a>
-
-                                <div class="card-text">
-                                    <span class="rating secondary-font">
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        5.0
-                                    </span>
-
-                                    <h3 class="secondary-font text-primary">29.000đ</h3>
-
-                                    <div class="d-flex flex-wrap mt-3">
-                                        <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
-                                            <h5 class="text-uppercase m-0">Mua ngay</h5>
-                                        </a>
-                                        <a href="#" class="btn-wishlist px-4 pt-3 ">
-                                            <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
-                                        </a>
-                                    </div>
-
-
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-                            New
-                        </div>
-                        <div class="card position-relative">
-                            <a href="single-product.html"><img src="~/User/images/Tui/image1.png" class="img-fluid rounded-4" alt="image"></a>
-                            <div class="card-body p-0">
-                                <a href="single-product.html">
-                                    <h3 class="card-title pt-4 m-0">Túi vải canvas</h3>
-                                </a>
-
-                                <div class="card-text">
-                                    <span class="rating secondary-font">
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        5.0
-                                    </span>
-
-                                    <h3 class="secondary-font text-primary">49.000đ</h3>
-
-                                    <div class="d-flex flex-wrap mt-3">
-                                        <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
-                                            <h5 class="text-uppercase m-0">Mua ngay</h5>
-                                        </a>
-                                        <a href="#" class="btn-wishlist px-4 pt-3 ">
-                                            <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
-                                        </a>
-                                    </div>
-
-
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
+                    }
 
                 </div>
             </div>
@@ -365,236 +192,42 @@
 
             <div class="products-carousel swiper">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-                            New
-                        </div>
-                        <div class="card position-relative">
-                            <a href="single-product.html"><img src="~/User/images/Binhnuoc/image.png" class="img-fluid rounded-4" alt="image"></a>
-                            <div class="card-body p-0">
-                                <a href="single-product.html">
-                                    <h3 class="card-title pt-4 m-0">Bình giữ nhiệt</h3>
+                   @foreach (var product in ViewBag.SaleProducts)
+                    {
+                        <div class="swiper-slide">
+                            <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
+                                @product.Discount
+                            </div>
+                            <div class="card position-relative">
+                                <a href="@Url.Action("ProductDetails", "ProductDetail", new { name = product.Name })">
+                                    <img src="@product.ImageUrl" class="img-fluid rounded-4" alt="@product.Name">
                                 </a>
-
-                                <div class="card-text">
-                                    <span class="rating secondary-font">
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        5.0
-                                    </span>
-
-                                    <h3 class="secondary-font text-primary">149.000đ</h3>
-
-                                    <div class="d-flex flex-wrap mt-3">
-                                        <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
-                                            <h5 class="text-uppercase m-0">Mua ngay</h5>
-                                        </a>
-                                        <a href="#" class="btn-wishlist px-4 pt-3 ">
-                                            <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
-                                        </a>
+                                <div class="card-body p-0">
+                                    <a href="@Url.Action("ProductDetails", "ProductDetail", new { name = product.Name })">
+                                        <h3 class="card-title pt-4 m-0">@product.Name</h3>
+                                    </a>
+                                    <div class="card-text">
+                                        <span class="rating secondary-font">
+                                            @for (int i = 0; i < 5; i++)
+                                            {
+                                                <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                            }
+                                            @product.Rating
+                                        </span>
+                                        <h3 class="secondary-font text-primary">@String.Format("{0:N0}", product.Price)đ</h3>
+                                        <div class="d-flex flex-wrap mt-3">
+                                            <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3" onclick="addToCart('@product.Name', @product.Price)">
+                                                <h5 class="text-uppercase m-0">Mua ngay</h5>
+                                            </a>
+                                                <a href="#" class="btn-wishlist px-4 pt-3 ">
+                                        <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
+                                    </a>
+                                        </div>
                                     </div>
-
-
                                 </div>
-
                             </div>
                         </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-                            New
-                        </div>
-                        <div class="card position-relative">
-                            <a href="single-product.html"><img src="~/User/images/HopDoAn/image1.png" class="img-fluid rounded-4" alt="image"></a>
-                            <div class="card-body p-0">
-                                <a href="single-product.html">
-                                    <h3 class="card-title pt-4 m-0">Hộp bã mía</h3>
-                                </a>
-
-                                <div class="card-text">
-                                    <span class="rating secondary-font">
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        5.0
-                                    </span>
-
-                                    <h3 class="secondary-font text-primary">29.000đ</h3>
-
-                                    <div class="d-flex flex-wrap mt-3">
-                                        <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
-                                            <h5 class="text-uppercase m-0">Mua ngay</h5>
-                                        </a>
-                                        <a href="#" class="btn-wishlist px-4 pt-3 ">
-                                            <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
-                                        </a>
-                                    </div>
-
-
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-                            New
-                        </div>
-                        <div class="card position-relative">
-                            <a href="single-product.html"><img src="~/User/images/Tui/image1.png" class="img-fluid rounded-4" alt="image"></a>
-                            <div class="card-body p-0">
-                                <a href="single-product.html">
-                                    <h3 class="card-title pt-4 m-0">Túi vải canvas</h3>
-                                </a>
-
-                                <div class="card-text">
-                                    <span class="rating secondary-font">
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        5.0
-                                    </span>
-
-                                    <h3 class="secondary-font text-primary">49.000đ</h3>
-
-                                    <div class="d-flex flex-wrap mt-3">
-                                        <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
-                                            <h5 class="text-uppercase m-0">Mua ngay</h5>
-                                        </a>
-                                        <a href="#" class="btn-wishlist px-4 pt-3 ">
-                                            <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
-                                        </a>
-                                    </div>
-
-
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="swiper-slide">
-                        <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-                            New
-                        </div>
-                        <div class="card position-relative">
-                            <a href="single-product.html"><img src="~/User/images/OngHut/image1.png" class="img-fluid rounded-4" alt="image"></a>
-                            <div class="card-body p-0">
-                                <a href="single-product.html">
-                                    <h3 class="card-title pt-4 m-0">Ống Hút Bã Mía</h3>
-                                </a>
-
-                                <div class="card-text">
-                                    <span class="rating secondary-font">
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        5.0
-                                    </span>
-
-                                    <h3 class="secondary-font text-primary">59.000đ</h3>
-
-                                    <div class="d-flex flex-wrap mt-3">
-                                        <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
-                                            <h5 class="text-uppercase m-0">Mua ngay</h5>
-                                        </a>
-                                        <a href="#" class="btn-wishlist px-4 pt-3 ">
-                                            <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
-                                        </a>
-                                    </div>
-
-
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-                            New
-                        </div>
-                        <div class="card position-relative">
-                            <a href="single-product.html"><img src="~/User/images/OngHut/image2.png" class="img-fluid rounded-4" alt="image"></a>
-                            <div class="card-body p-0">
-                                <a href="single-product.html">
-                                    <h3 class="card-title pt-4 m-0">Ống Hút Cà Phê</h3>
-                                </a>
-
-                                <div class="card-text">
-                                    <span class="rating secondary-font">
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        5.0
-                                    </span>
-
-                                    <h3 class="secondary-font text-primary">64.000đ</h3>
-
-                                    <div class="d-flex flex-wrap mt-3">
-                                        <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
-                                            <h5 class="text-uppercase m-0">Mua ngay</h5>
-                                        </a>
-                                        <a href="#" class="btn-wishlist px-4 pt-3 ">
-                                            <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
-                                        </a>
-                                    </div>
-
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-                            -10%
-                        </div>
-                        <div class="card position-relative">
-                            <a href="single-product.html"><img src="~/User/images/OngHut/image3.png" class="img-fluid rounded-4" alt="image"></a>
-                            <div class="card-body p-0">
-                                <a href="single-product.html">
-                                    <h3 class="card-title pt-4 m-0">Ống Hút Dừa</h3>
-                                </a>
-
-                                <div class="card-text">
-                                    <span class="rating secondary-font">
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        5.0
-                                    </span>
-
-                                    <h3 class="secondary-font text-primary">59.000đ</h3>
-
-                                    <div class="d-flex flex-wrap mt-3">
-                                        <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
-                                            <h5 class="text-uppercase m-0">Mua ngay</h5>
-                                        </a>
-                                        <a href="#" class="btn-wishlist px-4 pt-3 ">
-                                            <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
-                                        </a>
-                                    </div>
-
-
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                   
-
+                    }
                 </div>
             </div>
             <!-- / products-carousel -->
@@ -823,7 +456,7 @@
         </div>
     </section>
 
-@*     <section id="insta" class="my-5">
+     <section id="insta" class="my-5">
         <div class="row g-0 py-5">
             <div class="col instagram-item text-center position-relative">
                 <div class="icon-overlay d-flex justify-content-center position-absolute">
@@ -875,6 +508,5 @@
             </div>
         </div>
     </section>
- *@
+ 
 </body>
-

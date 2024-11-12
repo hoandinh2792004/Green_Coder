@@ -2,9 +2,7 @@
     ViewData["Title"] = "Products";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-@model IEnumerable<Web_bestcoder.Areas.Admin.Models.Products>
-
+<meta name="mobile-web-app-capable" content="yes">
 <style>
     .card-title {
         display: inline-block;
@@ -37,96 +35,162 @@
             position: relative;
             z-index: 1;
         }
+
+
+        /* Hiệu ứng khi hover vào nút */
+        .btn-cart:hover {
+            background-color: rgb(222 173 111); /* Màu nền đỏ đậm khi hover */
+            color: #ffffff; /* Màu chữ khi hover */
+        }
+
+        /* Hiệu ứng khi bấm vào nút */
+        .btn-cart:active {
+        background-color: rgb(202 141 64); /* Màu nền đỏ tối khi bấm */
+            color: #ffffff; /* Màu chữ khi bấm */
+        }
 </style>
-<!-- Page Header Start -->
-<div class="container-fluid page-header2 py-5 wow fadeIn" data-wow-delay="0.1s">
-    <img src="~/User/images/slide_product.png" alt="Header Image" class="img-fluid header-img">
-    <div class="container text-center py-5">
-        <h1 class="display-2 text-white mb-4">Cửa hàng</h1>
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb justify-content-center mb-0">
-                <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
-                <li class="breadcrumb-item"><a href="#">Trang</a></li>
-                <li class="breadcrumb-item text-white" aria-current="page">Cửa hàng</li>
-            </ol>
-        </nav>
-    </div>
-</div>
-<!-- Page Header End -->
-
-<section id="foodies" class="my-5">
-
-    <div class="container my-5 py-5">
-        <div class="section-header d-md-flex justify-content-between align-items-center">
-            <!-- Filter Buttons on the Left -->
-            <div class="mb-4 mb-md-0">
-                <p class="m-0">
-                    <button class="filter-button me-4 active" data-filter="*">ALL</button>
-                    <button class="filter-button me-4" data-filter=".OngHut">Ống hút</button>
-                    <button class="filter-button me-4" data-filter=".Binhnuoc">Bình Nước</button>
-                    <button class="filter-button me-4" data-filter=".Tui">Túi vải</button>
-                    <button class="filter-button me-4" data-filter=".dao">Dao, muỗng, nĩa</button>
-                    <button class="filter-button me-4" data-filter=".Coc">Cốc</button>
-                    <button class="filter-button me-4" data-filter=".HopDoAn">Hộp đồ ăn</button>
-                </p>
-            </div>
-
-            <!-- Sort Dropdown on the Right -->
-            <div class="sort-options">
-                <h5 class="me-2 d-inline-block">Sắp xếp:</h5>
-                <div class="btn-group">
-                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="sortDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                        Chọn sắp xếp
-                    </button>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="sortDropdown">
-                        <li><a class="dropdown-item sort-button" href="#" data-sort="price:asc">Giá tăng dần</a></li>
-                        <li><a class="dropdown-item sort-button" href="#" data-sort="price:desc">Giá giảm dần</a></li>
-                        <li><a class="dropdown-item sort-button" href="#" data-sort="rating:desc">Đánh giá cao nhất</a></li>
-                    </ul>
-                </div>
-            </div>
+<body>
+    <!-- Page Header Start -->
+    <div class="container-fluid page-header2 py-5 wow fadeIn" data-wow-delay="0.1s">
+        <img src="~/User/images/slide_product.png" alt="Header Image" class="img-fluid header-img">
+        <div class="container text-center py-5">
+            <h1 class="display-2 text-white mb-4">Cửa hàng</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb justify-content-center mb-0">
+                    <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+                    <li class="breadcrumb-item"><a href="#">Trang</a></li>
+                    <li class="breadcrumb-item text-white" aria-current="page">Cửa hàng</li>
+                </ol>
+            </nav>
         </div>
+    </div>
+    <!-- Page Header End -->
 
-        <div class="isotope-container row">
+    <section id="foodies" class="my-5">
 
-            @foreach (var product in Model)
-            {
-                <div class="col-md-4 col-lg-3 my-4">
-                    <div class="card position-relative">
-                        <a href="@Url.Action("Details", "Charity", new { id = product.Id })">
-                            <img src="~/User/images/Binhnuoc/image.png" class="img-fluid rounded-4" alt="image"> <!-- Display image dynamically -->
-                        </a>
-                        <div class="card-body p-0">
-                            <a href="@Url.Action("Details", "Charity", new { id = product.Id })">
-                                <h3 class="card-title pt-4 m-0">@product.ProductName</h3>  <!-- Display product name -->
-                            </a>
+        <div class="container my-5 py-5">
+            <div class="section-header d-md-flex justify-content-between align-items-center">
+                <!-- Filter Buttons on the Left -->
+                <div class="mb-4 mb-md-0">
+                    <p class="m-0">
+                        <button class="filter-button me-4 active" data-filter="*">ALL</button>
+                        <button class="filter-button me-4" data-filter=".OngHut">Ống hút</button>
+                        <button class="filter-button me-4" data-filter=".Binhnuoc">Bình Nước</button>
+                        <button class="filter-button me-4" data-filter=".Tui">Túi vải</button>
+                        <button class="filter-button me-4" data-filter=".dao">Dao, muỗng, nĩa</button>
+                        <button class="filter-button me-4" data-filter=".Coc">Cốc</button>
+                        <button class="filter-button me-4" data-filter=".HopDoAn">Hộp đồ ăn</button>
+                    </p>
+                </div>
 
-                            <div class="card-text">
-                                <span class="rating secondary-font">
-                                    @for (int i = 0; i < 5; i++)
-                                    {
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                    }
-                                </span>
+                <!-- Sort Dropdown on the Right -->
+                <div class="sort-options">
+                    <h5 class="me-2 d-inline-block">Sắp xếp:</h5>
+                    <div class="btn-group">
+                        <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="sortDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            Chọn sắp xếp
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="sortDropdown">
+                            <li><a class="dropdown-item sort-button" href="#" data-sort="price:asc">Giá tăng dần</a></li>
+                            <li><a class="dropdown-item sort-button" href="#" data-sort="price:desc">Giá giảm dần</a></li>
+                            <li><a class="dropdown-item sort-button" href="#" data-sort="discount:asc">Giảm giá</a></li>
 
-                                <h3 class="secondary-font text-primary">
-                                    @product.SellingPrice.ToString("C")  <!-- Display price dynamically (formatted as currency) -->
-                                </h3>
-
-                                <div class="d-flex flex-wrap mt-3">
-                                    <button class="btn-cart me-3 px-4 pt-3 pb-3" onclick="addToCart('@product.ProductName', @product.SellingPrice)">
-                                        <h5 class="text-uppercase m-0">Mua ngay</h5>
-                                    </button>
-                                    <a href="#" class="btn-wishlist px-4 pt-3 ">
-                                        <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
-                                    </a>
-                                </div>
-
-                            </div>
-
-                        </div>
+                        </ul>
                     </div>
                 </div>
-            }
+            </div>
+
+            <div class="isotope-container row">
+
+                @foreach (var product in Model)
+                {
+                    <div class="item col-md-4 col-lg-3 my-4 @product.Category">
+                        <div class="swiper-slide">
+                            @if (!string.IsNullOrEmpty(product.Discount))
+                            {
+                                <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
+                                    @product.Discount
+                                </div>
+                            }
+                            <div class="card position-relative">
+                                <a href="@Url.Action("ProductDetails", "ProductDetail", new { name = product.Name })">
+                                    <img src="@product.ImageUrl" class="img-fluid rounded-4" alt="image">
+                                </a>
+                                <div class="card-body p-0">
+                                    <a href="@Url.Action("ProductDetails", "ProductDetail", new { name = product.Name })">
+                                        <h3 class="card-title pt-4 m-0">@product.Name</h3>
+                                    </a>
+                                    <div class="card-text">
+                                        <span class="rating secondary-font">
+                                            @for (int i = 0; i < 5; i++)
+                                            {
+                                                <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                            }
+                                            @product.Rating
+                                        </span>
+
+                                        <h3 class="secondary-font text-primary">@string.Format("{0:N0}đ", product.Price)</h3>
+
+                                        <div class="d-flex flex-wrap mt-3">
+                                            <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3" onclick="addToCart('@product.Name', @product.Price)">
+                                                <h5 class="text-uppercase m-0">Mua ngay</h5>
+                                            </a>
+                                            <a href="#" class="btn-wishlist px-4 pt-3">
+                                                <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+
         </div>
-</section>
+
+    </section>
+    <script>
+               document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.sort-button').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault(); // Prevent the default action
+
+                    const sortType = this.getAttribute('data-sort');
+                    const products = Array.from(document.querySelectorAll('.item'));
+
+                    let sortedProducts = [];
+
+                    // Sorting logic based on price or discount
+                    if (sortType === 'price:asc') {
+                        sortedProducts = products.sort((a, b) => {
+                            const priceA = parseInt(a.querySelector('.card-text h3').innerText.replace(/[^\d]/g, ''));
+                            const priceB = parseInt(b.querySelector('.card-text h3').innerText.replace(/[^\d]/g, ''));
+                            return priceA - priceB;
+                        });
+                    } else if (sortType === 'price:desc') {
+                        sortedProducts = products.sort((a, b) => {
+                            const priceA = parseInt(a.querySelector('.card-text h3').innerText.replace(/[^\d]/g, ''));
+                            const priceB = parseInt(b.querySelector('.card-text h3').innerText.replace(/[^\d]/g, ''));
+                            return priceB - priceA;
+                        });
+                    } else if (sortType === 'discount:asc') {
+                        sortedProducts = products.sort((a, b) => {
+                            const discountA = a.querySelector('.z-1');
+                            const discountB = b.querySelector('.z-1');
+                            const discountValueA = discountA ? parseInt(discountA.innerText.replace('%', '')) : 0;
+                            const discountValueB = discountB ? parseInt(discountB.innerText.replace('%', '')) : 0;
+                            return discountValueA - discountValueB;
+                        });
+                    }
+
+                    // Reappend the sorted products to the container without clearing all the items
+                    const productContainer = document.querySelector('.isotope-container');
+                    sortedProducts.forEach(product => {
+                        productContainer.appendChild(product); // This reorders the DOM without removing items
+                    });
+                });
+            });
+        });
+    </script>
+</body>

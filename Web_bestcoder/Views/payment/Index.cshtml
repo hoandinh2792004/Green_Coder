@@ -1,4 +1,4 @@
-﻿@{
+﻿﻿@{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -12,28 +12,27 @@
                     <h4>Thông tin đặt hàng</h4>
                 </div>
                 <div class="card-body">
-                    <form class="form-horizontal" method="post" action="">
+                    <form id="orderForm" method="post" action="/Payment/SubmitOrder">
                         <div class="form-group mb-3">
-                            <label for="first_name" class="form-label">Họ và Tên:</label>
-                            <input type="text" name="FirstName" class="form-control" placeholder="Nhập họ tên của bạn" />
+                            <label for="first_name" class="form-label">Họ và Tên:</label>
+                            <input type="text" name="FirstName" class="form-control" placeholder="Nhập họ tên của bạn" required />
                         </div>
                         <div class="form-group mb-3">
-                            <label for="phone_number" class="form-label">Số điện thoại:</label>
-                            <input type="text" name="PhoneNumber" class="form-control" placeholder="Nhập số điện thoại của bạn" />
+                            <label for="phone_number" class="form-label">Số điện thoại:</label>
+                            <input type="text" name="PhoneNumber" class="form-control" placeholder="Nhập số điện thoại của bạn" required />
                         </div>
                         <div class="form-group mb-3">
                             <label for="email_address" class="form-label">Email:</label>
-                            <input type="email" name="EmailAddress" class="form-control" placeholder="Theo dõi đơn hàng sẽ được gửi qua Email" />
+                            <input type="email" name="EmailAddress" class="form-control" placeholder="Theo dõi đơn hàng sẽ được gửi qua Email" required />
                         </div>
                         <div class="form-group mb-3">
-                            <label for="address" class="form-label">Địa chỉ:</label>
-                            <input type="text" name="Address" class="form-control" placeholder="Địa chỉ (ví dụ: 103 Vạn Phúc, phường Vạn Phúc)" />
+                            <label for="address" class="form-label">Địa chỉ:</label>
+                            <input type="text" name="Address" class="form-control" placeholder="Địa chỉ (ví dụ: 103 Vạn Phúc, phường Vạn Phúc)" required />
                         </div>
                         <div class="form-group mb-3">
-                            <label for="notes" class="form-label">Ghi chú:</label>
-                            <input type="text" name="Notes" class="form-control" placeholder="Ghi chú thêm (Ví dụ: Giao hàng giờ hành chính)" />
+                            <label for="notes" class="form-label">Ghi chú:</label>
+                            <input type="text" name="Notes" class="form-control" placeholder="Ghi chú (Ví dụ: Giao hàng giờ hành chính), nếu không ghi không." />
                         </div>
-
                         <h5 class="mt-4">Phương thức thanh toán</h5>
                         <div class="form-check mb-3 p-2 border rounded payment-option">
                             <input type="radio" class="form-check-input" name="PaymentMethod" value="Cash" id="paymentCash" required>
@@ -71,6 +70,19 @@
     </div>
 </div>
 
+<div id="messageModal" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <p id="modalMessage"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Đóng</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <style>
     .card-footer {
         text-align: right;
@@ -81,15 +93,27 @@
 <script src="~/js/cart.js"></script>
 
 <script>
-    // Hàm để cập nhật các giá trị ẩn
+    document.getElementById("orderForm").addEventListener("submit", function (event) {
+        event.preventDefault();
+        updateHiddenFields();
+        fetch(this.action, {
+            method: "POST",
+            body: new FormData(this)
+        })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById("modalMessage").innerText = data.message;
+                new bootstrap.Modal(document.getElementById("messageModal")).show();
+            })
+            .catch(error => console.error("Error:", error));
+    });
+
     function updateHiddenFields() {
-        var cartItems = getCartItems(); // Hàm này trả về mảng các sản phẩm trong giỏ hàng
-        var totalPrice = getTotalPrice(); // Hàm này trả về tổng giá trị giỏ hàng
-
-        document.getElementById("cartItems").value = JSON.stringify(cartItems);
-        document.getElementById("totalPrice").value = totalPrice;
+        try {
+            document.getElementById("cartItems").value = JSON.stringify(getCartItems());
+            document.getElementById("totalPrice").value = getTotalPrice();
+        } catch (error) {
+            console.error("Error in updateHiddenFields:", error);
+        }
     }
-
-    // Gọi hàm cập nhật các giá trị ẩn trước khi submit form
-    document.querySelector("form").addEventListener("submit", updateHiddenFields);
 </script>

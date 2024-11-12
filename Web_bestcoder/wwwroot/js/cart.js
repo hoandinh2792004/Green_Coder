@@ -18,7 +18,7 @@ function addToCart(productName, productPrice) {
 function updateCartDisplay() {
     // Tính tổng số lượng sản phẩm trong giỏ hàng
     const cartCount = Object.values(cartItems).reduce((total, item) => total + item.quantity, 0);
-    
+
     // Cập nhật số lượng sản phẩm trong giỏ hàng (ID là 'cart-count')
     document.getElementById('cart-count').textContent = cartCount;
 
@@ -69,4 +69,20 @@ function increaseQuantity(productName) {
 function removeFromCart(productName) {
     delete cartItems[productName];
     updateCartDisplay();
+}
+
+// Trong cart.js
+function getCartItems() {
+    // Mã giả để lấy danh sách sản phẩm trong giỏ hàng
+    // Bạn cần tùy chỉnh để lấy dữ liệu thực từ giỏ hàng của mình
+    return [
+        { ProductId: 1, ProductName: "Sản phẩm A", Quantity: 2, Price: 100 },
+        { ProductId: 2, ProductName: "Sản phẩm B", Quantity: 1, Price: 200 }
+    ];
+}
+
+function getTotalPrice() {
+    // Tính tổng giá trị của giỏ hàng dựa trên các sản phẩm
+    const items = getCartItems();
+    return items.reduce((total, item) => total + item.Quantity * item.Price, 0);
 }

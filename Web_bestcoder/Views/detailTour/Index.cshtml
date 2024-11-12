@@ -1,0 +1,285 @@
+﻿@{
+    ViewData["Title"] = "Chi Tiết Tour Tình Nguyện";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Icon Font Stylesheet -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+<!-- Libraries Stylesheet -->
+<link href="~/quyengop/lib/animate/animate.min.css" rel="stylesheet">
+<link href="~/quyengop/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+<link href="~/quyengop/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+<!-- Template Stylesheet -->
+<link href="~/quyengop/css/style.css" rel="stylesheet">
+
+<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+<meta name="mobile-web-app-capable" content="yes">
+<script src="https://cdn.jsdelivr.net/npm/@@goongmaps/goong-js@1.0.9/dist/goong-js.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/@@goongmaps/goong-js@1.0.9/dist/goong-js.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap">
+
+<style>
+    body {
+        font-family: 'Roboto', sans-serif;
+    }
+
+    /* Page Header */
+    .page-header2 {
+        position: relative;
+        padding: 0;
+        overflow: hidden;
+    }
+
+        .page-header2 .header-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            filter: brightness(0.5);
+        }
+
+        .page-header2 .container {
+            position: relative;
+            z-index: 1;
+            color: white;
+        }
+
+        .page-header2 h1 {
+            font-size: 3rem;
+            font-weight: bold;
+        }
+
+    .breadcrumb {
+        background: rgba(0, 0, 0, 0.5);
+        border-radius: 0;
+        padding: 10px;
+    }
+
+    .breadcrumb-item a {
+        color: #fff;
+        transition: all 0.3s ease;
+    }
+
+        .breadcrumb-item a:hover {
+            color: #ffdd57;
+        }
+
+    .page-header2 .breadcrumb-item.active {
+        color: #ffdd57;
+    }
+
+    /* Card */
+    .tour-card {
+        border: 2px solid #f4f4f4;
+        border-radius: 8px;
+        padding: 20px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        background-color: #fff;
+        transition: all 0.3s ease-in-out;
+    }
+
+        .tour-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .tour-card img {
+            max-width: 100%;
+            border-radius: 8px;
+        }
+
+        .tour-card h2 {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .tour-card p {
+            color: #7f8c8d;
+        }
+
+        .tour-card .price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #27ae60;
+        }
+
+    /* Button */
+    .btn-cart {
+        background-color: #ff5722;
+        color: white;
+        border-radius: 5px;
+        padding: 12px 25px;
+        font-size: 1.2rem;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+        .btn-cart:hover {
+            background-color: #e64a19;
+        }
+
+        .btn-cart:active {
+            background-color: #d84315;
+        }
+
+    /* Contact Box */
+    .contact-box {
+        background-color: #f9f9f9;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+
+        .contact-box h4 {
+            font-size: 1.6rem;
+            color: #2980b9;
+            margin-bottom: 15px;
+        }
+
+        .contact-box p {
+            color: #7f8c8d;
+            font-size: 1rem;
+        }
+
+    /* Additional Section for Schedule and Image Gallery */
+    .schedule, .gallery {
+        margin-top: 50px;
+    }
+
+        .schedule h4, .gallery h4 {
+            font-size: 1.8rem;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        .schedule ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+            .schedule ul li {
+                background-color: #f4f4f4;
+                padding: 15px;
+                margin-bottom: 10px;
+                border-radius: 5px;
+                font-size: 1.1rem;
+            }
+
+                .schedule ul li i {
+                    color: #ff5722;
+                    margin-right: 10px;
+                }
+
+        /* Image Gallery */
+        .gallery img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            transition: transform 0.3s ease;
+        }
+
+            .gallery img:hover {
+                transform: scale(1.1);
+            }
+
+</style>
+
+<!-- Page Header Start -->
+<div class="container-fluid page-header2 py-5 wow fadeIn" data-wow-delay="0.1s">
+    <img src="~/quyengop/img/detail.jpg" alt="Header Image" class="img-fluid header-img">
+    <div class="container text-center py-5">
+        <h1 class="display-2 text-white mb-4">Chi Tiết Tour Tình Nguyện</h1>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb justify-content-center mb-0">
+                <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+                <li class="breadcrumb-item"><a href="#">Quyên Góp</a></li>
+                <li class="breadcrumb-item text-white" aria-current="page">Chi Tiết Tour Tình Nguyện</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+<!-- Page Header End -->
+
+<div class="container py-5">
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="tour-card wow fadeIn" data-wow-delay="0.1s">
+                <img src="~/quyengop/img/LoLoChai.jpg" class="img-fluid rounded mb-4" alt="Image">
+                <h2>Tour du lịch tình nguyện Lô Lô Chải - Hà Giang</h2>
+                <p><strong>Khởi hành từ:</strong> Hà Nội</p>
+                <p><strong>Thời gian:</strong> 2 ngày 3 đêm</p>
+                <p><strong>Giá:</strong> 599.000đ</p>
+                <p>
+                    Trải nghiệm chuyến du lịch tình nguyện đầy ý nghĩa tại Hà Giang, với những hoạt động hỗ trợ cộng đồng và tham gia vào các dự án xanh. Cùng nhau khám phá văn hóa, phong tục đặc sắc của đồng bào Lô Lô Chải. Bạn sẽ có cơ hội làm việc với người dân địa phương, hỗ trợ các hoạt động bảo vệ môi trường, và tham gia các dự án phát triển cộng đồng.
+                </p>
+                <p>
+                    <strong>Điểm nổi bật:</strong>
+                    <ul>
+                        <li>Khám phá những làng bản đẹp, hoang sơ ở Hà Giang.</li>
+                        <li>Tham gia các hoạt động xây dựng trường học, trồng cây xanh, và giúp đỡ cộng đồng.</li>
+                        <li>Giao lưu với người dân địa phương và học hỏi về văn hóa của họ.</li>
+                        <li>Trải nghiệm ẩm thực đặc sản của vùng cao Hà Giang.</li>
+                    </ul>
+                </p>
+            </div>
+
+            <div class="schedule">
+                <h4>Lịch Trình Tour</h4>
+                <ul>
+                    <li><i class="bi bi-clock"></i>Ngày 1: Khởi hành từ Hà Nội, đến Hà Giang, tham quan và gặp gỡ cộng đồng Lô Lô Chải.</li>
+                    <li><i class="bi bi-clock"></i>Ngày 2: Tham gia các hoạt động tình nguyện, khám phá các làng bản, giao lưu văn hóa, tham quan các địa điểm nổi tiếng ở Hà Giang.</li>
+                    <li><i class="bi bi-clock"></i>Ngày 3: Tiếp tục tham gia các hoạt động cộng đồng, kết thúc chuyến đi và quay lại Hà Nội.</li>
+                </ul>
+            </div>
+
+            <div class="gallery">
+                <h4>Thư Viện Hình Ảnh</h4>
+                <div class="row">
+                    <div class="col-md-4">
+                        <a href="~/quyengop/img/LoLoChai.jpg" data-lightbox="tour-gallery"><img src="~/quyengop/img/LoLoChai.jpg" class="img-fluid rounded" alt="Image 1"></a>
+                    </div>
+                    <div class="col-md-4">
+                        <a href="~/quyengop/img/tinhnguyen2.jpg" data-lightbox="tour-gallery"><img src="~/quyengop/img/tinhnguyen2.jpg" class="img-fluid rounded" alt="Image 2"></a>
+                    </div>
+                    <div class="col-md-4">
+                        <a href="~/quyengop/img/tinhnguyen3.jpg" data-lightbox="tour-gallery"><img src="~/quyengop/img/tinhnguyen3.jpg" class="img-fluid rounded" alt="Image 3"></a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-lg-4">
+            <div class="contact-box wow fadeIn" data-wow-delay="0.1s">
+                <h4>Liên Hệ Ngay</h4>
+                <p>Chúng tôi sẽ giúp bạn đăng ký tham gia tour tình nguyện này!</p>
+                <form>
+                    <input type="text" class="form-control mb-3" placeholder="Tên của bạn" required>
+                    <input type="email" class="form-control mb-3" placeholder="Email" required>
+                    <textarea class="form-control mb-3" placeholder="Thông tin thêm (nếu có)" rows="4"></textarea>
+                    <button type="submit" class="btn-cart">Đăng Ký Ngay</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Script Libraries -->
+<script src="~/quyengop/js/jquery.min.js"></script>
+<script src="~/quyengop/js/bootstrap.bundle.min.js"></script>
+<script src="~/quyengop/js/lightbox.min.js"></script>
+<script src="~/quyengop/js/owl.carousel.min.js"></script>
+<script src="~/quyengop/js/wow.min.js"></script>
+<script>
+    new WOW().init();
+</script>

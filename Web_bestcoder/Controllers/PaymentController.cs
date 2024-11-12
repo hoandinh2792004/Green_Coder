@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.IO;
 
 namespace Web_bestcoder.Controllers
@@ -12,46 +13,51 @@ namespace Web_bestcoder.Controllers
         {
             return View();
         }
+        [HttpPost]
+        public IActionResult SubmitOrder(OrderData orderData)
+        {
+            if (ModelState.IsValid)
+            {
+                var orderJson = JsonConvert.SerializeObject(orderData, Formatting.Indented);
+                System.IO.File.WriteAllText("orderData.json", orderJson);
+                return Json(new { message = "Cảm ơn bạn đã đặt hàng!" });
 
-        //[HttpPost]
-        //public IActionResult Index(OrderData orderData)
-        //{
-        //    // Đường dẫn tới tệp JSON (cần điều chỉnh đường dẫn này tùy thuộc vào cấu trúc dự án của bạn)
-        //    var filePath = Path.Combine(Directory.GetCurrentDirectory(), "payment.json");
+            }
 
-        //    // Đọc nội dung hiện có của tệp JSON (nếu có)
-        //    var existingData = new List<OrderData>();
-        //    if (System.IO.File.Exists(filePath))
-        //    {
-        //        var json = System.IO.File.ReadAllText(filePath);
-        //        existingData = JsonConvert.DeserializeObject<List<OrderData>>(json) ?? new List<OrderData>();
-        //    }
+            // Lấy thông tin lỗi từ ModelState
+            var errors = ModelState.Values
+                                    .SelectMany(v => v.Errors)
+                                    .Select(e => e.ErrorMessage)
+                                    .ToList();
 
-        //    // Thêm thông tin đặt hàng mới vào danh sách
-        //    existingData.Add(orderData);
+            // Trả về lỗi chi tiết
+            return Json(new { message = "Vui lòng điền đầy đủ thông tin.", errors });
+        }
 
-        //    // Ghi danh sách cập nhật vào tệp JSON
-        //    var updatedJson = JsonConvert.SerializeObject(existingData, Formatting.Indented);
-        //    System.IO.File.WriteAllText(filePath, updatedJson);
-
-        //    // Trả về view với thông báo thành công (hoặc chuyển hướng nếu cần)
-        //    ViewBag.Message = "Đặt hàng thành công!";
-        //    return View();
-        //}
     }
 
     public class OrderData
     {
+        [Required(ErrorMessage = "Họ và tên là bắt buộc.")]
         public string FirstName { get; set; }
-        public string PhoneNumber { get; set; }
-        public string EmailAddress { get; set; }
-        public string Address { get; set; }
-        public string Notes { get; set; }
-        public string PaymentMethod { get; set; }
-        public List<CartItem> CartItems { get; set; }
-        public decimal TotalPrice { get; set; }
-    }
 
+        [Required(ErrorMessage = "Số điện thoại là bắt buộc.")]
+        [Phone(ErrorMessage = "Số điện thoại không hợp lệ.")]
+        public string PhoneNumber { get; set; }
+
+        [Required(ErrorMessage = "Email là bắt buộc.")]
+        [EmailAddress(ErrorMessage = "Địa chỉ email không hợp lệ.")]
+        public string EmailAddress { get; set; }
+
+        [Required(ErrorMessage = "Địa chỉ là bắt buộc.")]
+        public string Address { get; set; }
+
+        // Notes không bắt buộc nữa
+        public string Notes { get; set; }
+
+        [Required(ErrorMessage = "Phương thức thanh toán là bắt buộc.")]
+        public string PaymentMethod { get; set; }
+    }
     public class CartItem
     {
         public string ProductName { get; set; }
