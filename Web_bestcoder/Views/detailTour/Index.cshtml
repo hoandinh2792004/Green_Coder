@@ -2,6 +2,8 @@
     ViewData["Title"] = "Chi Tiết Tour Tình Nguyện";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+ @model IEnumerable<Web_bestcoder.Areas.Admin.Models.Charity>
+
 
 <!-- Icon Font Stylesheet -->
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
@@ -223,12 +225,44 @@
                     Trải nghiệm chuyến du lịch tình nguyện đầy ý nghĩa tại Hà Giang, với những hoạt động hỗ trợ cộng đồng và tham gia vào các dự án xanh. Cùng nhau khám phá văn hóa, phong tục đặc sắc của đồng bào Lô Lô Chải. Bạn sẽ có cơ hội làm việc với người dân địa phương, hỗ trợ các hoạt động bảo vệ môi trường, và tham gia các dự án phát triển cộng đồng.
                 </p>
                 <p>
-                    <strong>Điểm nổi bật:</strong>
+                    <strong>💗 Hoạt động tình nguyện nổi bật:</strong>
                     <ul>
-                        <li>Khám phá những làng bản đẹp, hoang sơ ở Hà Giang.</li>
-                        <li>Tham gia các hoạt động xây dựng trường học, trồng cây xanh, và giúp đỡ cộng đồng.</li>
-                        <li>Giao lưu với người dân địa phương và học hỏi về văn hóa của họ.</li>
-                        <li>Trải nghiệm ẩm thực đặc sản của vùng cao Hà Giang.</li>
+                        <li>Phát triển mô hình du lịch cộng đồng tại làng Lô Lô Chải – Hà Giang </li>
+                        <li>Tìm hiểu và truyền thông quảng bá văn hóa truyền thống dân tộc Lô Lô: nhà trình tường, trang phục,…</li>
+                        <li>Phát các sản phẩm quyên góp như quần áo, sách vở, đồ ăn cho trẻ em.</li>
+                        <li>Tham gia các hoạt động bảo vệ môi trường và hỗ trợ cộng đồng địa phương.</li>
+                    </ul>
+                </p>
+                <p>
+                    <strong>⭐️ Mục tiêu dự án:</strong>
+                    <ul>
+                        <li>
+                            Tặng các sản phẩm quyên góp tới các trẻ em ở các vùng núi phía Bắc.
+                        </li>
+                        <li>
+                            Lan tỏa tình yêu thương tới mọi người kém may mắn, bị ảnh hưởng bởi lũ, bão...
+                        </li>
+                        <li>
+                            Khám phá và trải nghiệm văn hóa, truyền thống của địa phương...
+                        </li>
+
+                        <li>
+                             Quy tụ được sức mạnh, sự đoàn kết của Việt Nam
+                        </li>
+
+                    </ul>
+                </p>
+                <p>
+                    <strong>⭐️ Chi phí bao gồm:</strong>
+                    <ul>
+                        <li>Xe đưa đón toàn bộ hành trình</li>
+                        <li>Nơi ở trong toàn bộ hành trình</li>
+                        <li>Bữa ăn: 3 bữa chính</li>
+                        <li>Nước khoáng</li>
+                        <li>Bảo hiểm du lịch</li>
+                        <li>Chi phí cho hoạt động tình nguyện và trải nghiệm văn hóa</li>
+                        <li>Hỗ trợ từ đội ngũ dẫn đoàn</li>
+
                     </ul>
                 </p>
             </div>
@@ -249,10 +283,10 @@
                         <a href="~/quyengop/img/LoLoChai.jpg" data-lightbox="tour-gallery"><img src="~/quyengop/img/LoLoChai.jpg" class="img-fluid rounded" alt="Image 1"></a>
                     </div>
                     <div class="col-md-4">
-                        <a href="~/quyengop/img/tinhnguyen2.jpg" data-lightbox="tour-gallery"><img src="~/quyengop/img/tinhnguyen2.jpg" class="img-fluid rounded" alt="Image 2"></a>
+                        <a href="~/quyengop/img/tinhnguyen2.jpg" data-lightbox="tour-gallery"><img src="~/quyengop/img/slide_about.jpg" class="img-fluid rounded" alt="Image 2"></a>
                     </div>
                     <div class="col-md-4">
-                        <a href="~/quyengop/img/tinhnguyen3.jpg" data-lightbox="tour-gallery"><img src="~/quyengop/img/tinhnguyen3.jpg" class="img-fluid rounded" alt="Image 3"></a>
+                        <a href="~/quyengop/img/tinhnguyen3.jpg" data-lightbox="tour-gallery"><img src="~/quyengop/img/blog2.jpg" class="img-fluid rounded" alt="Image 3"></a>
                     </div>
                 </div>
             </div>
@@ -261,10 +295,11 @@
         <div class="col-lg-4">
             <div class="contact-box wow fadeIn" data-wow-delay="0.1s">
                 <h4>Liên Hệ Ngay</h4>
-                <p>Chúng tôi sẽ giúp bạn đăng ký tham gia tour tình nguyện này!</p>
+                <p>Một phần lớn lợi nhuận được dùng cho các mục đích từ thiện (như hỗ trợ cộng đồng, phát triển các dự án xã hội), và một phần nhỏ để duy trì hoạt động kinh doanh.</p>
                 <form>
                     <input type="text" class="form-control mb-3" placeholder="Tên của bạn" required>
                     <input type="email" class="form-control mb-3" placeholder="Email" required>
+                    <input type="tel" class="form-control mb-3" placeholder="Số điện thoại" required>
                     <textarea class="form-control mb-3" placeholder="Thông tin thêm (nếu có)" rows="4"></textarea>
                     <button type="submit" class="btn-cart">Đăng Ký Ngay</button>
                 </form>

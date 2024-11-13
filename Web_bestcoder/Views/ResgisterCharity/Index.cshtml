@@ -158,6 +158,24 @@
             object-fit: cover; /* Đảm bảo ảnh vừa khung và không bị biến dạng */
             border-radius: 10px;
         }
+
+        .table-responsive {
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+        }
+
+        .table th, .table td {
+            vertical-align: middle;
+        }
+
+        .table thead th {
+            background-color: rgb(222 173 111);
+            color: #fff;
+        }
+
+        .table tbody tr:hover {
+            background-color: #f1f1f1;
+        }
      
     </style>
 </head>
@@ -532,7 +550,7 @@
                         <div class="program-teacher d-flex align-items-center border-top border-primary bg-white px-4 ">
                         </div>
                         <div class="d-flex justify-content-between px-4 py-2 bg-primary rounded-bottom">
-                            <small class="text-white"></small>
+                            <small class="text-white">Miễn phí</small>
                         </div>
                     </div>
                 </div>
@@ -545,7 +563,7 @@
                         </div>
                         <div class="program-text bg-white px-4 pb-3">
                             <div class="program-text-inner">
-                                <a href="#" class="h4">Tour du lịch tình nguyện Lô Lô Chải - Hà Giang</a>
+                                <a href="/detailTour" class="h4">Tour du lịch tình nguyện Lô Lô Chải - Hà Giang</a>
                                 <p class="mt-3 mb-0">
                                     Ngày khởi hành: 22-11-2024<br>
                                     Thời gian: 2 ngày 3 đêm<br>
@@ -556,7 +574,7 @@
                         <div class="program-teacher d-flex align-items-center border-top border-primary bg-white px-4 ">
                         </div>
                         <div class="d-flex justify-content-between px-4 py-2 bg-primary rounded-bottom">
-                            <small class="text-white"></small>
+                            <small class="text-white">599.00đ</small>
                         </div>
                     </div>
                 </div>
@@ -569,7 +587,7 @@
                         </div>
                         <div class="program-text bg-white px-4 pb-3">
                             <div class="program-text-inner">
-                                <a href="#" class="h4">Tour du lịch tình nguyện Lũng Cú - Hà Giang</a>
+                                <a href="/detailTour" class="h4">Tour du lịch tình nguyện Lũng Cú - Hà Giang</a>
                                 <p class="mt-3 mb-0">
                                     Ngày khởi hành: 29-11-2024<br>
                                     Thời gian: 2 ngày 2 đêm<br>
@@ -580,7 +598,7 @@
                         <div class="program-teacher d-flex align-items-center border-top border-primary bg-white px-4 ">
                         </div>
                         <div class="d-flex justify-content-between px-4 py-2 bg-primary rounded-bottom">
-                            <small class="text-white"></small>
+                            <small class="text-white">699.000đ</small>
                         </div>
                     </div>
                 </div>
@@ -591,6 +609,84 @@
         </div>
     </div>
     <!-- Programs End -->
+    <!-- Programs Start -->
+    <div class="container-fluid py-2 program">
+        <div class="container py-4">
+            <div class="mx-auto text-center wow fadeIn" data-wow-delay="0.1s" style="max-width: 700px;">
+                <h1 class="mb-5 display-5">💗 Sản phẩm đã quyên góp</h1>
+            </div>
+            <div class="row g-5 justify-content-center">
+                <div class="table-responsive" style="max-height: 300px; overflow-y: auto;">
+                    <table class="table table-bordered table-striped text-center">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Họ Tên</th>
+                                <th>Sản Phẩm Quyên Góp</th>
+                                <th>Ngày Giờ</th>
+                                <th>Địa Điểm</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Nguyễn Văn A</td>
+                                <td>Sách giáo khoa</td>
+                                <td>8/11/2024 09:00</td>
+                                <td>Trường THPT A</td>
+                            </tr>
+                            <tr>
+                                <td>Trần Thị B</td>
+                                <td>Quần áo mùa đông</td>
+                                <td>9/11/2024 10:30</td>
+                                <td>Nhà văn hóa Xã B</td>
+                            </tr>
+                            <tr>
+                                <td>Phạm Văn C</td>
+                                <td>Đồ chơi trẻ em</td>
+                                <td>9/11/2024 08:45</td>
+                                <td>Nhà văn hóa Xã C</td>
+                            </tr>
+                            <tr>
+                                <td>THPT Mỹ Đình</td>
+                                <td>100KG sách vở và quần áo cũ</td>
+                                <td>10/11/2024 08:45</td>
+                                <td>Hà Nội</td>
+                            </tr>
+                            <tr>
+                                <td>THPT Yên Bái</td>
+                                <td>150KG quần áo cũ và sách vở</td>
+                                <td>14/11/2024 08:45</td>
+                                <td>Yên Bái</td>
+                            </tr>
+                            <tr>
+                                <td>Cao Đẳng BTEC FPT </td>
+                                <td>50KG quần áo cũ và đồ dùng học tập</td>
+                                <td>12/11/2024 08:45</td>
+                                <td>Hà Nội</td>
+                            </tr>
+                            <tr>
+                                <td>Cao Đẳng Việt Mỹ </td>
+                                <td>90KG quần áo cũ và đồ dùng học tập</td>
+                                <td>11/11/2024 08:45</td>
+                                <td>Hà Nội</td>
+                            </tr>
+                            <tr>
+                                <td>THPT Hòa Bình 1</td>
+                                <td>12KG quần áo cũ và đồ dùng học tập</td>
+                                <td>12/11/2024 08:45</td>
+                                <td>Hòa Bình</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
 
 
     <section id="insta" class="my-5">

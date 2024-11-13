@@ -34,7 +34,6 @@ namespace Web_bestcoder.Controllers
             new Product { Name = "Túi tote vải canvas", ImageUrl = "/User/images/Tui/image2.png", Discount = "-10%", Rating = "5.0", Price = 49000,Category = "Tui"  },
             new Product { Name = "Túi vải thiết kế", ImageUrl = "/User/images/Tui/image3.png", Discount = "-10%", Rating = "5.0", Price = 49000,Category = "Tui"  },
             new Product { Name = "Túi vải thiết kế", ImageUrl = "/User/images/Tui/image5.png", Discount = "-10%", Rating = "5.0", Price = 49000,Category = "Tui"  },
-            new Product { Name = "Túi vải thiết kế", ImageUrl = "/User/images/Tui/image5.png", Discount = "-10%", Rating = "5.0", Price = 49000,Category = "Tui"  }
         };
 
         // Method to return the product list to the view

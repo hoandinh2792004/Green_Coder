@@ -2,6 +2,9 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@model IEnumerable<Web_bestcoder.Controllers.BlogController.BlogPost>
+ @* @model IEnumerable<Web_bestcoder.Areas.Admin.Models.Charity>
+ *@
 <style>
     .page-header2 {
         position: relative;
@@ -23,6 +26,14 @@
             position: relative;
             z-index: 1;
         }
+
+    .fixed-size-img {
+        width: 100%;
+        height: 250px; /* Set the height you want for the images */
+        object-fit: cover;
+        border-radius: 8px; /* Keep rounded corners */
+    }
+
 </style>
 <!-- Page Header Start -->
 <div class="container-fluid page-header2 py-5 wow fadeIn" data-wow-delay="0.1s">
@@ -43,80 +54,35 @@
 <section id="latest-blog" class="my-5">
     <div class="container my-5">
         <div class="row">
-            <div class="col-md-4 my-4 my-md-0">
-                <div class="z-1 position-absolute rounded-3 m-2 px-3 pt-1 bg-light">
-                    <h3 class="secondary-font text-primary m-0">20</h3>
-                    <p class="secondary-font fs-6 m-0">Oct</p>
-
-                </div>
-                <div class="card position-relative">
-                    <a href="single-post.html"><img src="~/User/images/blogs/3.png" class="img-fluid rounded-4" alt="image"></a>
-                    <div class="card-body p-0">
-                        <a href="single-post.html">
-                            <h3 class="card-title pt-4 pb-3 m-0">Hậu quả của ô nhiễm môi trường biển</h3>
+            @foreach (var charity in Model)
+            {
+                <div class="col-md-4 my-4 my-md-0">
+                    <div class="z-1 position-absolute rounded-3 m-2 px-3 pt-1 bg-light">
+                        <h3 class="secondary-font text-primary m-0">@charity.Date</h3>
+                        <p class="secondary-font fs-6 m-0">@charity.Month</p>
+                    </div>
+                    <div class="card position-relative">
+                        <a href="#">
+                            <img src="@charity.ImageUrl" class="img-fluid fixed-size-img" alt="image">
                         </a>
-
-                        <div class="card-text">
-                            <p class="blog-paragraph fs-6">
-                                Ô nhiễm môi trường biển hiện đang là thách thức của Việt Nam khi tình trạng ô nhiễm ngày càng trở nên nghiêm trọng hơn. Nếu không thể khắc phục kịp thời, cuộc sống con người hiện tại và tương lai sẽ bị ảnh hưởng...
-                            </p>
-                            <a href="single-post.html" class="blog-read">Đọc thêm</a>
+                        <div class="card-body p-0">
+                            <a href="#">
+                                <h4 class="card-title pt-4 pb-3 m-0">@charity.Title</h4>
+                            </a>
+                            <div class="card-text">
+                                <p class="blog-paragraph fs-6">
+                                    @charity.Description
+                                </p>
+                                <a href="#" class="blog-read">Đọc thêm</a>
+                            </div>
                         </div>
-
                     </div>
                 </div>
-            </div>
-            <div class="col-md-4 my-4 my-md-0">
-                <div class="z-1 position-absolute rounded-3 m-2 px-3 pt-1 bg-light">
-                    <h3 class="secondary-font text-primary m-0">21</h3>
-                    <p class="secondary-font fs-6 m-0">Oct</p>
-
-                </div>
-                <div class="card position-relative">
-                    <a href="single-post.html"><img src="~/User/images/blogs/4.png" class="img-fluid rounded-4" alt="image"></a>
-                    <div class="card-body p-0">
-                        <a href="single-post.html">
-                            <h3 class="card-title pt-4 pb-3 m-0">
-                                Xử lý ô nhiễm môi trường tại các cơ sở tái chế giấy ở Bắc Ninh
-                            </h3>
-                        </a>
-
-                        <div class="card-text">
-                            <p class="blog-paragraph fs-6">
-                                Tại Phong Khê (tỉnh Bắc Ninh), hơn chục năm qua, hàng loạt cơ sở tái chế giấy phế liệu tồn tại, trở thành điểm đen về ô nhiễm môi trường, kéo theo nhiều hệ lụy khác...
-                            </p>
-                            <a href="single-post.html" class="blog-read">Đọc thêm</a>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 my-4 my-md-0">
-                <div class="z-1 position-absolute rounded-3 m-2 px-3 pt-1 bg-light">
-                    <h3 class="secondary-font text-primary m-0">22</h3>
-                    <p class="secondary-font fs-6 m-0">Oct</p>
-
-                </div>
-                <div class="card position-relative">
-                    <a href="single-post.html"><img src="~/User/images/blogs/5.png" class="img-fluid rounded-4" alt="image"></a>
-                    <div class="card-body p-0">
-                        <a href="single-post.html">
-                            <h3 class="card-title pt-4 pb-3 m-0">Mất bao lâu rác thải nhựa mới phân hủy</h3>
-                        </a>
-
-                        <div class="card-text">
-                            <p class="blog-paragraph fs-6">
-                                Thời gian rác phân huỷ Lượng rác nhựa khổng lồ được thải ra môi trường hàng ngày có thể mất đến 1.000 năm để phân huỷ hoàn toàn. Đây thực sự là mối đe doạ tới môi trường cũng như sức khỏe...
-
-                            </p>
-                            <a href="single-post.html" class="blog-read">Đọc thêm</a>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
+            }
         </div>
     </div>
+</section>
+<section id="latest-blog" class="my-5">
     <div class="container my-5">
         <div class="row">
             <div class="col-md-4 my-4 my-md-0">
@@ -126,17 +92,17 @@
 
                 </div>
                 <div class="card position-relative">
-                    <a href="single-post.html"><img src="~/User/images/blogs/3.png" class="img-fluid rounded-4" alt="image"></a>
+                    <a href="#"><img src="~/User/images/blogs/3.png" class="img-fluid rounded-4" alt="image"></a>
                     <div class="card-body p-0">
-                        <a href="single-post.html">
+                        <a href="#">
                             <h3 class="card-title pt-4 pb-3 m-0">Hậu quả của ô nhiễm môi trường biển</h3>
                         </a>
 
                         <div class="card-text">
                             <p class="blog-paragraph fs-6">
-                                Ô nhiễm môi trường biển hiện đang là thách thức của Việt Nam khi tình trạng ô nhiễm ngày càng trở nên nghiêm trọng hơn. Nếu không thể khắc phục kịp thời, cuộc sống con người hiện tại và tương lai sẽ bị ảnh hưởng...
+                                Ô nhiễm môi trường biển hiện đang là thách thức của Việt Nam khi tình trạng ô nhiễm ngày càng trở nên nghiêm trọng hơn. Nếu không thể khắc phục kịp thời, cuộc sống con người hiện tại và tương...
                             </p>
-                            <a href="single-post.html" class="blog-read">Đọc thêm</a>
+                            <a href="#" class="blog-read">Đọc thêm</a>
                         </div>
 
                     </div>
@@ -149,11 +115,11 @@
 
                 </div>
                 <div class="card position-relative">
-                    <a href="single-post.html"><img src="~/User/images/blogs/4.png" class="img-fluid rounded-4" alt="image"></a>
+                    <a href="#"><img src="~/User/images/blogs/4.png" class="img-fluid rounded-4" alt="image"></a>
                     <div class="card-body p-0">
-                        <a href="single-post.html">
+                        <a href="#">
                             <h3 class="card-title pt-4 pb-3 m-0">
-                                Xử lý ô nhiễm môi trường tại các cơ sở tái chế giấy ở Bắc Ninh
+                                Xử lý ô nhiễm môi trường tại các cơ sở...
                             </h3>
                         </a>
 
@@ -161,7 +127,7 @@
                             <p class="blog-paragraph fs-6">
                                 Tại Phong Khê (tỉnh Bắc Ninh), hơn chục năm qua, hàng loạt cơ sở tái chế giấy phế liệu tồn tại, trở thành điểm đen về ô nhiễm môi trường, kéo theo nhiều hệ lụy khác...
                             </p>
-                            <a href="single-post.html" class="blog-read">Đọc thêm</a>
+                            <a href="#" class="blog-read">Đọc thêm</a>
                         </div>
 
                     </div>
@@ -174,9 +140,9 @@
 
                 </div>
                 <div class="card position-relative">
-                    <a href="single-post.html"><img src="~/User/images/blogs/5.png" class="img-fluid rounded-4" alt="image"></a>
+                    <a href="#"><img src="~/User/images/blogs/5.png" class="img-fluid rounded-4" alt="image"></a>
                     <div class="card-body p-0">
-                        <a href="single-post.html">
+                        <a href="#">
                             <h3 class="card-title pt-4 pb-3 m-0">Mất bao lâu rác thải nhựa mới phân hủy</h3>
                         </a>
 
@@ -185,7 +151,7 @@
                                 Thời gian rác phân huỷ Lượng rác nhựa khổng lồ được thải ra môi trường hàng ngày có thể mất đến 1.000 năm để phân huỷ hoàn toàn. Đây thực sự là mối đe doạ tới môi trường cũng như sức khỏe...
 
                             </p>
-                            <a href="single-post.html" class="blog-read">Đọc thêm</a>
+                            <a href="#" class="blog-read">Đọc thêm</a>
                         </div>
 
                     </div>
@@ -194,8 +160,6 @@
         </div>
     </div>
 </section>
-
-@model IEnumerable<Web_bestcoder.Areas.Admin.Models.Charity>
 
 
 <!-- Programs Start -->
@@ -277,7 +241,7 @@
 </div> *@
 <!-- Events End-->
 <!-- Testimonial Start -->
-<div class="container-fluid testimonial program py-2">
+@* <div class="container-fluid testimonial program py-2">
     <div class="container py-5">
         <div class="mx-auto text-center wow fadeIn" data-wow-delay="0.1s" style="max-width: 700px;">
             <h4 class="text-primary mb-4 border-bottom border-primary border-2 d-inline-block p-2 title-border-radius">Thiện Nguyện</h4>
@@ -316,7 +280,7 @@
         </div>
     </div>
 </div>
-<!-- Testimonial End -->
+ *@<!-- Testimonial End -->
 <!-- Blog Start-->
 
 
